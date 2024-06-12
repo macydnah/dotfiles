@@ -1,0 +1,40 @@
+[colors]
+include-file = /home/macydnah/.config/polybar/colors
+
+[bar/tray]
+monitor-strict = false
+width = 20
+height = 26
+offset-x = 98%
+offset-y = 33
+radius = 6.0
+override-redirect = true
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 0
+modules-right = sep
+
+tray-position = right
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-maxsize = 20
+tray-scale = 1.0
+tray-background = ${colors.background}
+
+[module/sep]
+type = custom/text
+content = " "
+content-foreground = ${colors.foreground-alt}
+content-padding = 1

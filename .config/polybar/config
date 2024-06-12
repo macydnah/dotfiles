@@ -1,0 +1,350 @@
+;==========================================================
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;==========================================================
+
+[colors]
+include-file = /home/macydnah/.config/polybar/colors
+
+[bar/mainbar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 26
+;bottom = true
+;offset-x = 1%
+;offset-y = 1%
+;dim-value = 1.0
+;fixed-center = false
+;wm-restack = i3
+;override-redirect = false
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 2
+;border-top-size =
+border-bottom-size = 0
+;border-right-size =
+;border-left-size =
+;border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+modules-left = i3
+modules-center = date
+;modules-right = pulseaudio backlight-acpi wlan eth teth battery arrow
+modules-right = pulseaudio backlight-acpi battery
+
+font-0 = "Source Code Pro:pixelsize=10:antialias=true;2"
+font-1 = "Source Code Pro:style=Bold:pixelsize=10:antialias=true;2"
+font-2 = "Twemoji:style=Regular:scale=4.25;3"
+font-3 = "Hurmit Nerd Font Mono:style=medium:size=13.5:antialias=true;2"
+font-4 = "Hurmit Nerd Font Mono:style=medium:size=16:antialias=true;3"
+
+tray-position = right
+;tray-detached = true
+tray-maxsize = 20
+;tray-padding = 0
+;tray-transparent = false
+;tray-background = #0063ff
+;tray-offset-x = 0
+;tray-offset-y = 0
+;tray-scale = 1.0
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[settings]
+screenchange-reload = false
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = true
+
+[module/arrow]
+type = custom/script
+exec = echo ""
+click-left = bash $HOME/.config/polybar/tray/tinybar.sh
+click-right = bash $HOME/.config/polybar/tray/tinybar.sh -q
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+;format-font = 0
+index-sort = true
+strip-wsnumbers = true
+enable-click = false
+enable-scroll = false
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = ¦
+
+
+[module/xbacklight]
+type = internal/xbacklight
+;format = <label> <ramp> <bar>
+
+format = <ramp>
+;format-underline = #0a6cf5
+;label = %percentage%%
+
+; Reverse ramp
+; ramp-0 = 🌑
+; ramp-1 = 🌒
+; ramp-2 = 🌓
+; ramp-3 = 🌔
+; ramp-4 = 🌕
+; Normal Ramp
+ramp-0 = 🌕
+ramp-1 = 🌖
+ramp-2 = 🌗
+ramp-3 = 🌘
+ramp-4 = 🌑
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-fill = ─
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = lan0
+interval = 3.0
+
+;format-connected = <label-connected>
+format-connected-underline = #55aa55
+;format-connected-prefix = " "
+;format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = ""
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = ""
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/teth]
+inherit = module/eth
+interface = teth
+unknown-as-up = true
+format-connected-font = 5
+format-connected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 60
+;clock-emoji = "🕓"
+;date-emoji = "🗓"
+
+;date = "%a %d"
+;date-alt = "%A %d/%B/%Y"
+
+;time = "🕓 %I:%M%p"
+time = "🕓 %B %A %d %I:%M%p"
+;time-alt = "🗓 %A %d, %b"
+;time-alt = "%H:%M"
+
+;format-prefix =
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #0a6cf5
+
+label = %time%
+label-font = 2
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+
+;format-volume = <label-volume> <ramp-volume> <bar-volume>
+format-volume = <ramp-volume>
+;label-volume = %percentage%%
+
+format-muted = <label-muted>
+;format-muted-prefix = "🔇"
+label-muted = "🔇"
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔉
+ramp-volume-3 = 🔊
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-fill = ─
+bar-volume-empty = ─
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 98
+time-format = %H:%M
+
+format-charging = <ramp-capacity> <label-charging>
+format-charging-underline = ${colors.primary}
+label-charging = %time% 
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.alert}
+label-discharging = %time%
+
+format-full = <ramp-capacity>
+format-full-font = 4
+format-full-underline = #55aa55
+;label-full = %percentage%%
+;label-full-font = 2
+;label-full-foreground = ${self.format-full-underline}
+
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-3 = 
+;ramp-capacity-4 = 
+;ramp-capacity-5 = 
+;ramp-capacity-0-foreground = ${self.format-discharging-underline}
+;ramp-capacity-1-foreground = #f98b14
+;ramp-capacity-2-foreground = #f5f90a
+;ramp-capacity-3-foreground = #bbdd25
+;ramp-capacity-4-foreground = #90c739
+;ramp-capacity-5-foreground = ${self.format-full-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-0-foreground = ${self.format-discharging-underline}
+ramp-capacity-1-foreground = #fb6607
+ramp-capacity-2-foreground = #f9990b
+ramp-capacity-3-foreground = #f7cc0e
+ramp-capacity-4-foreground = #f5ff12
+ramp-capacity-5-foreground = #d5ee20
+ramp-capacity-6-foreground = #b5dd2d
+ramp-capacity-7-foreground = #95cc3b
+ramp-capacity-8-foreground = #75bb48
+ramp-capacity-9-foreground = ${self.format-full-underline}
+
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-3 = 
+;animation-charging-4 = 
+;animation-charging-foreground = ${colors.foreground-alt}
+;animation-charging-framerate = 750
+
+;animation-discharging-0 = 
+;animation-discharging-1 = 
+;animation-discharging-2 = 
+;animation-discharging-3 = 
+;animation-discharging-4 = 
+;animation-discharging-foreground = ${colors.foreground-alt}
+;animation-discharging-framerate = 1250
+
+;bar-capacity-width = 10
+;bar-capacity-foreground-0 = #ff5555
+;bar-capacity-foreground-1 = #fc461a
+;bar-capacity-foreground-2 = #f98c14
+;bar-capacity-foreground-3 = #f5f90a
+;bar-capacity-foreground-4 = #aad52d
+;bar-capacity-foreground-5 = #80c041
+;bar-capacity-foreground-6 = #55aa55
+;bar-capacity-gradient = false
+;bar-capacity-fill = ─
+;bar-capacity-empty = ─
+;bar-capacity-indicator = ─
+;bar-capacity-indicator = ─
+;bar-capacity-indicator-foreground = #55aa55
+
+
+; vim:ft=dosini

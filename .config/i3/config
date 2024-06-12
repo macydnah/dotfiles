@@ -1,0 +1,141 @@
+# i3 config file (v4)
+
+set $mod Mod4
+font pango:Source Code Pro, Icons 9
+floating_modifier $mod
+focus_follows_mouse no
+default_border pixel 0
+default_floating_border pixel 0
+for_window [class="^.*"] border pixel 0
+gaps inner 2
+gaps outer 1
+smart_gaps off
+workspace 10 gaps horizontal 190
+#strip_workspace_numbers yes
+include /home/macydnah/.config/i3/config.d/*
+
+# Volume/Brightness levels.
+bindsym XF86AudioMute exec --no-startup-id "volfade.sh -m"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "volfade.sh -i"
+bindsym XF86AudioLowerVolume exec --no-startup-id "volfade.sh -d"
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 3 -fps 60 -time 111 -perceived"
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 3 -fps 60 -time 111 -perceived"
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "red.sh -r"
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "red.sh -s" 
+#bindsym XF86Launch2 exec --no-startup-id "kblight && sleep 0.1 && notify-send -e -t 1444 --icon=input-keyboard Keyboard\ light \\"$(kblight -s)\\""
+bindsym $mod+Menu exec --no-startup-id "kblight && sleep 0.1 && notify-send -e -t 1444 --icon=input-keyboard Keyboard\ light \\"$(kblight -s)\\""
+
+bindsym Control+Mod1+Up exec --no-startup-id "xrandr --output LVDS-1 --rotate normal && mouse2normal.sh"
+bindsym Control+Mod1+Right exec --no-startup-id "xrandr --output LVDS-1 --rotate right && mouse2right.sh"
+bindsym Control+Mod1+Left exec --no-startup-id "xrandr --output LVDS-1 --rotate left && mouse2left.sh"
+bindsym Control+Mod1+Down exec --no-startup-id "xrandr --output LVDS-1 --rotate inverted"
+
+# Keybinds/shortcuts for applications
+bindsym $mod+Return exec --no-startup-id "st"
+bindsym $mod+grave exec --no-startup-id "st -g 84x22 -c floating-st"
+bindsym $mod+a exec --no-startup-id "/home/macydnah/.config/rofi/launcher.sh"
+bindsym $mod+b exec --no-startup-id "polyswitch.sh"
+bindsym $mod+n exec --no-startup-id "networkmanager_dmenu"
+bindsym $mod+s exec --no-startup-id "pavucontrol --tab=3"
+bindsym XF86Display exec --no-startup-id "xset dpms force off"
+bindsym XF86Launch1 exec --no-startup-id "touchpad-toggle.sh"
+bindsym Print exec "maim -u -m 10 /home/macydnah/Pictures/$(date +%s).png"
+bindsym Shift+Print exec "maim -u -m 10 -s /home/macydnah/Pictures/$(date +%s).png"
+bindsym $mod+backslash exec --no-startup-id "bluetoothctl info | grep OpenMove &>/dev/null && bluetoothctl disconnect &>/dev/null || bluetoothctl connect 20:74:CF:CB:CA:34 &>/dev/null"
+
+# Commands for specific windows.
+for_window [class="floating-st"] floating enabled
+for_window [class="FreeTube"] layout tabbed
+for_window [class="pavucontrol"] floating enabled
+for_window [class="TelegramDesktop"] move container to workspace $ws10; workspace $ws10
+for_window [instance="Navigator"] layout tabbed
+for_window [title="Simplenote — Mozilla Firefox"] move container to workspace $ws10; workspace $ws10
+for_window [title="Traductor de Google — Mozilla Firefox"] floating enabled
+for_window [title="YouTube Music"] move container to workspace $ws10; workspace $ws10
+
+# Window manager functions
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Tab workspace back_and_forth
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+x layout tabbed
+bindsym $mod+z layout stacking
+bindsym $mod+c layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+equal focus parent
+bindsym $mod+minus focus child
+
+bindsym $mod+Shift+r reload, restart
+bindsym $mod+Shift+Escape exec --no-startup-id "i3-msg exit"
+
+# Keyboard navigation
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+mode "resize" {
+	bindsym j resize shrink width 10 px
+	bindsym k resize grow height 10 px
+	bindsym l resize shrink height 10 px
+	bindsym semicolon resize grow width 10 px
+	bindsym Shift+j resize shrink width 66 px
+	bindsym Shift+k resize grow height 66 px
+	bindsym Shift+l resize shrink height 66 px
+	bindsym Shift+semicolon resize grow width 66 px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"

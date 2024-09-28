@@ -1,0 +1,4 @@
+-f 'bestvideo[height<=1080][ext=mp4]+bestaudio/best'
+-S vcodec:h264
+--sub-langs en,en.*,es,es.*
+--embed-subs

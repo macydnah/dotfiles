@@ -14,4 +14,5 @@ polybar = {target = "~/.config/polybar", type = "symbolic", recurse = false}
 procps = {target = "~/.config/procps", type = "symbolic", recurse = false}
 redshift = {target = "~/.config/redshift", type = "symbolic", recurse = false}
 rofi = {target = "~/.config/rofi", type = "symbolic", recurse = false}
+tmux = {target = "~/.config/tmux", type = "symbolic", recurse = false}
 waybar = {target = "~/.config/waybar", type = "symbolic", recurse = false}

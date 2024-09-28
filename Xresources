@@ -1,0 +1,36 @@
+!! Configuraciones globales
+
+! Temas
+!#include "/home/macydnah/.local/share/Xresources-themes/gnometerm.Xresources"
+!#include "/home/macydnah/.local/share/Xresources-themes/google-dark.Xresources"
+!#include "/home/macydnah/.local/share/Xresources-themes/Mathias.Xresources"
+#include "/home/macydnah/.local/share/Xresources-themes/Neon.Xresources"
+!#include "/home/macydnah/.local/share/Xresources-themes/Symfonic.Xresources"
+
+*background:	#0F0F0F
+*foreground:	#EBEBEB
+*cursorColor:	#76B539
+
+!! Configuraciones de XTerm
+!xterm*reverseVideo:	false
+xterm*internalBorder:	2
+xterm*scaleHeight:	0.9
+xterm*faceName:		Source Code Pro:pixelsize=14
+xterm*boldFont:		Source Code Pro:pixelsize=14:weight=bold
+xterm*iconFont:		Hurmit Nerd Font Mono:style=medium
+xterm*cursorBlink:	true
+xterm*cursorUnderLine:	true
+xterm*buffered:		true
+xterm*bufferedFPS:	60
+*VT100*translations:	#override \n\
+			Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+			Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+xterm*selectToClipboard: true
+xterm*keepClipboard:	true
+xterm*allowScrollLock:	true
+xterm*scrollLines:	3
+xterm*saveLines:	2048
+xterm*metaSendsEscape:	true
+xterm*termName:		xterm-256color
+xterm*locale:		false
+xterm*utf8:		true

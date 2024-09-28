@@ -1,0 +1,19 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+LICENSE = ""
+hypr = ""
+i3 = ""
+mpv = ""
+"picom.conf" = ""
+polybar = ""
+procps = ""
+redshift = ""
+
+[default.variables]
+
+[settings]
+default_target_type = "automatic"

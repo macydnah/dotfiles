@@ -1,0 +1,36 @@
+/*
+ *
+ * Author  : J.H. Zavala
+ * Github  : @macydnah
+ *
+ */
+
+configuration {
+    threads: 4;
+    font: "SF Pro Display 10";
+    modes: [ drun, run ];
+    no-lazy-grab: true;
+    show-icons: true;
+    icon-theme: "Papirus";
+    steal-focus: true;
+    drun-display-format: "{name}";
+    drun-show-actions: false;
+    disable-history: false;
+    drun {
+        display-name: "";
+    }
+    run {
+        display-name: "";
+    }
+    timeout {
+        action: "kb-cancel";
+        delay: 0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method: "name";
+    }
+}
+@theme "~/.config/rofi/theme.rasi"
+
+// vim: ft=rasi ts=4 sw=4 ai expandtab

@@ -1,0 +1,107 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ * Modder  : J.H. Zavala
+ * Github  : @macydnah
+ *
+ */
+
+@import "~/.config/rofi/colors.rasi"
+
+window {
+    transparency:     "real";
+    location:         center;
+    fullscreen:       false;
+    width:            35.0000% ;
+    x-offset:         0;
+    y-offset:         0;
+    border:           1px ;
+    border-radius:    12px ;
+    border-color:     var(ac);
+    background-color: var(bg);
+}
+mainbox {
+    children:         [ "inputbar","listview" ];
+    spacing:          0.0000% ;
+    padding:          0.0000% ;
+    border:           0.0000% ;
+    border-radius:    0.0000% ;
+    border-color:     var(ac);
+    background-color: var(al);
+}
+inputbar {
+    children:         [ "prompt","entry" ];
+    padding:          1.5000% ;
+    margin:           0.0000% ;
+    border:           0.0000% ;
+    border-radius:    0px ;
+    border-color:     var(ac);
+    background-color: var(bg);
+    expand:           false;
+}
+prompt {
+    enabled:          false;
+    padding:          0.0000% 0.0000% 0.0000% 0.0000% ;
+    font:             "JetBrainsMono Nerd Font 10";
+    text-color:       var(fg);
+    background-color: var(al);
+}
+entry {
+    padding:           0.0000% 0.0000% 0.0000% 0.5000% ;
+    font:             "SF Pro Display, JetBrainsMono Nerd Font Bold 10";
+    text-color:        var(fg);
+    placeholder:       "                          ";
+    placeholder-color: var(ac);
+    blink:             true;
+    cursor:            text;
+    cursor-width:      2px;
+    cursor-color:      var(ac);
+    background-color:  var(al);
+    expand:            false;
+}
+listview {
+    columns:          2;
+    dynamic:          true;
+    cycle:            false;
+    spacing:          1.0000% ;
+    lines:            7;
+    layout:           vertical;
+    flow:             vertical;
+    padding:          10px ;
+    background-color: var(al);
+}
+element {
+    orientation:      horizontal;
+    padding:          0.5000% ;
+    background-color: var(al);
+    text-color:       var(fg);
+}
+element-icon {
+    size:             24px ;
+    vertical-align:   0.50;
+    horizontal-align: 0.50;
+    cursor:           pointer;
+    background-color: inherit;
+    text-color:       inherit;
+}
+element-text {
+    margin:           0.0000% 0.2500% ;
+    vertical-align:   0.50;
+    horizontal-align: 0.00;
+    expand:           true;
+    background-color: inherit;
+    text-color:       inherit;
+}
+element selected {
+    border:           0.0000% ;
+    border-radius:    12px ;
+    border-color:     var(bg);
+    text-color:       var(bg);
+    background-color: var(ac);
+}
+
+// vim: ft=rasi ts=4 sw=4 ai expandtab

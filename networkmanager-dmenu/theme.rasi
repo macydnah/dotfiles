@@ -1,0 +1,108 @@
+configuration {
+    font: "SF Pro Display 10";
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+    threads: 4;
+//    display-drun: "";
+    display-drun: "quepex";
+}
+
+@import "~/.config/rofi/colors.rasi"
+
+window {
+    transparency:     "real";
+    location:         center;
+    fullscreen:       false;
+    text-color:       var(fg);
+    width:            35.0000% ;
+    x-offset:         0;
+    y-offset:         0;
+    border:           1px ;
+    border-radius:    12px ;
+    border-color:     var(ac);
+    background-color: var(bg);
+}
+mainbox {
+    children:         [ "inputbar","listview" ];
+    spacing:          0.0000% ;
+    padding:          0.0000% ;
+    border:           0.0000% ;
+    border-radius:    0.0000% ;
+    border-color:     var(ac);
+    background-color: var(al);
+}
+inputbar {
+    children:         [ "prompt","entry" ];
+    padding:          1.5000% ;
+    margin:           0.0000% ;
+    border:           0.0000% ;
+    border-radius:    0px ;
+    border-color:     var(ac);
+    background-color: var(bg);
+    expand:           false;
+}
+prompt {
+    enabled:          true;
+    padding:          0.0000% 1.0000% 0.0000% 0.0000% ;
+    font:             "JetBrainsMono Nerd Font 10";
+    text-color:       var(fg);
+    background-color: var(al);
+}
+entry {
+    padding:           0.2000% 0.0000% 0.0000% ;
+    font:              "SF Pro Display 10";
+    text-color:        var(fg);
+    placeholder:       "Search";
+    placeholder-color: var(fg);
+    blink:             true;
+    cursor:            text;
+    cursor-width:      2px;
+    cursor-color:      var(fg);
+    background-color:  var(al);
+    expand:            false;
+}
+listview {
+    columns:          1;
+    dynamic:          true;
+    cycle:            false;
+    spacing:          1.0000% ;
+    lines:            7;
+    layout:           vertical;
+    flow:             vertical;
+    padding:          10px ;
+    background-color: var(al);
+}
+element {
+    orientation:      horizontal;
+    padding:          0.5000% ;
+    background-color: var(al);
+    text-color:       var(fg);
+}
+element-icon {
+    size:             24px ;
+    vertical-align:   0.50;
+    horizontal-align: 0.50;
+    cursor:           pointer;
+    background-color: inherit;
+    text-color:       inherit;
+}
+element-text {
+    margin:           0.0000% 0.2500% ;
+    vertical-align:   0.50;
+    horizontal-align: 0;
+    expand:           true;
+    background-color: inherit;
+    text-color:       inherit;
+}
+element selected {
+    border:           0.0000% ;
+    border-radius:    12px ;
+    border-color:     var(bg);
+    text-color:       var(bg);
+    background-color: var(ac);
+}
+
+// vim: ft=rasi ts=4 sw=4 ai expandtab

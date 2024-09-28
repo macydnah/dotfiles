@@ -9,6 +9,7 @@ foot = {target = "~/.config/foot", type = "symbolic", recurse = false}
 hypr = {target = "~/.config/hypr", type = "symbolic", recurse = false}
 i3 = {target = "~/.config/i3", type = "symbolic", recurse = false}
 mpv = {target = "~/.config/mpv", type = "symbolic", recurse = false}
+networkmanager-dmenu = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
 "picom.conf" = "~/.config/picom.conf"
 polybar = {target = "~/.config/polybar", type = "symbolic", recurse = false}
 procps = {target = "~/.config/procps", type = "symbolic", recurse = false}

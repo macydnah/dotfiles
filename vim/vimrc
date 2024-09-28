@@ -1,0 +1,70 @@
+" ~/.vim/vimrc
+
+""" Make Vim works like before having ~/.vim/vimrc. This will set
+""" 'compatible' off, switch on syntax highlighting and a few more things.
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+
+""" Settings
+""
+set t_Co=256
+set title
+set hlsearch
+set ignorecase
+set nowrap
+set number
+set splitright
+set splitbelow
+"
+"" Set terminal title to this titlestring
+"set title titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
+"
+"" Set indentation guidelines chars
+"set list
+"set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
+
+
+""" Look and feel
+""
+set background=dark
+if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
+
+
+""" Commands, Maps & Autocommands
+""
+"" Open the current file with F12 in Firefox
+"map <silent> <F12> :!firefox % <enter><enter>
+"
+"" Copy from the current buffer to Wayland clipboard (wl-copy)
+"map <silent> <F10> :w !wl-copy -n <CR><CR>
+"
+"" GTK-3.0 autocmd import-gsettings script 
+autocmd BufWritePost /home/macydnah/.config/gtk-3.0/settings.ini silent! !import-gsettings 
+
+
+""" Tweaks
+"" disable modifyOtherKeys so metaSendsEscape is respected in Foot terminal
+let &t_TI = ""
+let &t_TE = ""
+
+
+""" Apps & Plugins
+""
+"" SuperCollider
+au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
+au Filetype supercollider packadd scvim
+" let g:sclangTerm = "foot"
+let g:sclangTerm = "st"
+let g:scFlash = 1
+"
+"" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { "mode": "passive" }
+" nnoremap <F12> :SyntasticCheck<CR>

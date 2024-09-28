@@ -13,6 +13,7 @@ networkmanager-dmenu = {target = "~/.config/networkmanager-dmenu", type = "symbo
 "picom.conf" = "~/.config/picom.conf"
 polybar = {target = "~/.config/polybar", type = "symbolic", recurse = false}
 procps = {target = "~/.config/procps", type = "symbolic", recurse = false}
+profile = "~/.profile"
 redshift = {target = "~/.config/redshift", type = "symbolic", recurse = false}
 rofi = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 tmux = {target = "~/.config/tmux", type = "symbolic", recurse = false}

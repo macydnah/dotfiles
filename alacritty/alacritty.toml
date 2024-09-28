@@ -1,0 +1,61 @@
+live_config_reload = true
+
+import = [
+#	"~/.config/alacritty/themes/afterglow.toml"
+#	"~/.config/alacritty/themes/flexoki.toml"
+	"~/.config/alacritty/themes/blood-moon.toml"
+#	"~/.config/alacritty/themes/github_dark.toml"
+#	"~/.config/alacritty/themes/monokai_charcoal_white.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "None"
+decorations_theme_variant = "Dark"
+padding = { x = 3, y = 2 }
+dynamic_padding = false
+opacity = 0.9
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "Source Code Pro"
+style = "Regular"
+
+[font.bold]
+family = "Source Code Pro"
+style = "Bold"
+
+[font.italic]
+family = "Source Code Pro"
+style = "Italic"
+
+[font.bold_italic]
+family = "Source Code Pro"
+style = "Bold Italic"
+
+[selection]
+save_to_clipboard = true
+
+[colors]
+cursor = { text = "CellBackground", cursor = "#76b539" }
+
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+blink_interval = 500
+blink_timeout = 0
+unfocused_hollow = false
+thickness = 0.25
+
+[keyboard]
+bindings = [
+   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+   { key = "K", mods = "Alt", action = "ScrollLineUp" },
+   { key = "K", mods = "Alt|Shift", action = "ScrollPageUp" },
+   { key = "J", mods = "Alt", action = "ScrollLineDown" },
+   { key = "J", mods = "Alt|Shift", action = "ScrollPageDown" },
+
+]

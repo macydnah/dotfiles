@@ -28,3 +28,5 @@ waybar = {target = "~/.config/waybar", type = "symbolic", recurse = false}
 xinitrc = "~/.xinitrc"
 Xresources = "~/.Xresources"
 yt-dlp = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
+
+[hypr.files]

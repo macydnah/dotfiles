@@ -1,0 +1,23 @@
+# ~/.config/swayimg/config
+
+[viewer]
+#window=#040404ed
+transparency=#00000000
+
+[gallery]
+background=#00000000
+border=#00000000
+shadow=#00000088
+
+[font]
+name="SF Pro Text"
+size=15
+color=#f0f0f0ff
+shadow=#000000ff
+
+[info]
+show=no
+info_timeout=4
+status_timeout=1
+
+# vim: ft=dosini syntax=dosini

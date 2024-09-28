@@ -5,10 +5,10 @@ default_target_type = "symbolic"
 depends = []
 
 [default.files]
-hypr = ""
-i3 = ""
-mpv = ""
-"picom.conf" = ""
-polybar = ""
-procps = ""
-redshift = ""
+hypr = "~/.config/hypr"
+i3 = "~/.config/i3"
+mpv = "~/.config/mpv"
+"picom.conf" = "~/.config/picom.conf"
+polybar = "~/.config/polybar"
+procps = "~/.config/procps"
+redshift = "~/.config/redshift"

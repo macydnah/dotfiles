@@ -6,7 +6,7 @@ depends = []
 
 [default.files]
 "config/alacritty" = {target = "~/.config/alacritty", type = "symbolic", recurse = false}
-bashrc = "~/.bashrc"
+"bashrc" = "~/.bashrc"
 "config/foot" = {target = "~/.config/foot", type = "symbolic", recurse = false}
 "config/hypr" = {target = "~/.config/hypr", type = "symbolic", recurse = false}
 "config/i3" = {target = "~/.config/i3", type = "symbolic", recurse = false}
@@ -16,7 +16,7 @@ bashrc = "~/.bashrc"
 "config/picom.conf" = "~/.config/picom.conf"
 "config/polybar" = {target = "~/.config/polybar", type = "symbolic", recurse = false}
 "config/procps" = {target = "~/.config/procps", type = "symbolic", recurse = false}
-profile = "~/.profile"
+"profile" = "~/.profile"
 "config/qtile" = {target = "~/.config/qtile", type = "symbolic", recurse = false}
 "config/redshift" = {target = "~/.config/redshift", type = "symbolic", recurse = false}
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
@@ -25,8 +25,8 @@ profile = "~/.profile"
 "config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
 "config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = false}
 "config/waybar" = {target = "~/.config/waybar", type = "symbolic", recurse = false}
-xinitrc = "~/.xinitrc"
-Xresources = "~/.Xresources"
+"xinitrc" = "~/.xinitrc"
+"Xresources" = "~/.Xresources"
 "config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
 
 [hypr.files]

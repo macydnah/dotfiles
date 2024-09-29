@@ -1,4 +1,12 @@
 includes = []
-packages = ["default"]
+
+# Packages to deploy a Xorg environment
+#packages = ["shell", "i3", "XUtils", "mpv-yt"]
+
+# Packages to deploy a Wayland environment
+packages = ["shell", "terminal", "hyprland", "mpv-yt", "WUtils"]
 
 [files]
+"config/alacritty" = ""
+
+[variables]

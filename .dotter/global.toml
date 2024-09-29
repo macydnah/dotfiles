@@ -5,28 +5,28 @@ default_target_type = "symbolic"
 depends = []
 
 [default.files]
-alacritty = {target = "~/.config/alacritty", type = "symbolic", recurse = false}
+"config/alacritty" = {target = "~/.config/alacritty", type = "symbolic", recurse = false}
 bashrc = "~/.bashrc"
-foot = {target = "~/.config/foot", type = "symbolic", recurse = false}
-hypr = {target = "~/.config/hypr", type = "symbolic", recurse = false}
-i3 = {target = "~/.config/i3", type = "symbolic", recurse = false}
-mpv = {target = "~/.config/mpv", type = "symbolic", recurse = false}
-networkmanager-dmenu = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
-openbox = {target = "~/.config/openbox", type = "symbolic", recurse = false}
-"picom.conf" = "~/.config/picom.conf"
-polybar = {target = "~/.config/polybar", type = "symbolic", recurse = false}
-procps = {target = "~/.config/procps", type = "symbolic", recurse = false}
+"config/foot" = {target = "~/.config/foot", type = "symbolic", recurse = false}
+"config/hypr" = {target = "~/.config/hypr", type = "symbolic", recurse = false}
+"config/i3" = {target = "~/.config/i3", type = "symbolic", recurse = false}
+"config/mpv" = {target = "~/.config/mpv", type = "symbolic", recurse = false}
+"config/networkmanager-dmenu" = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
+"config/openbox" = {target = "~/.config/openbox", type = "symbolic", recurse = false}
+"config/picom.conf" = "~/.config/picom.conf"
+"config/polybar" = {target = "~/.config/polybar", type = "symbolic", recurse = false}
+"config/procps" = {target = "~/.config/procps", type = "symbolic", recurse = false}
 profile = "~/.profile"
-qtile = {target = "~/.config/qtile", type = "symbolic", recurse = false}
-redshift = {target = "~/.config/redshift", type = "symbolic", recurse = false}
-rofi = {target = "~/.config/rofi", type = "symbolic", recurse = false}
-sway = {target = "~/.config/sway", type = "symbolic", recurse = false}
-swayimg = {target = "~/.config/swayimg", type = "symbolic", recurse = false}
-tmux = {target = "~/.config/tmux", type = "symbolic", recurse = false}
-vim = {target = "~/.config/vim", type = "symbolic", recurse = false}
-waybar = {target = "~/.config/waybar", type = "symbolic", recurse = false}
+"config/qtile" = {target = "~/.config/qtile", type = "symbolic", recurse = false}
+"config/redshift" = {target = "~/.config/redshift", type = "symbolic", recurse = false}
+"config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
+"config/sway" = {target = "~/.config/sway", type = "symbolic", recurse = false}
+"config/swayimg" = {target = "~/.config/swayimg", type = "symbolic", recurse = false}
+"config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
+"config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = false}
+"config/waybar" = {target = "~/.config/waybar", type = "symbolic", recurse = false}
 xinitrc = "~/.xinitrc"
 Xresources = "~/.Xresources"
-yt-dlp = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
+"config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
 
 [hypr.files]

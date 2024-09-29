@@ -5,7 +5,7 @@ default_target_type = "symbolic"
 "bashrc" = "~/.bashrc"
 "config/procps" = {target = "~/.config/procps", type = "symbolic", recurse = false}
 "config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
-"config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = false}
+"config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = true}
 "profile" = "~/.profile"
 
 [terminal.files]
@@ -86,7 +86,7 @@ depends = ["X11"]
 "config/sway" = {target = "~/.config/sway", type = "symbolic", recurse = false}
 "config/swayimg" = {target = "~/.config/swayimg", type = "symbolic", recurse = false}
 "config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
-"config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = false}
+"config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = true}
 "config/waybar" = {target = "~/.config/waybar", type = "symbolic", recurse = false}
 "config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
 "profile" = "~/.profile"

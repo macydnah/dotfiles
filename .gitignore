@@ -1,7 +1,7 @@
 .dotter/cache
 .dotter/cache.toml
 .dotter/local.toml
-rofi/colors.rasi
-vim/.netrwhist
-vim/colors
-vim/pack
+config/rofi/colors.rasi
+config/vim/.netrwhist
+config/vim/colors
+config/vim/pack

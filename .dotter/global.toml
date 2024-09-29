@@ -67,7 +67,7 @@ depends = ["X11"]
 "config/qtile" = {target = "~/.config/qtile", type = "symbolic", recurse = false}
 
 
-## Beware!! the 'all' package will symlink all files ##
+## Beware!! Select the "all" package will symlink and deploy ALL the files ##
 [all.files]
 "bashrc" = "~/.bashrc"
 "config/alacritty" = {target = "~/.config/alacritty", type = "symbolic", recurse = false}

@@ -62,6 +62,12 @@ window#waybar {
     background-color: #64727d;
 }
 
+#custom-wttr {
+	font-weight: bolder;
+	background: #64727d;
+	padding: 0px 10px;
+}
+
 #battery {
     background-color: #ffffff;
     color: #000000;

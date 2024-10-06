@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Weather widget for waybar
+# https://gist.github.com/bjesus/f8db49e1434433f78e5200dc403d58a3
+
 import json
 import requests
 from datetime import datetime
@@ -58,7 +61,7 @@ WEATHER_CODES = {
 data = {}
 
 
-weather = requests.get("https://wttr.in/Springfield, Manitoba?format=j1").json()
+weather = requests.get("https://wttr.in/CDMX?format=j1").json()
 
 
 def format_time(time):

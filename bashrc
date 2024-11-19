@@ -45,6 +45,21 @@ mpa() { mpv --no-resume-playback --ytdl-format='bestaudio' "${@}"; }
 
 mpf() { mpv --fs "${@}"; }
 
+mpy() {
+	declare -r OPT="${1}"
+	declare -r URI="$(wl-paste -n)"
+	if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
+		case "${OPT}" in
+			-f)	mpv --fs "${URI}"
+				;;
+			*)	mpv "${URI}"
+				;;
+		esac
+	else
+		>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
+	fi
+}
+
 osc7_cwd() {
     local strlen=${#PWD}
     local encoded=""

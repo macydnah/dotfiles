@@ -35,7 +35,7 @@ if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 """ Commands, Maps & Autocommands
 ""
 "" Open the current file with F12 in Firefox
-"map <silent> <F12> :!firefox % <enter><enter>
+map <silent> <F12> :!firefox % <enter><enter>
 "
 "" Copy from the current buffer to Wayland clipboard (wl-copy)
 "map <silent> <F10> :w !wl-copy -n <CR><CR>

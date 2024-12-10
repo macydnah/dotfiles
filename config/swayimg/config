@@ -4,6 +4,10 @@
 #window=#040404ed
 transparency=#00000000
 
+[keys.viewer]
+j=next_file;
+k=prev_file;
+
 [gallery]
 background=#00000000
 border=#00000000

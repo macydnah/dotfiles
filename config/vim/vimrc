@@ -29,6 +29,7 @@ set splitbelow
 """ Look and feel
 ""
 set background=dark
+if strftime("%H") < 18 && strftime("%H") > 07 | colorscheme morning | set background=light | endif
 if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 
 

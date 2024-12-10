@@ -49,7 +49,7 @@ dianoche() {
 
 i3mpv() { i3-swallow mpv "${@}"; }
 
-mpa() { mpv --no-resume-playback --ytdl-format='bestaudio' "${@}"; }
+mpa() { mpv --no-resume-playback --ytdl-format='bestaudio' --video=no "${@}"; }
 
 mpf() { mpv --fs "${@}"; }
 

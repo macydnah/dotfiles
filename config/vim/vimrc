@@ -38,7 +38,7 @@ if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 map <silent> <F12> :!firefox % <enter><enter>
 "
 "" Copy from the current buffer to Wayland clipboard (wl-copy)
-"map <silent> <F10> :w !wl-copy -n <CR><CR>
+map <silent> <F10> :w !wl-copy -n <CR><CR>
 "
 "" GTK-3.0 autocmd import-gsettings script 
 autocmd BufWritePost /home/macydnah/.config/gtk-3.0/settings.ini silent! !import-gsettings 

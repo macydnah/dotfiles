@@ -12,6 +12,7 @@ set t_Co=256
 set title
 set hlsearch
 set ignorecase
+set smartcase
 set nowrap
 set number
 set splitright

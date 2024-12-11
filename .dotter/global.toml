@@ -32,6 +32,11 @@ depends = ["X11"]
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 
 
+## File managers ##
+[yazi.files]
+"config/yazi" = {target = "~/.config/yazi", type = "symbolic", recurse = true}
+
+
 ## Firefox ##
 [tridactyl.files]
 "config/tridactyl" = {target = "~/.config/tridactyl", type = "symbolic", recurse = false}

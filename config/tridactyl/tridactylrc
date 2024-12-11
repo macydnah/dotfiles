@@ -6,9 +6,51 @@ set update.lastnaggedversion 1.14.0
 set update.checkintervalsecs 86400
 set configversion 2.0
 set smoothscroll true
-set theme midnight
-set searchengine SearXNG
-set newtab about:blank
+set theme dark
+set searchengine searxng
+set newtab http://huaaalip0nkh-er0s:8888
+set searchurls.searxng http://localhost:8888/search?q=
+set searchurls.archwiki https://wiki.archlinux.org/index.php?title=Special:Search&search=
+set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=
+set searchurls.rae https://dle.rae.es/
+set searchurls.crate https://crates.io/search?q=
+set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
+
+" Binds
+bind b fillcmdline bmarks
+
+unbind B
+unbind m
+unbind M
+unbind O
+unbind T
+unbind t
+unbind w
+unbind W
+
+" Removed settings
+setnull searchurl.google
+setnull searchurls.google
+setnull searchurls.google
+setnull searchurls.github
+setnull searchurls.osm
+setnull searchurls.qwant
+setnull searchurls.googlelucky
+setnull searchurls.scholar
+setnull searchurls.googleuk
+setnull searchurls.bing
+setnull searchurls.duckduckgo
+setnull searchurls.yahoo
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.youtube
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.startpage
+setnull searchurls.searx
+setnull searchurls.cnrtl
+setnull searchurls.mdn
+setnull searchurls.gentoo_wiki
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl

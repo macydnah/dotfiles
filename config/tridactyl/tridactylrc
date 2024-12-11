@@ -1,3 +1,61 @@
+" : Unbind everything first {{{
+unbind A
+unbind B
+unbind D
+unbind M
+unbind O
+unbind P
+unbind R
+unbind S
+unbind T
+unbind W
+unbind ZZ
+unbind a
+unbind d
+unbind g$
+unbind g0
+unbind g^
+unbind g;
+unbind gH
+unbind gT
+unbind gU
+unbind ga
+unbind gf
+unbind gh
+unbind gr
+unbind gt
+unbind gx$
+unbind gx0
+unbind h
+unbind j
+unbind k
+unbind l
+unbind m
+unbind o
+unbind p
+unbind r
+unbind t
+unbind u
+unbind v
+unbind w
+unbind x
+unbind yc
+unbind ym
+unbind yo
+unbind yq
+unbind ys
+unbind yt
+unbind yy
+unbind zI
+unbind zM
+unbind zO
+unbind zR
+unbind zi
+unbind zm
+unbind zo
+unbind zr
+unbind zz
+" : }}}
 " General Settings
 set update.lastchecktime 1733800456537
 set update.nag true
@@ -53,4 +111,4 @@ setnull searchurls.mdn
 setnull searchurls.gentoo_wiki
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
-" vim: set filetype=tridactyl
+" vim: filetype=tridactyl foldmethod=marker

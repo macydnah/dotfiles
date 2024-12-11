@@ -77,16 +77,21 @@ set searchurls.crates https://crates.io/search?q=
 set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
 
 " Binds
-bind b fillcmdline bmarks
+bind O fillcmdline winopen
+bind S fillcmdline winopen search
 
-unbind B
-unbind m
-unbind M
-unbind O
-unbind t
-unbind T
-unbind w
-unbind W
+bind b fillcmdline bmarks
+bind h scrollpx -50
+bind j scrollline 5
+bind k scrollline -5
+bind l scrollpx 50
+bind o fillcmdline open
+bind s fillcmdline open search
+bind u undo
+bind ym clipboard yankmd
+bind yq clipboard text2qr --timeout 5
+bind yt clipboard yanktitle
+bind yy clipboard yank
 
 " Removed settings
 setnull searchurls.google

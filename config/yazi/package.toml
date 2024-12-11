@@ -1,0 +1,15 @@
+# ~/.config/yazi/package.toml
+
+# https://yazi-rs.github.io/docs/cli/#package-manager
+
+[plugin]
+deps = [
+    { use = "yazi-rs/plugins:smart-enter", rev = "ec97f88" },
+    { use = "yazi-rs/plugins:max-preview", rev = "ec97f88" },
+    { use = "macydnah/office", rev = "f292cb6" },
+]
+
+[flavor]
+deps = []
+
+# vim: ts=4 sw=4 et ai

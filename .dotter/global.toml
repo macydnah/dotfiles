@@ -32,6 +32,11 @@ depends = ["X11"]
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 
 
+## Firefox ##
+[tridactyl.files]
+"config/tridactyl" = {target = "~/.config/tridactyl", type = "symbolic", recurse = false}
+
+
 ## Multimedia ##
 [mpv.files]
 "config/mpv" = {target = "~/.config/mpv", type = "symbolic", recurse = false}

@@ -32,7 +32,6 @@ unbind W
 
 " Removed settings
 setnull searchurls.google
-setnull searchurls.google
 setnull searchurls.github
 setnull searchurls.osm
 setnull searchurls.qwant

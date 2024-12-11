@@ -5,3 +5,5 @@ config/rofi/colors.rasi
 config/vim/.netrwhist
 config/vim/colors
 config/vim/pack
+config/yazi/plugins/*
+!config/yazi/plugins/folder-rules.yazi

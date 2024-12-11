@@ -6,14 +6,17 @@ set update.lastnaggedversion 1.14.0
 set update.checkintervalsecs 86400
 set configversion 2.0
 set smoothscroll true
-set theme dark
+set theme auto
+set newtab http://localhost:8888
+set "http://localhost:8888" allowautofocus false
 set searchengine searxng
-set newtab http://huaaalip0nkh-er0s:8888
 set searchurls.searxng http://localhost:8888/search?q=
 set searchurls.archwiki https://wiki.archlinux.org/index.php?title=Special:Search&search=
 set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=
+set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
+set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.rae https://dle.rae.es/
-set searchurls.crate https://crates.io/search?q=
+set searchurls.crates https://crates.io/search?q=
 set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
 
 " Binds

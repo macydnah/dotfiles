@@ -79,6 +79,7 @@ set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
 
 " Binds
 bind O fillcmdline winopen
+bind P fillcmdline winopen -private
 bind S fillcmdline winopen search
 
 bind b fillcmdline bmarks

@@ -104,7 +104,6 @@ suppress_preload = false
 
 # https://yazi-rs.github.io/docs/configuration/yazi#plugin
 [plugin]
-
 fetchers = [
 	# Mimetype
 	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
@@ -131,9 +130,9 @@ previewers = [
 	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
-	{ mime = "*/{xml,javascript,x-wine-extension-ini}", run = "code" },
+	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
 	# JSON
-	{ mime = "application/{json,x-ndjson}", run = "json" },
+	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
 	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
@@ -143,7 +142,7 @@ previewers = [
 	{ mime = "application/pdf", run = "pdf" },
 	# Archive
 	{ mime = "application/{,g}zip", run = "archive" },
-	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar,iso9660-image}", run = "archive" },
+	{ mime = "application/{tar,bzip*,7z-compressed,xz,rar,iso9660-image}", run = "archive" },
 	# Font
 	{ mime = "font/*", run = "font" },
 	{ mime = "application/vnd.ms-opentype", run = "font" },
@@ -154,7 +153,7 @@ previewers = [
 	{ mime = "application/msword", run = "office" },
 	{ name = "*.docx", run = "office" },
 	# Empty file
-	{ mime = "inode/x-empty", run = "empty" },
+	{ mime = "inode/empty", run = "empty" },
 	# Fallback
 	{ name = "*", run = "file" },
 ]

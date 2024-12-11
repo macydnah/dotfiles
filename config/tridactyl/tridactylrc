@@ -94,26 +94,26 @@ bind yt clipboard yanktitle
 bind yy clipboard yank
 
 " Removed settings
-setnull searchurls.google
-setnull searchurls.github
-setnull searchurls.osm
-setnull searchurls.qwant
-setnull searchurls.googlelucky
-setnull searchurls.scholar
-setnull searchurls.googleuk
-setnull searchurls.bing
-setnull searchurls.duckduckgo
-setnull searchurls.yahoo
-setnull searchurls.twitter
-setnull searchurls.wikipedia
-setnull searchurls.youtube
 setnull searchurls.amazon
 setnull searchurls.amazonuk
-setnull searchurls.startpage
-setnull searchurls.searx
+setnull searchurls.bing
 setnull searchurls.cnrtl
-setnull searchurls.mdn
+setnull searchurls.duckduckgo
 setnull searchurls.gentoo_wiki
+setnull searchurls.github
+setnull searchurls.google
+setnull searchurls.googlelucky
+setnull searchurls.googleuk
+setnull searchurls.mdn
+setnull searchurls.osm
+setnull searchurls.qwant
+setnull searchurls.scholar
+setnull searchurls.searx
+setnull searchurls.startpage
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.yahoo
+setnull searchurls.youtube
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker

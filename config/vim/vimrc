@@ -42,7 +42,7 @@ map <silent> <F12> :!firefox % <enter><enter>
 map <silent> <F10> :w !wl-copy -n <CR><CR>
 "
 "" GTK-3.0 autocmd import-gsettings script 
-autocmd BufWritePost /home/macydnah/.config/gtk-3.0/settings.ini silent! !import-gsettings 
+autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsettings 
 
 
 """ Tweaks

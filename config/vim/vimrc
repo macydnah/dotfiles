@@ -55,6 +55,7 @@ autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsetting
 "
 "" HTML FileType setting
 au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
+au BufNewFile *.html 0r ~/Templates/skeleton.html
 
 
 """ Tweaks

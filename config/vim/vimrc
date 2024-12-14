@@ -17,6 +17,8 @@ set nowrap
 set number
 set splitright
 set splitbelow
+set cursorline
+set cursorcolumn
 "
 "" Set terminal title to this titlestring
 "set title titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)

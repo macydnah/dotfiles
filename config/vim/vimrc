@@ -5,6 +5,11 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
+""" Look and feel
+""
+set background=dark
+if strftime("%H") < 18 && strftime("%H") > 07 | colorscheme morning | set background=light | endif
+if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 
 """ Settings
 ""
@@ -25,7 +30,7 @@ set splitbelow
 "set list
 "set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
 "
-" Highlight the whole current line only in the active window
+"" Highlight the whole current line only in the active window
 set cursorline
 set cursorcolumn
 highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
@@ -35,13 +40,6 @@ au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
 au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
 au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
 au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
-
-
-""" Look and feel
-""
-set background=dark
-if strftime("%H") < 18 && strftime("%H") > 07 | colorscheme morning | set background=light | endif
-if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 
 
 """ Commands, Maps & Autocommands

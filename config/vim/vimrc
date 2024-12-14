@@ -17,8 +17,6 @@ set nowrap
 set number
 set splitright
 set splitbelow
-set cursorline
-set cursorcolumn
 "
 "" Set terminal title to this titlestring
 "set title titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
@@ -26,6 +24,17 @@ set cursorcolumn
 "" Set indentation guidelines chars
 "set list
 "set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
+"
+" Highlight the whole current line only in the active window
+set cursorline
+set cursorcolumn
+highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
+au WinEnter * setlocal cursorline cursorcolumn
+au WinLeave * setlocal nocursorline nocursorcolumn
+au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
+au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
+au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
+au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
 
 
 """ Look and feel

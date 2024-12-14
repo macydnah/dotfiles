@@ -52,6 +52,9 @@ map <silent> <F10> :w !wl-copy -n <CR><CR>
 "
 "" GTK-3.0 autocmd import-gsettings script 
 autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsettings 
+"
+"" HTML FileType setting
+au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
 
 
 """ Tweaks

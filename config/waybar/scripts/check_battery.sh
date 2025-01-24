@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bat=/sys/class/power_supply/BAT0
+bat=/sys/class/power_supply/BAT1
 CRIT=${1:-15}
 
 FILE=~/.config/waybar/scripts/notified

@@ -28,6 +28,7 @@ alias wablk="watch -ctn1 'echo ; lsblk'"
 alias wared="watch -ctn1 'nmcli -c yes | head -n20'"
 alias watch="watch -cn0.5"
 alias whois="whois -H"
+#alias open="xdg-open"
 alias zgrep="zgrep --color"
 
 # Funciones

@@ -65,7 +65,7 @@ set update.checkintervalsecs 86400
 set configversion 2.0
 set smoothscroll true
 set scrollduration 150
-set theme auto
+set theme quake
 set newtab http://localhost:8888
 set "http://localhost:8888" allowautofocus false
 set searchengine searxng

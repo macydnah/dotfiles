@@ -73,6 +73,7 @@ set searchurls.searxng http://localhost:8888/search?q=
 set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
 set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
 set searchurls.rae https://dle.rae.es/
 set searchurls.crates https://crates.io/search?q=
 set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=

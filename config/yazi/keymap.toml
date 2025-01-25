@@ -75,14 +75,14 @@ keymap = [
 	# Yank/Cut/Paste
 	{ on = ["y","y"], run = "yank",                  desc = "Yank selected files (copy)" },
 	{ on = ["d","d"], run = "yank --cut",            desc = "Yank selected files (cut)" },
+	{ on = ["d","u"], run = "unyank",                desc = "Cancel the yank status" },
 	{ on = "p",       run = "paste",                 desc = "Paste yanked files" },
 	{ on = "P",       run = "paste --force",         desc = "Paste yanked files (overwrite if the destination exists)" },
 	{ on = ["y","p"], run = "copy path",             desc = "Copy the file path" },
 	{ on = ["y","d"], run = "copy dirname",          desc = "Copy the directory path" },
 	{ on = ["y","f"], run = "copy filename",         desc = "Copy the filename" },
 	{ on = ["y","n"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
-	{ on = "Y",       run = "unyank",                desc = "Cancel the yank status" },
-	{ on = "X",       run = "unyank",                desc = "Cancel the yank status" },
+	{ on = ["y","u"], run = "unyank",                desc = "Cancel the yank status" },
 
 	# Filter
 	{ on = "f", run = "filter --smart", desc = "Filter files" },

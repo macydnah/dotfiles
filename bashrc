@@ -69,6 +69,14 @@ mpy() {
 	fi
 }
 
+open() {
+	if [[ -z "${1}" ]]; then
+		xdg-open .
+	else
+		xdg-open "${1}"
+	fi
+}
+
 osc7_cwd() {
     local strlen=${#PWD}
     local encoded=""

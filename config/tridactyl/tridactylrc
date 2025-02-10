@@ -1,4 +1,4 @@
-" : Unbind everything first {{{
+" Unbind everything first {{{
 unbind A
 unbind B
 unbind D
@@ -55,7 +55,7 @@ unbind zm
 unbind zo
 unbind zr
 unbind zz
-" : }}}
+" }}}
 " General Settings
 set update.lastchecktime 1733800456537
 set update.nag true

@@ -4,6 +4,10 @@
 [[ -f /tmp/hist ]] && export HISTFILE=/tmp/hist
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
+if [ -n "${YAZI_LEVEL}" ]; then
+	YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
+	PS1="${YAZI_TERM}${PS1}"
+fi
 
 # Alianzas
 alias bat="bat -p"

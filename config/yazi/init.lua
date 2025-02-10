@@ -14,7 +14,7 @@ Header:children_add(function()
 	if ya.target_family() ~= "unix" then
 		return ui.Line {}
 	end
-	return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("green")
+	return ui.Span("[" .. ya.user_name() .. "@" .. ya.host_name() .. "]"):fg("green")
 end, 500, Header.LEFT)
 
 -- [Show symlink in status bar](https://yazi-rs.github.io/docs/tips/#symlink-in-status)

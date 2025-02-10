@@ -160,7 +160,7 @@ previewers = [
 
 # https://yazi-rs.github.io/docs/configuration/yazi#input
 [input]
-cursor_blink = false
+cursor_blink = true
 
 # cd
 cd_title  = "Change directory:"

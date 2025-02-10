@@ -92,7 +92,7 @@ bind o fillcmdline open
 bind s fillcmdline open search
 bind u undo
 bind ym clipboard yankmd
-bind yq clipboard text2qr --timeout 5
+bind yq text2qr --timeout 5
 bind yt clipboard yanktitle
 bind yy clipboard yank
 

@@ -1,15 +1,17 @@
-# ~/.config/yazi/package.toml
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "ec97f88"
+hash = "20dc1361fc474934c6bf321110eb8e12"
 
-# https://yazi-rs.github.io/docs/cli/#package-manager
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "ec97f88"
+hash = "2bcf0c353c61b92662b372a69ff97057"
 
-[plugin]
-deps = [
-    { use = "yazi-rs/plugins:smart-enter", rev = "ec97f88" },
-    { use = "yazi-rs/plugins:max-preview", rev = "ec97f88" },
-    { use = "macydnah/office", rev = "f292cb6" },
-]
+[[plugin.deps]]
+use = "macydnah/office"
+rev = "f292cb6"
+hash = "eccf6c117fc272052a9255e691e9d5e1"
 
 [flavor]
 deps = []
-
-# vim: ts=4 sw=4 et ai

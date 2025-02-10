@@ -109,8 +109,8 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                         desc = "Sort randomly" },
 
 	# Goto
-	{ on = ["g","g"], run = "arrow -99999999",                           desc = "Go to top" },
-	{ on = "G",       run = "arrow 99999999",                            desc = "Go to bottom" },
+	{ on = ["g","g"], run = "arrow top",                           desc = "Go to top" },
+	{ on = "G",       run = "arrow bot",                            desc = "Go to bottom" },
 	{ on = ["g","h"], run = "cd ~",                                      desc = "Go to Home" },
 	{ on = ["g","r"], run = "cd /",                                      desc = "Go to /" },
 	{ on = ["g","c"], run = "cd ~/.config",                              desc = "Go to ~/.config" },

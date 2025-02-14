@@ -10,8 +10,8 @@ hash = "2bcf0c353c61b92662b372a69ff97057"
 
 [[plugin.deps]]
 use = "macydnah/office"
-rev = "f292cb6"
-hash = "eccf6c117fc272052a9255e691e9d5e1"
+rev = "d9d8f7d"
+hash = "789c25a2103902e2e7b15d65c796f5d8"
 
 [flavor]
 deps = []

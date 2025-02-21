@@ -5,8 +5,8 @@
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
 if [ -n "${YAZI_LEVEL}" ]; then
-    YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
-    PS1="${YAZI_TERM}${PS1}"
+	YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
+	PS1="${YAZI_TERM}${PS1}"
 fi
 
 # Alianzas
@@ -37,16 +37,16 @@ alias zgrep="zgrep --color"
 
 # Funciones
 aur() {
-    case "${1}" in
+	case "${1}" in
 	clone)	cd $(auracle --chdir="${AUR}" "${@}" | awk $'{print $3}'); printf "Directory changed to:\n$(pwd)\n\nDownloaded files:\n"; ls ;;
 	url)	auracle info "${2}" | grep -o "ht.*pack.*" | sed s"#packages/##" | xsel -ib --trim && echo $(xsel -ob) ;;
 	*)	auracle "${@}" ;;
-    esac
+	esac
 }
 
 dianoche() {
-    declare -r SETTINGS="${HOME}/.config/gtk-3.0/settings.ini"
-    [[ "$(grep gtk-theme-name "${SETTINGS}" | cut -d'=' -f2)"  =~ dark$ ]] && sed '/gtk-theme-name/s/-dark$//' -i "${SETTINGS}" || sed '/gtk-theme-name/s/$/-dark/' -i "${SETTINGS}" ; import-gsettings
+	declare -r SETTINGS="${HOME}/.config/gtk-3.0/settings.ini"
+	[[ "$(grep gtk-theme-name "${SETTINGS}" | cut -d'=' -f2)"  =~ dark$ ]] && sed '/gtk-theme-name/s/-dark$//' -i "${SETTINGS}" || sed '/gtk-theme-name/s/$/-dark/' -i "${SETTINGS}" ; import-gsettings
 }
 
 i3mpv() { i3-swallow mpv "${@}"; }
@@ -56,62 +56,62 @@ mpa() { mpv --no-resume-playback --ytdl-format='bestaudio' --video=no "${@}"; }
 mpf() { mpv --fs "${@}"; }
 
 mpy() {
-    declare -r OPT="${1}"
-    declare -r URI="$(wl-paste -n)"
-    if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
+	declare -r OPT="${1}"
+	declare -r URI="$(wl-paste -n)"
+	if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
 	case "${OPT}" in
-	    -f)	mpv --fs "${URI}"
+		-f)	mpv --fs "${URI}"
 		;;
-	    *)	mpv "${URI}"
+		*)	mpv "${URI}"
 		;;
 	esac
-    else
+	else
 	>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
-    fi
+	fi
 }
 
 open() {
-    if [[ -z "${1}" ]]; then
+	if [[ -z "${1}" ]]; then
 	xdg-open .
-    else
+	else
 	xdg-open "${1}"
-    fi
+	fi
 }
 
 osc7_cwd() {
-    local strlen=${#PWD}
-    local encoded=""
-    local pos c o
-    for (( pos=0; pos<strlen; pos++ )); do
+	local strlen=${#PWD}
+	local encoded=""
+	local pos c o
+	for (( pos=0; pos<strlen; pos++ )); do
 	c=${PWD:$pos:1}
 	case "$c" in
-	    [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
-	    * ) printf -v o '%%%02X' "'${c}" ;;
+		[-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+		* ) printf -v o '%%%02X' "'${c}" ;;
 	esac
 	encoded+="${o}"
-    done
-    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+	done
+	printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
 }
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
 
 pactl() {
-    if [[ $1 == "profiles" ]]; then
+	if [[ $1 == "profiles" ]]; then
 	echo; command pactl list | grep 'Active Profile' | sed s'/^\t//';
 	echo; command pactl list | grep Profiles\: | tr -d '\t';
 	command pactl list | grep Profiles\: -A10 | grep -v Profiles\: | awk $'{print $1}' | sed s'/:$//';
 	echo;
-    else
+	else
 	command pactl "${@}";
-    fi
+	fi
 }
 
 tetemporizador() { (sleep "${1:-5m}" && notify-send -i '/usr/share/icons/breeze/apps/48/kteatime.svg' 'Yastá' 'listo el té') & }
 
 trafego() {
-    declare -r ENP0S=$(ip l | grep -o enp0s20u.)
-    [[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0 ;
+	declare -r ENP0S=$(ip l | grep -o enp0s20u.)
+	[[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0 ;
 }
 
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
 
-# vim: ft=sh ts=8 softtabstop=4 shiftwidth=4 foldmethod=marker noexpandtab ai
+# vim: ft=sh tabstop=4 shiftwidth=4 foldmethod=marker noexpandtab autoindent

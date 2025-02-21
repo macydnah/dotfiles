@@ -54,7 +54,8 @@
 	"format": "{title}",
 	"rewrite": {
 	    "(.*) — Mozilla Firefox": "🌎  $1",
-	    "(.*) - VIM": "📝  $1"
+	    "(.*) - VIM": "📝  $1",
+	    "(.*) — File Manager": "🗂  $1"
 	},
 	"separate-outputs": false,
 	"icon": false,

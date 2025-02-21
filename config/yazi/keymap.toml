@@ -46,6 +46,7 @@ keymap = [
 	{ on = "<C-r>",   run = "toggle_all",            desc = "Inverse selection of all files" },
 
 	# Operation
+	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 #	{ on = "<Enter>",   run = "plugin --sync smart-enter",     desc = "Open file/Enter directory" },
 #	For upcoming Yazi 0.4 (nightly version):
 	{ on = "<Enter>",   run = "plugin smart-enter",             desc = "Open file/Enter directory" },

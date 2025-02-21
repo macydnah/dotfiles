@@ -3,6 +3,7 @@
 /* https://github.com/Alexays/Waybar/wiki/Configuration */
 {
     "layer": "top",
+    "output": "LVDS-1",
     "position": "top",
     "height": 24,
     //"width": 1280,

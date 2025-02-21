@@ -5,8 +5,8 @@
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
 if [ -n "${YAZI_LEVEL}" ]; then
-	YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
-	PS1="${YAZI_TERM}${PS1}"
+    YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
+    PS1="${YAZI_TERM}${PS1}"
 fi
 
 # Alianzas
@@ -45,11 +45,8 @@ aur() {
 }
 
 dianoche() {
-	declare -r SETTINGS="${HOME}/.config/gtk-3.0/settings.ini"
-	[[ "$(grep gtk-theme-name "${SETTINGS}" | cut -d'=' -f2)"  =~ dark$ ]] &&
-	sed '/gtk-theme-name/s/-dark$//' -i "${SETTINGS}" ||
-	sed '/gtk-theme-name/s/$/-dark/' -i "${SETTINGS}" ;
-	import-gsettings
+    declare -r SETTINGS="${HOME}/.config/gtk-3.0/settings.ini"
+    [[ "$(grep gtk-theme-name "${SETTINGS}" | cut -d'=' -f2)"  =~ dark$ ]] && sed '/gtk-theme-name/s/-dark$//' -i "${SETTINGS}" || sed '/gtk-theme-name/s/$/-dark/' -i "${SETTINGS}" ; import-gsettings
 }
 
 i3mpv() { i3-swallow mpv "${@}"; }
@@ -59,26 +56,26 @@ mpa() { mpv --no-resume-playback --ytdl-format='bestaudio' --video=no "${@}"; }
 mpf() { mpv --fs "${@}"; }
 
 mpy() {
-	declare -r OPT="${1}"
-	declare -r URI="$(wl-paste -n)"
-	if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
-		case "${OPT}" in
-			-f)	mpv --fs "${URI}"
-				;;
-			*)	mpv "${URI}"
-				;;
-		esac
-	else
-		>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
-	fi
+    declare -r OPT="${1}"
+    declare -r URI="$(wl-paste -n)"
+    if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
+	case "${OPT}" in
+	    -f)	mpv --fs "${URI}"
+		;;
+	    *)	mpv "${URI}"
+		;;
+	esac
+    else
+	>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
+    fi
 }
 
 open() {
-	if [[ -z "${1}" ]]; then
-		xdg-open .
-	else
-		xdg-open "${1}"
-	fi
+    if [[ -z "${1}" ]]; then
+	xdg-open .
+    else
+	xdg-open "${1}"
+    fi
 }
 
 osc7_cwd() {
@@ -86,12 +83,12 @@ osc7_cwd() {
     local encoded=""
     local pos c o
     for (( pos=0; pos<strlen; pos++ )); do
-        c=${PWD:$pos:1}
-        case "$c" in
-            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
-            * ) printf -v o '%%%02X' "'${c}" ;;
-        esac
-        encoded+="${o}"
+	c=${PWD:$pos:1}
+	case "$c" in
+	    [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+	    * ) printf -v o '%%%02X' "'${c}" ;;
+	esac
+	encoded+="${o}"
     done
     printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
 }
@@ -104,7 +101,7 @@ pactl() {
 	command pactl list | grep Profiles\: -A10 | grep -v Profiles\: | awk $'{print $1}' | sed s'/:$//';
 	echo;
     else
-        command pactl "${@}";
+	command pactl "${@}";
     fi
 }
 

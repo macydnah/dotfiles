@@ -107,7 +107,10 @@ pactl() {
 
 tetemporizador() { (sleep "${1:-5m}" && notify-send -i '/usr/share/icons/breeze/apps/48/kteatime.svg' 'Yastá' 'listo el té') & }
 
-trafego() { ENP0S=$(ip l | grep -o enp0s20u.); [[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0; }
+trafego() {
+    declare -r ENP0S=$(ip l | grep -o enp0s20u.)
+    [[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0 ;
+}
 
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
 

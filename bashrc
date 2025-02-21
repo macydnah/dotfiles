@@ -113,3 +113,5 @@ tetemporizador() { (sleep "${1:-5m}" && notify-send -i '/usr/share/icons/breeze/
 trafego() { ENP0S=$(ip l | grep -o enp0s20u.); [[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0; }
 
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
+
+# vim: ft=sh ts=8 softtabstop=4 shiftwidth=4 foldmethod=marker noexpandtab ai

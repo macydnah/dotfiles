@@ -50,6 +50,17 @@
 	"show-special": true,
 	"special-visible-only": true
     },
+    "hyprland/window": {
+	"format": "{title}",
+	"rewrite": {
+	    "(.*) — Mozilla Firefox": "🌎  $1",
+	    "(.*) - VIM": "📝  $1"
+	},
+	"separate-outputs": false,
+	"icon": false,
+	"icon-size": 20,
+	"max-length": 100
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,

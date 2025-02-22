@@ -58,6 +58,8 @@ autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsetting
 "" HTML FileType setting
 au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
 au BufNewFile *.html 0r ~/Templates/skeleton.html
+"" SH FileType setting
+au FileType sh setlocal tabstop=4 shiftwidth=4 noexpandtab autoindent
 "" SVG FileType setting
 au FileType svg setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
 au BufNewFile *.svg 0r ~/Templates/skeleton.svg | 2

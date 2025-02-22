@@ -114,4 +114,4 @@ trafego() {
 
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
 
-# vim: ft=sh tabstop=4 shiftwidth=4 foldmethod=marker noexpandtab autoindent
+# vim: ft=sh foldmethod=marker

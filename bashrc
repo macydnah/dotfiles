@@ -38,9 +38,15 @@ alias zgrep="zgrep --color"
 # Funciones
 aur() {
 	case "${1}" in
-	clone)	cd $(auracle --chdir="${AUR}" "${@}" | awk $'{print $3}'); printf "Directory changed to:\n$(pwd)\n\nDownloaded files:\n"; ls ;;
-	url)	auracle info "${2}" | grep -o "ht.*pack.*" | sed s"#packages/##" | xsel -ib --trim && echo $(xsel -ob) ;;
-	*)	auracle "${@}" ;;
+		clone)
+			cd $(auracle --chdir="${AUR}" "${@}" | awk $'{print $3}');
+			printf "Directory changed to:\n$(pwd)\n\nDownloaded files:\n$(ls)";
+			;;
+		url)
+			auracle info "${2}" | grep -o "ht.*pack.*" | sed s"#packages/##" | xsel -ib --trim && echo $(xsel -ob);
+			;;
+		*)	auracle "${@}"
+			;;
 	esac
 }
 
@@ -59,14 +65,14 @@ mpy() {
 	declare -r OPT="${1}"
 	declare -r URI="$(wl-paste -n)"
 	if [[ "${URI}" =~ ^https\:\/\/you(tube\.com)?(tu\.be)?\/.* ]]; then
-	case "${OPT}" in
-		-f)	mpv --fs "${URI}"
-		;;
-		*)	mpv "${URI}"
-		;;
-	esac
+		case "${OPT}" in
+			-f)	mpv --fs "${URI}"
+				;;
+			*)	mpv "${URI}"
+				;;
+		esac
 	else
-	>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
+		>&2 printf "Error! Invalid URI in the clipboard:\n\n${URI}\n\n"
 	fi
 }
 
@@ -77,12 +83,12 @@ osc7_cwd() {
 	local encoded=""
 	local pos c o
 	for (( pos=0; pos<strlen; pos++ )); do
-	c=${PWD:$pos:1}
-	case "$c" in
-		[-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
-		* ) printf -v o '%%%02X' "'${c}" ;;
-	esac
-	encoded+="${o}"
+		c=${PWD:$pos:1}
+		case "$c" in
+			[-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+			* ) printf -v o '%%%02X' "'${c}" ;;
+		esac
+		encoded+="${o}"
 	done
 	printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
 }
@@ -90,12 +96,14 @@ PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
 
 pactl() {
 	if [[ $1 == "profiles" ]]; then
-	echo; command pactl list | grep 'Active Profile' | sed s'/^\t//';
-	echo; command pactl list | grep Profiles\: | tr -d '\t';
-	command pactl list | grep Profiles\: -A10 | grep -v Profiles\: | awk $'{print $1}' | sed s'/:$//';
-	echo;
+		echo;
+		command pactl list | grep 'Active Profile' | sed s'/^\t//';
+		echo;
+		command pactl list | grep Profiles\: | tr -d '\t';
+		command pactl list | grep Profiles\: -A10 | grep -v Profiles\: | awk $'{print $1}' | sed s'/:$//';
+		echo;
 	else
-	command pactl "${@}";
+		command pactl "${@}";
 	fi
 }
 

@@ -70,13 +70,7 @@ mpy() {
 	fi
 }
 
-open() {
-	if [[ -z "${1}" ]]; then
-	xdg-open .
-	else
-	xdg-open "${1}"
-	fi
-}
+open() { [[ -z "${1}" ]] && xdg-open . || xdg-open "${1}"; }
 
 osc7_cwd() {
 	local strlen=${#PWD}

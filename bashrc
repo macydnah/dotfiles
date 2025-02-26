@@ -115,9 +115,9 @@ trafego() {
 }
 
 webdarkmodejs() {
-wl-copy -n << "_no_mas_javascript"
-// Wrapper around toggle() function by Jochem Stoel
-// https://dev.to/jochemstoel/re-add-dark-mode-to-any-website-with-just-a-few-lines-of-code-phl
+	# Paste in a browser console to darkmod any website
+	# Javascript by Jochem Stoel https://dev.to/jochemstoel/re-add-dark-mode-to-any-website-with-just-a-few-lines-of-code-phl
+	wl-copy -n << "_no_mas_javascript"
 function toggle() {
     let q = document.querySelectorAll('#nightify')
     if(q.length) {
@@ -133,7 +133,7 @@ function toggle() {
     return true
 }
 
-toggle() // woa! everything is dark!
+toggle()
 _no_mas_javascript
 }
 

@@ -114,6 +114,29 @@ trafego() {
 	[[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0 ;
 }
 
+webdarkmodejs() {
+wl-copy -n << "_no_mas_javascript"
+// Wrapper around toggle() function by Jochem Stoel
+// https://dev.to/jochemstoel/re-add-dark-mode-to-any-website-with-just-a-few-lines-of-code-phl
+function toggle() {
+    let q = document.querySelectorAll('#nightify')
+    if(q.length) {
+        q[0].parentNode.removeChild(q[0])
+        return false
+    }
+    var h = document.getElementsByTagName('head')[0],
+        s = document.createElement('style');
+    s.setAttribute('type', 'text/css');
+    s.setAttribute('id', 'nightify');
+    s.appendChild(document.createTextNode('html{-webkit-filter:invert(100%) hue-rotate(180deg) contrast(70%) !important; background: #fff;} .line-content {background-color: #fefefe;}'));
+    h.appendChild(s);
+    return true
+}
+
+toggle() // woa! everything is dark!
+_no_mas_javascript
+}
+
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
 
 # vim: ft=sh foldmethod=marker

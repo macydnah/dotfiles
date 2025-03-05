@@ -86,7 +86,7 @@ rules = [
 	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
 	# Documents
 	{ mime = "application/openxmlformats-officedocument.*", use = [ "libreoffice" ] },
-	{ mime = "application/oasis.opendocument.text", use = [ "libreoffice" ] },
+	{ mime = "application/oasis.opendocument.*", use = [ "libreoffice" ] },
 	# Empty file
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
 	# Fallback

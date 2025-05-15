@@ -30,6 +30,7 @@ configuration {
         directories-first: true;
         sorting-method: "name";
     }
+    kb-cancel: "Escape,Control+bracketleft";
 }
 @theme "~/.config/rofi/theme.rasi"
 

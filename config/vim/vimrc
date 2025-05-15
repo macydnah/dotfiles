@@ -83,8 +83,23 @@ au BufNewFile *.svg 0r ~/Templates/skeleton.svg | 2
 
 
 
-""" Apps & Plugins
+""" Plugin Settings
 ""
+"" Copilot
+function! ToggleCopilot()
+	if copilot#Enabled()
+		Copilot disable
+	else
+		Copilot enable
+	endif
+	Copilot status
+endfunction
+inoremap <F1> <Esc>:call ToggleCopilot()<CR>a
+nnoremap <F1> :call ToggleCopilot()<CR>
+"
+"" Simplenote
+source $HOME/.config/vim/pack/plugins/opt/simplenote.vim/simplenoterc
+"
 "" SuperCollider
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim
@@ -102,6 +117,3 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { "mode": "passive" }
 " nnoremap <F12> :SyntasticCheck<CR>
-"
-"" Simplenote
-source $HOME/.config/vim/pack/plugins/opt/simplenote.vim/simplenoterc

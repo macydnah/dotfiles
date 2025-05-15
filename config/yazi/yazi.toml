@@ -59,6 +59,8 @@ play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, desc = "Play (resume)", for = "unix" },
 	{ run = 'mpv --no-resume-playback --force-window "$@"', orphan = true, desc = "Play (da capo)", for = "unix" },
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
+]
+mediainfo = [
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 libreoffice = [

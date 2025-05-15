@@ -69,6 +69,8 @@ libreoffice = [
 gimp = [
 	{ run = 'gimp "$1"', orphan = true, desc = "Edit Image in GIMP" },
 ]
+audacity = [
+	{ run = 'audacity "$1"', orphan = true, desc = "Edit in Audacity" },
 ]
 
 # https://yazi-rs.github.io/docs/configuration/yazi#open

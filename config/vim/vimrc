@@ -81,10 +81,6 @@ au FileType svg setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoin
 au BufNewFile *.svg 0r ~/Templates/skeleton.svg | 2
 
 
-""" Tweaks
-"" disable modifyOtherKeys so metaSendsEscape is respected in Foot terminal
-let &t_TI = ""
-let &t_TE = ""
 
 
 """ Apps & Plugins

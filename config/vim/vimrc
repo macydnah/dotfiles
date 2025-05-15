@@ -43,7 +43,19 @@ au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
 au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
 au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
 au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
-
+"
+""" Tweaks for Foot terminal (https://codeberg.org/dnkl/foot/wiki#vim)
+"" Enable 24-bit colors
+let &t_8f = "\<Esc>[38:2::%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2::%lu:%lu:%lum"
+"" Enable native mouse support
+set mouse=a
+set ttymouse=sgr
+"" Workaround bug in vim, where it incorrectly thinks modifyOtherKeys level 2 is
+"" enabled, even when it's not. The snippets below ensure modifyOtherKeys=2 is
+"" enabled. https://github.com/vim/vim/issues/9014
+"let &t_TI = "\<Esc>[>4;2m"
+"let &t_TE = "\<Esc>[>4;m"
 
 """ Commands, Maps & Autocommands
 ""

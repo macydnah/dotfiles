@@ -32,7 +32,8 @@ set splitbelow
 "set list
 "set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
 "
-"" Highlight the whole current line only in the active window
+"" Highlight the current cursor coordinate
+"" and highlight it only in the active window.
 set cursorline
 set cursorcolumn
 highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic

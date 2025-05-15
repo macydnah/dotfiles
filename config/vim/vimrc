@@ -1,4 +1,4 @@
-" ~/.vim/vimrc
+" ~/.config/vim/vimrc
 
 """ Make Vim works like before having ~/.vim/vimrc. This will set
 """ 'compatible' off, switch on syntax highlighting and a few more things.

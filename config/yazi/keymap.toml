@@ -117,7 +117,7 @@ keymap = [
 	{ on = ["g","c"], run = "cd ~/.config",                              desc = "Go to ~/.config" },
 	{ on = ["g","d"], run = "cd ~/.dotfiles",                            desc = "Go to ~/.dotfiles" },
 	{ on = ["g","t"], run = "cd /tmp",                                   desc = "Go to /tmp" },
-	{ on = ["g","`"], run = "cd ~/Documents/UnADM/2024-2-B2/BDD/BDD_U3", desc = "Go to homework" },
+	{ on = ["g","`"], run = "cd /home/macydnah/Documents/UnADM/2025-1-B2", desc = "Go to homework" },
 	{ on = ["g","u"], run = "cd ~/Documents/UnADM",                      desc = "Go to UnADM" },
 	{ on = ["g","a"], run = "cd $AUR",                                   desc = "Go to $AUR" },
 	{ on = ["c","d"], run = "cd --interactive",                          desc = "Go to a directory interactively" },
@@ -142,7 +142,7 @@ keymap = [
 	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
 
 	# Tasks
-	{ on = "w", run = "tasks_show", desc = "Show task manager" },
+	{ on = "w", run = "tasks:show", desc = "Show task manager" },
 
 	# Help
 	{ on = "<F1>", run = "help", desc = "Open help" },

@@ -150,6 +150,14 @@ toggle()
 _no_mas_javascript
 }
 
+webdarkmodepdfjs() {
+	# Paste in a browser console to darkmod Firefox's built-in pdf.js
+	# Javascript by SynergerySid https://stackoverflow.com/a/61814602
+	wl-copy -n << "_no_mas_javascript"
+javascript:(function(){var el = typeof viewer !== 'undefined' ? viewer : document.body; el.style.filter = 'grayscale(1) invert(1) sepia(1) contrast(75%)';})()
+_no_mas_javascript
+}
+
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
 
 # vim: ft=sh foldmethod=marker

@@ -64,10 +64,11 @@ mediainfo = [
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 libreoffice = [
-	{ run = 'libreoffice --nodefault --nologo "$@"', orphan = true, desc = "LibreOffice" },
+	{ run = 'libreoffice --nodefault --nologo "$1"', orphan = true, desc = "LibreOffice" },
 ]
 gimp = [
-	{ run = 'gimp "$@"', orphan = true, desc = "Edit Image in GIMP" },
+	{ run = 'gimp "$1"', orphan = true, desc = "Edit Image in GIMP" },
+]
 ]
 
 # https://yazi-rs.github.io/docs/configuration/yazi#open

@@ -31,8 +31,22 @@ set splitbelow
 "" Set indentation guidelines chars
 "set list
 "set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
+
+""" General Maps & Autocommands
+""
+"" Open the current file with F12 in Firefox
+map <silent> <F12> :!firefox % <enter><enter>
 "
-"" Highlight the current cursor coordinate
+"" Copy from the current buffer to Wayland clipboard (wl-copy)
+map <silent> <F10> :w !wl-copy -n <CR><CR>
+"
+"" Count the total number of words in the current buffer or visual selection
+map <silent> <F9> :w !wc -w <CR>
+"
+"" Executes the import-gsettings script when the settings.ini file is saved
+autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsettings
+
+""" Highlight the current cursor coordinate
 "" and highlight it only in the active window.
 set cursorline
 set cursorcolumn
@@ -43,7 +57,7 @@ au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
 au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
 au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
 au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
-"
+
 """ Tweaks for Foot terminal (https://codeberg.org/dnkl/foot/wiki#vim)
 "" Enable 24-bit colors
 let &t_8f = "\<Esc>[38:2::%lu:%lu:%lum"
@@ -57,17 +71,8 @@ set ttymouse=sgr
 "let &t_TI = "\<Esc>[>4;2m"
 "let &t_TE = "\<Esc>[>4;m"
 
-""" Commands, Maps & Autocommands
+""" FileType settings
 ""
-"" Open the current file with F12 in Firefox
-map <silent> <F12> :!firefox % <enter><enter>
-"
-"" Copy from the current buffer to Wayland clipboard (wl-copy)
-map <silent> <F10> :w !wl-copy -n <CR><CR>
-"
-"" GTK-3.0 autocmd import-gsettings script 
-autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsettings 
-"
 "" HTML FileType setting
 au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
 au BufNewFile *.html 0r ~/Templates/skeleton.html
@@ -79,9 +84,6 @@ au BufNewFile *.sh 0r ~/Templates/skeleton.sh
 "" SVG FileType setting
 au FileType svg setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
 au BufNewFile *.svg 0r ~/Templates/skeleton.svg | 2
-
-
-
 
 """ Plugin Settings
 ""

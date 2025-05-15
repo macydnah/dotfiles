@@ -67,7 +67,7 @@ set smoothscroll true
 set scrollduration 150
 set theme dracula
 set newtab http://localhost:8888
-set "http://localhost:8888" allowautofocus false
+"seturl http://localhost:8888 allowautofocus false
 set searchengine searxng
 set searchurls.searxng http://localhost:8888/search?q=
 set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=

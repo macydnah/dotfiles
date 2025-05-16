@@ -5,17 +5,26 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-""" Look and feel
-""
-set termguicolors
-colorscheme PaperColor
-set background=dark
-if strftime("%H") < 17 && strftime("%H") > 07 | colorscheme PaperColor | set background=light | endif
-if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
+""" Plugins
+call plug#begin('~/.config/vimrc/plugged')
+"" Colorscheme (PaperColor)
+Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
+"" Copilot
+Plug 'https://github.com/github/copilot.vim.git'
+"" SCVim (SuperCollider)
+Plug 'https://github.com/supercollider/scvim.git', { 'for': 'supercollider' }
+"" Simplenote
+Plug 'https://github.com/simplenote-vim/simplenote.vim.git'
+"" Syntax (Hyprland)
+Plug 'https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { 'for': 'hypr' }
+"" Syntax (Tridactyl)
+Plug 'https://github.com/tridactyl/vim-tridactyl.git', { 'for': 'tridactyl' }
+"" vim-smoothie
+Plug 'https://github.com/psliwka/vim-smoothie.git', { 'on': [] }
+call plug#end()
 
 """ General Settings
 ""
-set t_Co=256
 set title
 set hlsearch
 set ignorecase
@@ -31,6 +40,18 @@ set splitbelow
 "" Set indentation guidelines chars
 "set list
 "set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
+
+""" Look and feel
+""
+"set t_Co=256
+set termguicolors
+colorscheme PaperColor
+if strftime("%H") < 18 && strftime("%H") > 07
+	set background=light
+else
+	set background=dark
+endif
+if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
 
 """ General Maps & Autocommands
 ""
@@ -74,7 +95,7 @@ set ttymouse=sgr
 """ FileType settings
 ""
 "" HTML FileType setting
-au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
+au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent wrap smoothscroll linebreak
 au BufNewFile *.html 0r ~/Templates/skeleton.html
 "" JSON FileType setting
 au FileType json setlocal tabstop=4 shiftwidth=4 noexpandtab autoindent
@@ -100,11 +121,11 @@ inoremap <F1> <Esc>:call ToggleCopilot()<CR>a
 nnoremap <F1> :call ToggleCopilot()<CR>
 "
 "" Simplenote
-source $HOME/.config/vim/pack/plugins/opt/simplenote.vim/simplenoterc
+source $HOME/.config/vim/simplenoterc.vim
 "
 "" SuperCollider
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
-au Filetype supercollider packadd scvim
+"au Filetype supercollider packadd scvim
 " let g:sclangTerm = "foot"
 let g:sclangTerm = "st"
 let g:scFlash = 1

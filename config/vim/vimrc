@@ -6,7 +6,7 @@ unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
 """ Plugins
-call plug#begin('~/.config/vimrc/plugged')
+call plug#begin('~/.config/vim/plugged')
 "" Colorscheme (PaperColor)
 Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
 "" Copilot

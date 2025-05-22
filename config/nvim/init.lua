@@ -48,12 +48,18 @@ set.splitbelow = true
 set.guicursor = ""
 set.termguicolors = true
 colorscheme("PaperColor")
-local hour = tonumber(os.date("%H%M"))
-if hour < 1730 and hour > 0730 then
-	set.background = "light"
-else
-	set.background = "dark"
-end
+autocmd("WinEnter", {
+	desc = "Set background color based on time of day",
+	pattern = "*",
+	callback = function()
+		local hour = tonumber(os.date("%H%M"))
+		if hour < 1730 and hour > 0730 then
+			set.background = "light"
+		else
+			set.background = "dark"
+		end
+	end,
+})
 local diff_mode = vim.opt.diff:get()
 if diff_mode then
 	colorscheme("evening")

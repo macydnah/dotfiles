@@ -1,28 +1,15 @@
-" ~/.config/nvim/init.vim
-"
-"set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after
-"let &packpath = &runtimepath
-"source ~/.config/vim/vimrc
+-- ~/.config/nvim/init.lua
 
-""" Plugins
-"call plug#begin('~/.config/vim/plugged')
-""" Colorscheme (PaperColor)
-"Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
-""" Copilot
-"Plug 'https://github.com/github/copilot.vim.git'
-""" SCVim (SuperCollider)
-"Plug 'https://github.com/supercollider/scvim.git', { 'for': 'supercollider' }
-""" Simplenote
-"Plug 'https://github.com/simplenote-vim/simplenote.vim.git'
-""" Syntax (Hyprland)
-"Plug 'https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { 'for': 'hypr' }
-""" Syntax (Tridactyl)
-"Plug 'https://github.com/tridactyl/vim-tridactyl.git', { 'for': 'tridactyl' }
-""" vim-smoothie
-"Plug 'https://github.com/psliwka/vim-smoothie.git'
-"call plug#end()
-lua << EOF
 local vim = vim
+local autocmd = vim.api.nvim_create_autocmd
+local colorscheme = vim.cmd.colorscheme
+local highlight = vim.cmd.highlight
+local map = vim.keymap.set
+local set = vim.opt
+local setlocal = vim.opt_local
+
+--[[ Plugin manager
+--]]
 local Plug = vim.fn['plug#']
 vim.fn['plug#begin']('~/.config/nvim/plugged')
 -- Colorscheme (PaperColor)
@@ -42,91 +29,39 @@ Plug('https://github.com/tridactyl/vim-tridactyl.git', { ['for'] = 'tridactyl' }
 -- vim-smoothie
 Plug('https://github.com/psliwka/vim-smoothie.git')
 vim.fn['plug#end']()
-EOF
 
-""" General Settings
-""
-"set title
-"set ignorecase
-"set smartcase
-"set nowrap
-"set number
-"set splitright
-"set splitbelow
-"
-"" Set terminal title to this titlestring
-"set title titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
-"
-"" Set indentation guidelines chars
-"set list
-"set listchars=tab:⎽⎽⏌,lead:⎽,trail:·,eol:↵
-lua << EOF
-local set = vim.opt
+--[[ General Settings
+--]]
 set.title = true
+-- set.titlestring['%t%( %M%)%( (%{expand("%:~:.:h")})%)%( %a%)']
 set.ignorecase = true
 set.smartcase = true
 set.wrap = false
 set.number = true
 set.splitright = true
 set.splitbelow = true
-
--- Set terminal title to this titlestring
--- set.titlestring['%t%( %M%)%( (%{expand("%:~:.:h")})%)%( %a%)']
---
--- Set indentation guidelines chars
 -- set.list = true
 -- set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
-EOF
 
-""" Look and feel
-""
-"set guicursor=
-"set t_Co=256
-"set termguicolors
-"colorscheme PaperColor
-"if strftime("%H") < 18 && strftime("%H") > 07
-"	set background=light
-"else
-"	set background=dark
-"endif
-"if &diff | colorscheme evening | set diffopt=filler,context:1000000 | endif
-lua << EOF
-local colorscheme = vim.cmd.colorscheme
-local set = vim.opt
+--[[ Look and feel
+--]]
 set.guicursor = ""
 set.termguicolors = true
 colorscheme("PaperColor")
-
 local hour = tonumber(os.date("%H%M"))
 if hour < 1730 and hour > 0730 then
 	set.background = "light"
 else
 	set.background = "dark"
 end
-
 local diff_mode = vim.opt.diff:get()
 if diff_mode then
 	colorscheme("evening")
 	set.diffopt = { "filler", "context:1000000" }
 end
-EOF
 
-
-""" General Maps & Autocommands
-""
-"" Open the current file with F12 in Firefox
-"map <silent> <F12> :!firefox % <enter><enter>
-"
-"" Copy from the current buffer to Wayland clipboard (wl-copy)
-"map <silent> <F10> :w !wl-copy -n <CR><CR>
-"
-"" Count the total number of words in the current buffer or visual selection
-"map <silent> <F9> :w !wc -w <CR>
-"
-"" Executes the import-gsettings script when the settings.ini file is saved
-"autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsettings
-lua << EOF
-local map = vim.keymap.set
+--[[ General Maps & Autocommands
+--]]
 -- Open the current file with F12 in Firefox
 map({''}, '<F12>', function()
 	os.execute('firefox ' .. vim.fn.expand('%'))
@@ -141,34 +76,17 @@ map({'n', 'v', 'o'}, '<F10>',
 	'<cmd>w !wc -w<cr><cr>',
 	{ desc = 'Count words in buffer/visual selection', silent = true })
 -- Executes the import-gsettings script when the settings.ini file is saved
---vim.api.nvim_create_autocmd("BufWritePost", {
---	pattern = "$HOME/.config/gtk-3.0/settings.ini",
---	callback = function()
---		vim.cmd("silent! !import-gsettings")
---	end,
---})
-EOF
+--[[
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "$HOME/.config/gtk-3.0/settings.ini",
+	callback = function()
+		vim.cmd("silent! !import-gsettings")
+	end,
+})
+--]]
 
-""" Highlight the current cursor coordinate within the active window
-""
-"set cursorline
-"set cursorcolumn
-"if strftime("%H%M") < 1730 && strftime("%H%M") > 0730
-"	highlight CursorLine guifg=NONE guibg=LightGray gui=underline,italic
-"	highlight CursorColumn guifg=NONE guibg=LightGray gui=bold
-"else
-"	highlight CursorLine guifg=NONE guibg=#2c2c2c gui=underline,italic
-"	highlight CursorColumn guifg=NONE guibg=#2c2c2c gui=bold
-"endif
-"au WinEnter * setlocal cursorline cursorcolumn
-"au WinLeave * setlocal nocursorline nocursorcolumn
-"au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
-"au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
-"au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
-"au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
-lua << EOF
-local highlight = vim.cmd.highlight
-local set = vim.opt
+--[[ Highlight the current cursor coordinate within the active window
+--]]
 set.cursorline = true
 set.cursorcolumn = true
 local function cursor_auto_highlight()
@@ -182,9 +100,6 @@ local function cursor_auto_highlight()
 	end
 end
 cursor_auto_highlight()
-
-local autocmd = vim.api.nvim_create_autocmd
-local setlocal = vim.opt_local
 autocmd("WinEnter", {
 	desc = "Enable cursorline and cursorcolumn in the current window",
 	pattern = "*",
@@ -216,25 +131,9 @@ autocmd("InsertLeave", {
 		cursor_auto_highlight()
 	end,
 })
-EOF
 
-""" FileType settings
-""
-"" HTML FileType setting
-"au FileType html setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent wrap smoothscroll linebreak
-"au BufNewFile *.html 0r ~/Templates/skeleton.html
-"" JSON FileType setting
-"au FileType json setlocal tabstop=4 shiftwidth=4 noexpandtab autoindent
-"" SH FileType setting
-"au FileType sh setlocal tabstop=4 shiftwidth=4 noexpandtab autoindent
-"au BufNewFile *.sh 0r ~/Templates/skeleton.sh
-"" SVG FileType setting
-"au FileType svg setlocal tabstop=8 softtabstop=2 shiftwidth=2 noexpandtab autoindent
-"au BufNewFile *.svg 0r ~/Templates/skeleton.svg | 2
-lua << EOF
-local autocmd = vim.api.nvim_create_autocmd
-local setlocal = vim.opt_local
-local set = vim.opt
+--[[ FileType settings
+--]]
 -- HTML FileType settings
 autocmd("FileType", {
 	pattern = "html",
@@ -299,32 +198,9 @@ autocmd("BufNewFile", {
 		vim.cmd("2")
 	end,
 })
-EOF
 
-""" Plugin Settings
-""
-"" Copilot
-"function! ToggleCopilot()
-"	if copilot#Enabled()
-"		Copilot disable
-"	else
-"		Copilot enable
-"	endif
-"	Copilot status
-"endfunction
-"inoremap <F1> <Esc>:call ToggleCopilot()<CR>a
-"nnoremap <F1> :call ToggleCopilot()<CR>
-"
-"" Simplenote
-"source $HOME/.config/vim/simplenoterc.vim
-"
-"" SuperCollider
-"au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
-"au Filetype supercollider packadd scvim
-" let g:sclangTerm = "foot"
-"let g:sclangTerm = "st"
-"let g:scFlash = 1
-lua << EOF
+--[[ Plugin Settings
+--]]
 -- Copilot
 local function ToggleCopilot()
 	-- 0 and 1 are both truthy in Lua, can't rely
@@ -338,13 +214,11 @@ local function ToggleCopilot()
 	end
 	vim.cmd("Copilot status")
 end
-local map = vim.keymap.set
 map({'i', 'n'}, '<F1>', function()
 	ToggleCopilot()
 	end, { desc = 'Toggle Copilot On/Off', silent = false })
 
 -- nvim-lastplace
---lua require'nvim-lastplace'.setup{}
 require'nvim-lastplace'.setup {
     lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
     lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
@@ -366,4 +240,3 @@ autocmd({"BufEnter", "BufWinEnter", "BufNewFile", "BufRead"}, {
 })
 vim.g.sclangTerm = "foot"
 vim.g.scFlash = 1
-EOF

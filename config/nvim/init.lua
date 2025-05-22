@@ -236,7 +236,6 @@ local simplenoterc = os.getenv("HOME") .. "/.config/vim/simplenoterc.vim"
 vim.cmd.source(simplenoterc)
 
 -- SuperCollider
-local autocmd = vim.api.nvim_create_autocmd
 autocmd({"BufEnter", "BufWinEnter", "BufNewFile", "BufRead"}, {
 	desc = "Set filetype to supercollider when opening .sc or .scd files",
 	pattern = {"*.sc", "*.scd"},

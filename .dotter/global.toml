@@ -50,6 +50,10 @@ depends = ["mpv", "yt-dlp"]
 [yt-dlp.files]
 "config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
 
+## Neovim ##
+[neovim.files]
+"config/nvim" = {target = "~/.config/nvim", type = "symbolic", recurse = true}
+
 
 ## Wayland Compositors ##
 [hyprland.files]
@@ -86,6 +90,7 @@ depends = ["X11"]
 "config/i3" = {target = "~/.config/i3", type = "symbolic", recurse = false}
 "config/mpv" = {target = "~/.config/mpv", type = "symbolic", recurse = false}
 "config/networkmanager-dmenu" = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
+"config/nvim" = {target = "~/.config/nvim", type = "symbolic", recurse = true}
 "config/openbox" = {target = "~/.config/openbox", type = "symbolic", recurse = false}
 "config/picom.conf" = "~/.config/picom.conf"
 "config/polybar" = {target = "~/.config/polybar", type = "symbolic", recurse = false}

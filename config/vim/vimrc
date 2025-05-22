@@ -39,7 +39,7 @@ set splitbelow
 "
 "" Set indentation guidelines chars
 "set list
-"set listchars=tab:⎽⎽⏌,lead:⎽,trail:·
+"set listchars=tab:⎽⎽⏌,lead:⎽,trail:·,eol:↵
 
 """ Look and feel
 ""

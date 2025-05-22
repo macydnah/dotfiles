@@ -91,11 +91,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 --]]
 
---[[ Highlight the current cursor coordinate within the active window
+--[[ Highlight the current cursor coordinate within the active window (crosshair)
 --]]
 set.cursorline = true
 set.cursorcolumn = true
-local function cursor_auto_highlight()
+local function auto_crosshair()
 	local hour = tonumber(os.date("%H%M"))
 	if hour < 1730 and hour > 0730 then
 		highlight({ "CursorLine", "guifg=NONE", "guibg=#d4d4d4", "gui=underline,italic" })
@@ -105,7 +105,7 @@ local function cursor_auto_highlight()
 		highlight({ "CursorColumn", "guifg=NONE", "guibg=#303030", "gui=NONE" })
 	end
 end
-cursor_auto_highlight()
+auto_crosshair()
 autocmd("WinEnter", {
 	desc = "Enable cursorline and cursorcolumn in the current window",
 	pattern = "*",
@@ -134,7 +134,7 @@ autocmd("InsertLeave", {
 	desc = "Enable cursorline and cursorcolumn when leaving insert mode",
 	pattern = "*",
 	callback = function()
-		cursor_auto_highlight()
+		auto_crosshair()
 	end,
 })
 

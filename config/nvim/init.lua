@@ -33,13 +33,13 @@ set.splitright = true
 set.splitbelow = true
 set.clipboard = "unnamedplus"
 -- set.list = true
--- set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
+set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
 
 --[[ Look and feel ]]
 set.guicursor = ""
 set.termguicolors = true
 colorscheme("PaperColor")
-autocmd("BufWinEnter", {
+autocmd({"BufWinEnter", "WinEnter"}, {
 	desc = "Set background color based on time of the day",
 	pattern = "*",
 	callback = function()

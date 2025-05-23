@@ -15,9 +15,10 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 --[[ Colorscheme (PaperColor) ]]Plug('https://github.com/NLKNguyen/papercolor-theme.git')
 --[[ Copilot ]]			Plug('https://github.com/github/copilot.vim.git')
 --[[ nvim-lastplace ]]		Plug('https://github.com/ethanholz/nvim-lastplace.git')
+--[[ nvim-treesitter ]]		Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
 --[[ SCVim (SuperCollider) ]]	Plug('https://github.com/supercollider/scvim.git', { ['for'] = 'supercollider' })
 --[[ Simplenote ]]		Plug('https://github.com/simplenote-vim/simplenote.vim.git')
---[[ Syntax (Hyprland) ]]	Plug('https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { ['for'] = 'hypr' })
+---[[ Syntax (Hyprland) ]]	Plug('https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { ['for'] = 'hypr' })
 --[[ Syntax (Tridactyl) ]]	Plug('https://github.com/tridactyl/vim-tridactyl.git', { ['for'] = 'tridactyl' })
 --[[ vim-smoothie ]]		Plug('https://github.com/psliwka/vim-smoothie.git')
 vim.fn['plug#end']()
@@ -235,6 +236,20 @@ require'nvim-lastplace'.setup {
     lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
     lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
     lastplace_open_folds = true
+} --]]
+
+---[[ nvim-treesitter
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+	auto_install = false,
+	ignore_install = {""},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = false,
+	},
 } --]]
 
 ---[[ Simplenote

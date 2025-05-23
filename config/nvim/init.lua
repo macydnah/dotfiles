@@ -62,13 +62,6 @@ autocmd('TextYankPost', {
 })
 
 --[[ General Maps & Autocommands ]]
--- Open the current file with F12 in Firefox
---[[
-map({''}, '<F12>', function()
-	os.execute('firefox ' .. vim.fn.expand('%'))
-	end,
-	{ desc = 'Open current file in Firefox', silent = false })
---]]
 -- Count the total number of words in the current buffer or visual selection
 map({'n', 'v', 'o'}, '<F10>',
 	'<cmd>w !wc -w<cr><cr>',

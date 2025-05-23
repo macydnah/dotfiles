@@ -35,6 +35,13 @@ set.splitbelow = true
 set.clipboard = "unnamedplus"
 -- set.list = true
 set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
+-- Add noselect to completeopt, otherwise autocompletion is annoying
+-- set.completeopt:append('noselect')
+set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
+-- Enable rounded borders in floating windows
+vim.o.winborder = 'rounded'
+-- Language Server Protocol (LSP) enable list
+vim.lsp.enable({'lua-language-server', 'clangd'})
 
 --[[ Look and feel ]]
 set.guicursor = ""
@@ -57,25 +64,83 @@ if diff_mode then
 	colorscheme("evening")
 	set.diffopt = { "filler", "context:1000000" }
 end
+
+--[[ General Autocommands ]]
 autocmd('TextYankPost', {
 	desc = "Briefly highlight yanked text",
 	callback = function() vim.hl.on_yank() end
 })
+autocmd('LspAttach', {
+	desc = 'Enable LSP autocompletion by client capabilities',
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		end
+	end,
+})
+autocmd('LspAttach', {
+	desc = 'LSP key mappings',
+	callback = function()
+		---[[ LSP key mappings
+		local bufmap = function(mode, lhs, rhs)
+			local opts = { buffer = true }
+			vim.keymap.set(mode, lhs, rhs, opts)
+		end
+		-- Displays hover information about the symbol under the cursor
+		bufmap('n', 'K', function() vim.lsp.buf.hover() end)
+		-- Jump to the definition
+		bufmap('n', 'gd', function() vim.lsp.buf.definition() end)
+		-- Jump to declaration
+		bufmap('n', 'gD', function() vim.lsp.buf.declaration() end)
+		-- Lists all the implementations for the symbol under the cursor
+		bufmap('n', 'gi', function() vim.lsp.buf.implementation() end)
+		-- Jumps to the definition of the type symbol
+		bufmap('n', 'go', function() vim.lsp.buf.type_definition() end)
+		-- Lists all the references
+		bufmap('n', 'gr', function() vim.lsp.buf.references() end)
+		-- Displays a function's signature information
+		bufmap('n', 'gs', function() vim.lsp.buf.signature_help() end)
+		-- Renames all references to the symbol under the cursor
+		bufmap('n', '<F2>', function() vim.lsp.buf.rename() end)
+		-- Selects a code action available at the current cursor position
+		bufmap('n', '<F4>', function() vim.lsp.buf.code_action() end)
+		-- Show diagnostics in a floating window
+		bufmap('n', 'gl', function() vim.diagnostic.open_float() end)
+		--]]
 
---[[ General Maps & Autocommands ]]
--- Count the total number of words in the current buffer or visual selection
-map({'n', 'v', 'o'}, '<F10>',
-	'<cmd>w !wc -w<cr><cr>',
-	{ desc = 'Count words in buffer/visual selection', silent = true })
--- Executes the import-gsettings script when the settings.ini file is saved
---[[
+		---[[ Diagnostics config
+		vim.diagnostic.config({
+			-- virtual_text = true,
+			-- virtual_text = { current_line = false },
+			-- virtual_lines = true,
+			virtual_lines = { current_line = true },
+			signs = true,
+			severity_sort = true,
+			update_in_insert = true,
+		})
+		-- Diagnostics icons
+		local sign = function(opts)
+			vim.fn.sign_define(opts.name, {
+				texthl = opts.name,
+				text = opts.text,
+				numhl = ''
+			})
+		end
+		sign({name = 'DiagnosticSignError', text = '✘'})
+		sign({name = 'DiagnosticSignWarn', text = '▲'})
+		sign({name = 'DiagnosticSignHint', text = '⚑'})
+		sign({name = 'DiagnosticSignInfo', text = '»'})
+		--]]
+	end,
+})
+--[[ Executes the import-gsettings script when the settings.ini file is saved
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "$HOME/.config/gtk-3.0/settings.ini",
 	callback = function()
 		vim.cmd("silent! !import-gsettings")
 	end,
-})
---]]
+}) --]]
 
 --[[ Highlight the current cursor coordinate within the active window (crosshair) ]]
 local function auto_crosshair()
@@ -214,6 +279,7 @@ autocmd('BufNewFile', {
 --[[ Plugin Settings ]]
 
 ---[[ Copilot
+-- vim.b.copilot_enabled = false
 local function ToggleCopilot()
 	-- 0 and 1 are both truthy in Lua, can't rely on just calling the
 	-- Vimscript copilot function to retrieve its enabled/disabled state
@@ -240,12 +306,13 @@ require'nvim-lastplace'.setup {
 
 ---[[ nvim-treesitter
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+	ensure_installed = { "c", "css", "html", "json", "lua", "markdown", "markdown_inline", "query", "rust", "supercollider", "toml", "vim", "vimdoc", },
 	auto_install = false,
 	ignore_install = {""},
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
+		disable = { "" }
 	},
 	indent = {
 		enable = false,
@@ -262,6 +329,7 @@ autocmd({"BufEnter", "BufWinEnter", "BufNewFile", "BufRead"}, {
 	pattern = {"*.sc", "*.scd"},
 	callback = function()
 		vim.o.filetype = "supercollider"
+		-- no sirve aqui adentro, no se abre la post window en otra terminal
 		vim.g.sclangTerm = "st"
 		vim.g.scFlash = 1
 	end,

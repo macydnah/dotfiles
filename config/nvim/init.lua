@@ -247,9 +247,7 @@ autocmd({"BufEnter", "BufWinEnter", "BufNewFile", "BufRead"}, {
 	pattern = {"*.sc", "*.scd"},
 	callback = function()
 		vim.o.filetype = "supercollider"
-		--vim.g.sclangTerm = "st"
-		--vim.g.scFlash = 1
+		vim.g.sclangTerm = "st"
+		vim.g.scFlash = 1
 	end,
-})
-vim.g.sclangTerm = "st"
-vim.g.scFlash = 1 --]]
+}) --]]

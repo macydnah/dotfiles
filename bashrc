@@ -12,7 +12,7 @@ fi
 # Alianzas
 alias bat="bat -p"
 alias cls="clear"
-alias confhyp="vim ~/.config/hypr/hyprland.conf"
+alias confhyp="${EDITOR} ~/.config/hypr/hyprland.conf"
 alias diff="diff --color"
 alias feh="feh --conversion-timeout=0"
 alias grep="grep --color"

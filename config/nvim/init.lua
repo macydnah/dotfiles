@@ -112,27 +112,33 @@ autocmd('LspAttach', {
 
 		---[[ Diagnostics config
 		vim.diagnostic.config({
-			-- virtual_text = true,
-			-- virtual_text = { current_line = false },
-			-- virtual_lines = true,
+                       -- see :help vim.diagnostic.Opts
+			underline = true,
+			virtual_text = false,
 			virtual_lines = { current_line = true },
-			signs = true,
-			severity_sort = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = '✘',
+					[vim.diagnostic.severity.WARN] = '▲',
+					[vim.diagnostic.severity.HINT] = '⚑',
+					[vim.diagnostic.severity.INFO] = '»',
+				},
+				linehl = {
+					-- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+					-- [vim.diagnostic.severity.WARN] = 'WarningMsg',
+					-- [vim.diagnostic.severity.HINT] = 'HintMsg',
+					-- [vim.diagnostic.severity.INFO] = 'InfoMsg',
+				},
+				numhl = {
+					-- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+					-- [vim.diagnostic.severity.WARN] = 'WarningMsg',
+					-- [vim.diagnostic.severity.HINT] = 'HintMsg',
+					-- [vim.diagnostic.severity.INFO] = 'InfoMsg',
+				},
+			},
 			update_in_insert = true,
-		})
-		-- Diagnostics icons
-		local sign = function(opts)
-			vim.fn.sign_define(opts.name, {
-				texthl = opts.name,
-				text = opts.text,
-				numhl = ''
-			})
-		end
-		sign({name = 'DiagnosticSignError', text = '✘'})
-		sign({name = 'DiagnosticSignWarn', text = '▲'})
-		sign({name = 'DiagnosticSignHint', text = '⚑'})
-		sign({name = 'DiagnosticSignInfo', text = '»'})
-		--]]
+			severity_sort = true,
+		}) --]]
 	end,
 })
 --[[ Executes the import-gsettings script when the settings.ini file is saved

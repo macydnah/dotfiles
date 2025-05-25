@@ -33,6 +33,7 @@ set.number = true
 set.splitright = true
 set.splitbelow = true
 set.clipboard = "unnamedplus"
+set.scrolloff = 8
 -- set.list = true
 set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
 -- Add noselect to completeopt, otherwise autocompletion is annoying
@@ -41,7 +42,7 @@ set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
 -- Enable rounded borders in floating windows
 vim.o.winborder = 'rounded'
 -- Language Server Protocol (LSP) enable list
-vim.lsp.enable({'lua-language-server', 'clangd'})
+vim.lsp.enable({'lua-language-server', 'clangd', 'rust-analyzer'})
 
 --[[ Look and feel ]]
 set.guicursor = ""

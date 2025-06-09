@@ -373,7 +373,7 @@ require'nvim-treesitter.configs'.setup {
 	},
 } --]]
 
----[[ Simplenote
+--[[ Simplenote
 local simplenoterc = os.getenv("HOME") .. "/.config/vim/simplenoterc.vim"
 vim.cmd.source(simplenoterc) --]]
 

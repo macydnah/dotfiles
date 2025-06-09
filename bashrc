@@ -27,7 +27,7 @@ alias scrcpy="scrcpy --stay-awake --turn-screen-off --shortcut-mod=lalt --window
 alias sudo="sudo -v; sudo "
 alias tmux="tmux new-session -A -s shession"
 alias top="top -u $(whoami)"
-alias tree="tree --dirsfirst --du -h"
+alias tree="tree -C --dirsfirst --du -h --hyperlink"
 alias tremc="tremc -c user:password@HuaaaliP0NKH-ER0S"
 alias wablk="watch -ctn1 'echo ; lsblk'"
 alias wared="watch -ctn1 'nmcli -c yes | head -n20'"
@@ -159,6 +159,6 @@ javascript:(function(){var el = typeof viewer !== 'undefined' ? viewer : documen
 _no_mas_javascript
 }
 
-ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" "${@}"; }
+ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" --embed-metadata "${@}"; }
 
 # vim: ft=sh foldmethod=marker

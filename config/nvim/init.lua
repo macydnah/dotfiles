@@ -310,6 +310,25 @@ autocmd('BufNewFile', {
 		vim.cmd("2")
 	end,
 })
+-- TXT FileType settings
+autocmd('FileType', {
+	desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll',
+	group = 'FileTypeSetting',
+	pattern = 'txt',
+	callback = function()
+		setlocal.filetype = 'text'
+		setlocal.tabstop = 8
+		setlocal.softtabstop = 8
+		setlocal.shiftwidth = 8
+		setlocal.expandtab = false
+		setlocal.autoindent = true
+		setlocal.wrap = true
+		setlocal.linebreak = true
+		setlocal.smoothscroll = true
+		setlocal.cursorline = false
+		setlocal.cursorcolumn = false
+	end,
+})
 
 --[[ Plugin Settings ]]
 

@@ -378,13 +378,20 @@ local simplenoterc = os.getenv("HOME") .. "/.config/vim/simplenoterc.vim"
 vim.cmd.source(simplenoterc) --]]
 
 ---[[ SuperCollider
-autocmd({"BufEnter", "BufWinEnter", "BufNewFile", "BufRead"}, {
-	desc = "Set filetype to supercollider when opening .sc or .scd files",
-	pattern = {"*.sc", "*.scd"},
+autocmd('FileType', {
+	desc = 'SuperCollider FileType settings ts=4 sts=2 sw=2 noet ai',
+	group = 'FileTypeSetting',
+	pattern = 'supercollider',
 	callback = function()
-		vim.o.filetype = "supercollider"
-		-- no sirve aqui adentro, no se abre la post window en otra terminal
-		vim.g.sclangTerm = "st"
-		vim.g.scFlash = 1
+		setlocal.tabstop = 8
+		setlocal.softtabstop = 4
+		setlocal.shiftwidth = 4
+		setlocal.expandtab = false
+		setlocal.autoindent = true
+                map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = 'Send line to SuperCollider', silent = true, buffer = true })
+                map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = 'Send block to SuperCollider', silent = true, buffer = true })
+                map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = 'Hard stop SuperCollider', silent = true, buffer = true })
 	end,
-}) --]]
+})
+vim.g.sclangTerm = "footclient --title sclang"
+vim.g.scFlash = 1 --]]

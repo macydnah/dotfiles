@@ -12,10 +12,11 @@ local setlocal = vim.opt_local
 --[[ Plugin manager ]]
 local Plug = vim.fn['plug#']
 vim.fn['plug#begin']('~/.config/nvim/plugged')
+--[[ bg.nvim (Background) ]]	Plug('https://github.com/typicode/bg.nvim.git')
 --[[ Colorscheme (PaperColor) ]]Plug('https://github.com/NLKNguyen/papercolor-theme.git')
 --[[ Copilot ]]			Plug('https://github.com/github/copilot.vim.git')
 --[[ nvim-lastplace ]]		Plug('https://github.com/ethanholz/nvim-lastplace.git')
---[[ nvim-treesitter ]]		Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+--[[ nvim-treesitter ]]		Plug('https://github.com/nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
 --[[ SCVim (SuperCollider) ]]	Plug('https://github.com/supercollider/scvim.git', { ['for'] = 'supercollider' })
 --[[ Simplenote ]]		Plug('https://github.com/simplenote-vim/simplenote.vim.git')
 ---[[ Syntax (Hyprland) ]]	Plug('https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { ['for'] = 'hypr' })

@@ -156,8 +156,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 local function auto_crosshair()
 	setlocal.cursorline = true
 	setlocal.cursorcolumn = true
-	local hour = tonumber(os.date("%H%M"))
-	if hour < 1730 and hour > 0730 then
+	if set.background:get() == "light" then
 		highlight({ "CursorLine", "guifg=NONE", "guibg=#d4d4d4", "gui=underline,italic" })
 		highlight({ "CursorColumn", "guifg=NONE", "guibg=#d4d4d4", "gui=bold" })
 	else

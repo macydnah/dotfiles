@@ -255,6 +255,19 @@ autocmd('FileType', {
 		setlocal.autoindent = true
 	end,
 })
+-- RS FileType settings
+autocmd('FileType', {
+	desc = 'Rust FileType settings ts=8 sts=4 sw=4 et ai',
+	group = 'FileTypeSetting',
+	pattern = 'rust',
+	callback = function()
+		setlocal.tabstop = 8
+		setlocal.softtabstop = 4
+		setlocal.shiftwidth = 4
+		setlocal.expandtab = true
+		setlocal.autoindent = true
+	end,
+})
 -- SH FileType settings
 autocmd('FileType', {
 	desc = 'SH FileType settings ts=4 sw=4 noet ai',

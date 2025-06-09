@@ -31,10 +31,12 @@ set.ignorecase = true
 set.smartcase = true
 set.wrap = false
 set.number = true
+set.relativenumber = true
 set.splitright = true
 set.splitbelow = true
 set.clipboard = "unnamedplus"
 set.scrolloff = 8
+set.cmdheight = 0
 -- set.list = true
 set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
 -- Add noselect to completeopt, otherwise autocompletion is annoying

@@ -242,6 +242,19 @@ autocmd('FileType', {
 		setlocal.autoindent = true
 	end,
 })
+-- LUA FileType settings
+autocmd('FileType', {
+	desc = 'LUA FileType settings ts=8 sw=2 sts=2 et ai',
+	group = 'FileTypeSetting',
+	pattern = 'lua',
+	callback = function()
+		setlocal.tabstop = 8
+		setlocal.softtabstop = 2
+		setlocal.shiftwidth = 2
+		setlocal.expandtab = true
+		setlocal.autoindent = true
+	end,
+})
 -- SH FileType settings
 autocmd('FileType', {
 	desc = 'SH FileType settings ts=4 sw=4 noet ai',

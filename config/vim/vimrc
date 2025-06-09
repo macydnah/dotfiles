@@ -15,8 +15,6 @@ Plug 'https://github.com/github/copilot.vim.git'
 Plug 'https://github.com/supercollider/scvim.git', { 'for': 'supercollider' }
 "" Simplenote
 Plug 'https://github.com/simplenote-vim/simplenote.vim.git'
-"" Syntax (Hyprland)
-Plug 'https://github.com/theRealCarneiro/hyprland-vim-syntax.git', { 'for': 'hypr' }
 "" Syntax (Tridactyl)
 Plug 'https://github.com/tridactyl/vim-tridactyl.git', { 'for': 'tridactyl' }
 "" vim-smoothie

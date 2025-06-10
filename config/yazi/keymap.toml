@@ -6,7 +6,7 @@
 
 # https://yazi-rs.github.io/docs/configuration/keymap
 
-[manager]
+[mgr]
 # https://yazi-rs.github.io/docs/configuration/keymap#manager
 keymap = [
 	{ on = "<Esc>", run = "escape --all",       desc = "Exit visual mode, clear selected, or cancel search" },

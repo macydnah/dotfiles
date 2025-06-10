@@ -24,9 +24,9 @@ keymap = [
 	{ on = "<PageDown>", run = "arrow 100%",  desc = "Move cursor down one page" },
 
 	# Navigation
-	{ on = "H", run = "leave",                     desc = "Go back to the parent directory" },
+	{ on = "H", run = "back",                      desc = "Go back to the previous directory" },
 	{ on = "L", run = "plugin smart-enter",        desc = "Go to child directory/Open file" },
-	{ on = "h", run = "back",                      desc = "Go back to the previous directory" },
+	{ on = "h", run = "leave",                     desc = "Go back to the parent directory" },
 	{ on = "l", run = "enter",                     desc = "Go to child directory" },
 
 	# Previewer

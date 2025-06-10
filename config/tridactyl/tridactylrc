@@ -2,6 +2,8 @@
 unbind A
 unbind B
 unbind D
+unbind H
+unbind L
 unbind M
 unbind O
 unbind P
@@ -79,15 +81,17 @@ set searchurls.crates https://crates.io/search?q=
 set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
 
 " Binds
+bind H scrollpx -50
+bind L scrollpx 50
 bind O fillcmdline winopen
 bind P fillcmdline winopen -private
 bind S fillcmdline winopen search
 
 bind b fillcmdline bmarks
-bind h scrollpx -50
+bind h back
 bind j scrollline 5
 bind k scrollline -5
-bind l scrollpx 50
+bind l forward
 bind o fillcmdline open
 bind s fillcmdline open search
 bind u undo

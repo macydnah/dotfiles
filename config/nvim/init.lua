@@ -310,6 +310,24 @@ autocmd('BufNewFile', {
 		vim.cmd("2")
 	end,
 })
+-- TEX FileType settings
+autocmd('FileType', {
+  desc = 'TEX FileType settings ts=8 sts=8 sw=8 noet noai wrap linebreak smoothscroll',
+  group = 'FileTypeSetting',
+  pattern = 'tex',
+  callback = function()
+    setlocal.filetype = 'tex'
+    setlocal.tabstop = 8
+    setlocal.softtabstop = 8
+    setlocal.shiftwidth = 8
+    setlocal.expandtab = false
+    setlocal.autoindent = false
+    setlocal.wrap = true
+    setlocal.linebreak = true
+    setlocal.smoothscroll = true
+    setlocal.cursorcolumn = false
+  end,
+})
 -- TXT FileType settings
 autocmd('FileType', {
 	desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll',

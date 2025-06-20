@@ -378,7 +378,7 @@ require'nvim-lastplace'.setup {
 
 ---[[ nvim-treesitter
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "css", "html", "json", "lua", "markdown", "markdown_inline", "query", "rust", "supercollider", "toml", "vim", "vimdoc", },
+	ensure_installed = { "c", "css", "html", "json", "latex", "lua", "markdown", "markdown_inline", "query", "rust", "supercollider", "toml", "vim", "vimdoc", },
 	auto_install = false,
 	ignore_install = {""},
 	highlight = {

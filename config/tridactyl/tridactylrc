@@ -77,7 +77,8 @@ set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&
 set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
 set searchurls.rae https://dle.rae.es/
-set searchurls.crates https://crates.io/search?q=
+set searchurls.rscrate https://crates.io/search?q=
+set searchurls.rsdoc https://docs.rs/releases/search?query=
 set searchurls.imslp https://imslp.org/index.php?title=Special:Search&search=
 
 " Binds

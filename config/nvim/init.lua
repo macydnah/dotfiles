@@ -45,7 +45,7 @@ set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
 -- Enable rounded borders in floating windows
 vim.o.winborder = 'rounded'
 -- Language Server Protocol (LSP) enable list
-vim.lsp.enable({'lua-language-server', 'clangd', 'rust-analyzer'})
+vim.lsp.enable({'lua-language-server', 'clangd', 'rust-analyzer', 'texlab'})
 
 --[[ Look and feel ]]
 set.guicursor = ""

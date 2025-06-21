@@ -30,8 +30,8 @@ configuration {
         directories-first: true;
         sorting-method: "name";
     }
-    kb-cancel: "Escape,Control+bracketleft";
 }
+@import "~/.config/rofi/keybindings.rasi"
 @theme "~/.config/rofi/theme.rasi"
 
 // vim: ft=rasi ts=4 sw=4 ai expandtab

@@ -1,0 +1,11 @@
+/*
+ *
+ * Author  : J.H. Zavala
+ * Github  : @macydnah
+ *
+ */
+
+configuration {
+    kb-cancel: "Escape,Control+bracketleft";
+}
+// vim: ft=rasi ts=4 sw=4 ai expandtab

@@ -352,6 +352,7 @@ autocmd('FileType', {
 
 ---[[ Copilot
 -- vim.b.copilot_enabled = false
+vim.g.copilot_enabled = false
 local function ToggleCopilot()
 	-- 0 and 1 are both truthy in Lua, can't rely on just calling the
 	-- Vimscript copilot function to retrieve its enabled/disabled state

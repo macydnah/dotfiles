@@ -51,6 +51,18 @@ local function is_library(fname)
   end
 end
 
+local function open_external_docs()
+  vim.lsp.buf_request(vim.api.nvim_get_current_buf(), 'experimental/externalDocs', vim.lsp.util.make_position_params(), function(err, url)
+    if err then
+      error(tostring(err))
+    else
+      if url then
+        vim.ui.open(url)
+      end
+    end
+  end)
+end
+
 return {
   cmd = { 'rust-analyzer' },
   filetypes = { 'rust' },
@@ -115,5 +127,8 @@ return {
     vim.api.nvim_buf_create_user_command(0, 'LspCargoReload', function()
       reload_workspace(0)
     end, { desc = 'Reload current cargo workspace' })
-  end,
+    vim.api.nvim_buf_create_user_command(0, 'LspOpenRustDocs', function()
+      open_external_docs()
+    end, { desc = 'Open Rust documentation for the symbol under cursor in default browser' })
+  end
 }

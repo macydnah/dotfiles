@@ -181,15 +181,20 @@ return {
       chktex = {
         onOpenAndSave = false,
         onEdit = true,
+        additionalArgs = {},
       },
       diagnosticsDelay = 300,
+      formatterLineLength = 80,
+      bibtexFormatter = 'texlab',
       latexFormatter = 'latexindent',
       latexindent = {
         ['local'] = nil, -- local is a reserved keyword
         modifyLineBreaks = false,
+        replacement = nil,
       },
-      bibtexFormatter = 'texlab',
-      formatterLineLength = 80,
+      completion = {
+        matcher = 'fuzzy-ignore-case',
+      },
       experimental = {
         citationCommands = { 'citaenbloque' },
       },

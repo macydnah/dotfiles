@@ -45,7 +45,13 @@ set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
 -- Enable rounded borders in floating windows
 vim.o.winborder = 'rounded'
 -- Language Server Protocol (LSP) enable list
-vim.lsp.enable({'lua-language-server', 'clangd', 'rust-analyzer', 'texlab'})
+vim.lsp.enable({
+  'clangd',
+  'jedi_language_server',
+  'lua-language-server',
+  'rust-analyzer',
+  'texlab',
+})
 
 --[[ Look and feel ]]
 set.guicursor = ""
@@ -57,7 +63,8 @@ autocmd({"BufWinEnter", "WinEnter"}, {
 	callback = function()
 		local hour = tonumber(os.date("%H%M"))
 		if hour < 1730 and hour > 0730 then
-			set.background = "light"
+			-- set.background = "light"
+			set.background = "dark"
 		else
 			set.background = "dark"
 		end
@@ -326,6 +333,7 @@ autocmd('FileType', {
     setlocal.linebreak = true
     setlocal.smoothscroll = true
     setlocal.cursorcolumn = false
+    colorscheme("unokai")
   end,
 })
 -- TXT FileType settings
@@ -351,41 +359,56 @@ autocmd('FileType', {
 --[[ Plugin Settings ]]
 
 ---[[ Copilot
--- vim.b.copilot_enabled = false
 vim.g.copilot_enabled = false
+-- vim.b.copilot_enabled = true
 local function ToggleCopilot()
 	-- 0 and 1 are both truthy in Lua, can't rely on just calling the
 	-- Vimscript copilot function to retrieve its enabled/disabled state
 	-- https://github.com/neovim/neovim/issues/26983
 	if vim.fn['copilot#Enabled']() == 1 then
-		vim.cmd("Copilot disable")
+		vim.cmd('Copilot disable')
 	else
-		vim.cmd("Copilot enable")
-
+		vim.cmd('Copilot enable')
 	end
-	vim.cmd("Copilot status")
+	vim.cmd('Copilot status')
 end
 map({'i', 'n'}, '<F1>', function()
-	ToggleCopilot()
-	end, { desc = 'Toggle Copilot On/Off', silent = false }
-) --]]
+  ToggleCopilot()
+end, { desc = "Toggle Copilot On/Off", silent = false })
+--]]
 
 ---[[ nvim-lastplace
 require'nvim-lastplace'.setup {
-    lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-    lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+    lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+    lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
     lastplace_open_folds = true
 } --]]
 
 ---[[ nvim-treesitter
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "css", "html", "json", "latex", "lua", "markdown", "markdown_inline", "query", "rust", "supercollider", "toml", "vim", "vimdoc", },
+	ensure_installed = {
+          'c',
+          'css',
+          'html',
+          'json',
+          'latex',
+          'lua',
+          'markdown',
+          'markdown_inline',
+          'python',
+          'query',
+          'rust',
+          'supercollider',
+          'toml',
+          'vim',
+          'vimdoc',
+        },
 	auto_install = false,
-	ignore_install = {""},
+	ignore_install = { '' },
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
-		disable = { "" }
+		disable = { '' }
 	},
 	indent = {
 		enable = false,
@@ -393,10 +416,12 @@ require'nvim-treesitter.configs'.setup {
 } --]]
 
 --[[ Simplenote
-local simplenoterc = os.getenv("HOME") .. "/.config/vim/simplenoterc.vim"
+local simplenoterc = os.getenv('HOME') .. '/.config/vim/simplenoterc.vim'
 vim.cmd.source(simplenoterc) --]]
 
 ---[[ SuperCollider
+vim.g.sclangTerm = 'footclient --title sclang'
+vim.g.scFlash = 1
 autocmd('FileType', {
 	desc = 'SuperCollider FileType settings ts=4 sts=2 sw=2 noet ai',
 	group = 'FileTypeSetting',
@@ -407,10 +432,8 @@ autocmd('FileType', {
 		setlocal.shiftwidth = 4
 		setlocal.expandtab = false
 		setlocal.autoindent = true
-                map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = 'Send line to SuperCollider', silent = true, buffer = true })
-                map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = 'Send block to SuperCollider', silent = true, buffer = true })
-                map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = 'Hard stop SuperCollider', silent = true, buffer = true })
+                map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = "Send line to SuperCollider", silent = true, buffer = true })
+                map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = "Send block to SuperCollider", silent = true, buffer = true })
+                map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = "Hard stop SuperCollider", silent = true, buffer = true })
 	end,
-})
-vim.g.sclangTerm = "footclient --title sclang"
-vim.g.scFlash = 1 --]]
+}) --]]

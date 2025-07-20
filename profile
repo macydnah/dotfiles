@@ -38,5 +38,5 @@ export PATH="${PATH}:/home/macydnah/.local/bin:/home/macydnah/Downloads/v0.5/bin
 #fi
 
 if [[ -z $TMUX ]] && [[ -n $SSH_TTY ]]; then
-    exec tmux new-session -A -s shession
+    exec tmux new-session -A -s Shession
 fi

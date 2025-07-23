@@ -1,0 +1,77 @@
+# ~/.cargo/config.toml
+
+# https://doc.rust-lang.org/cargo/reference/config.html#alias
+[alias]
+b = 'build'
+c = 'check'
+t = 'test'
+r = 'run'
+
+# https://doc.rust-lang.org/cargo/reference/config.html#build
+[build]
+jobs = 'default'
+rustc = 'rustc'
+rustdoc = 'rustdoc'
+# incremental = true # This overrides the setting of all profiles.
+
+# https://doc.rust-lang.org/cargo/reference/config.html#doc
+[doc]
+browser = 'firefox'
+
+# https://doc.rust-lang.org/cargo/reference/config.html#cargo-new
+[cargo-new]
+vcs = 'git'
+
+# https://doc.rust-lang.org/cargo/reference/config.html#future-incompat-report
+[future-incompat-report]
+frequency = 'always'
+
+# https://doc.rust-lang.org/cargo/reference/config.html#cache
+[cache]
+auto-clean-frequency = '1 day'
+
+# https://doc.rust-lang.org/cargo/reference/config.html#net
+[net]
+retry = 3
+git-fetch-with-cli = false
+offline = false
+
+# https://doc.rust-lang.org/cargo/reference/profiles.html#profile-settings
+# https://doc.rust-lang.org/cargo/reference/profiles.html#release
+[profile.release]
+opt-level = 3            # Optimization level.
+debug = false            # Do not include debug info.
+strip = 'symbols'        # Removes symbols.
+debug-assertions = false # Disables debug assertions.
+overflow-checks = false  # Disables runtime integer overflow checks.
+lto = false              # Sets link-time optimization.
+panic = 'unwind'         # The panic strategy.
+incremental = false      # Disable incremental compilation.
+condegen-units = 16      # Number of code generation units.
+rpath = false            # Sets the rpath linking option.
+
+# https://doc.rust-lang.org/cargo/reference/profiles.html#profile-settings
+# https://doc.rust-lang.org/cargo/reference/profiles.html#dev
+[profile.dev]
+opt-level = 0
+debug = true
+strip = 'none'
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = 'unwind'
+incremental = true
+codegen-units = 256
+rpath = false
+
+# https://doc.rust-lang.org/cargo/reference/config.html#target
+[target.aarch64-unknown-linux-gnu]
+linker = 'aarch64-linux-gnu-gcc'
+rustflags = ['-C', 'target-feature=+crt-static']
+
+# https://doc.rust-lang.org/cargo/reference/config.html#term
+[term]
+quiet = false
+verbose = false
+color = 'auto'
+progress.when = 'auto'

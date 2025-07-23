@@ -4,7 +4,7 @@ includes = []
 #packages = ["shell", "i3", "XUtils", "mpv-yt", "tridactyl", "yazi"]
 
 # Packages to deploy a Wayland environment
-packages = ["shell", "terminal", "hyprland", "WUtils", "mpv-yt", "tridactyl", "yazi", "neovim"]
+packages = ["shell", "terminal", "hyprland", "WUtils", "mpv-yt", "tridactyl", "yazi", "neovim", "rust"]
 
 [files]
 "config/alacritty" = ""

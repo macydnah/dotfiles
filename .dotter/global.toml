@@ -32,6 +32,11 @@ depends = ["X11"]
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 
 
+## Development ##
+[rust.files]
+"cargo/config.toml" = "~/.cargo/config.toml"
+
+
 ## File managers ##
 [yazi.files]
 "config/yazi" = {target = "~/.config/yazi", type = "symbolic", recurse = true}
@@ -49,6 +54,7 @@ depends = ["X11"]
 depends = ["mpv", "yt-dlp"]
 [yt-dlp.files]
 "config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
+
 
 ## Neovim ##
 [neovim.files]

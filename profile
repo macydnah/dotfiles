@@ -81,18 +81,18 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 	# exec tmux attach-session -t $TARGET
 fi
 # auto start tmux at local login in tty2
-if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 2 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
-then
-	declare -r SESSION_NAME='VTSession'
-
-	tmux has-session -t $SESSION_NAME 2>/dev/null
-	if [ $? != 0 ]; then
-		# create a simple session with two panes
-		tmux new-session -d -s $SESSION_NAME
-		tmux split-window -h -t $SESSION_NAME:1
-	fi
-
-	declare -r TARGET=$SESSION_NAME:1.1
-	tmux attach-session -t $TARGET
-	# exec tmux attach-session -t $TARGET
-fi
+# if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 2 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
+# then
+# 	declare -r SESSION_NAME='VTSession'
+#
+# 	tmux has-session -t $SESSION_NAME 2>/dev/null
+# 	if [ $? != 0 ]; then
+# 		# create a simple session with two panes
+# 		tmux new-session -d -s $SESSION_NAME
+# 		tmux split-window -h -t $SESSION_NAME:1
+# 	fi
+#
+# 	declare -r TARGET=$SESSION_NAME:1.1
+# 	tmux attach-session -t $TARGET
+# 	# exec tmux attach-session -t $TARGET
+# fi

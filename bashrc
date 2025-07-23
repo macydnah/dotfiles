@@ -4,14 +4,14 @@
 [[ -f /tmp/hist ]] && export HISTFILE=/tmp/hist
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
-case $TERM in
-	tmux|screen*)
-		PS1="\[\e[0;33m\]\$\[\e[0;00m\] "
+case "${TERM}" in
+	tmux)
+		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
 		;;
 esac
-if [ -n "${YAZI_LEVEL}" ]; then
-	YAZI_TERM='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
-	PS1="${YAZI_TERM}${PS1}"
+if [[ -n "${YAZI_LEVEL}" ]]; then
+	declare -r YAZI_PS1='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
+	PS1="${YAZI_PS1}${PS1}"
 fi
 
 # Alianzas
@@ -30,7 +30,6 @@ alias pactree="pactree -c"
 alias rmi="rm -I"
 alias scrcpy="scrcpy --stay-awake --turn-screen-off --shortcut-mod=lalt --window-borderless -m 1024 --power-off-on-close"
 alias sudo="sudo -v; sudo "
-alias tmux="tmux new-session -A -s Shession"
 alias top="top -u $(whoami)"
 alias tree="tree -C --dirsfirst --du -h --hyperlink"
 alias wablk="watch -ctn1 'echo ; lsblk'"

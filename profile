@@ -5,6 +5,10 @@ if [ -n "$BASH_VERSION" ]; then
 	[[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"
 fi
 
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$PATH:$HOME/.local/bin"
+fi
+
 # Exportar variables
 export allext="/run/media/$(whoami)/*"
 export ALSOFT_DRIVERS="pulse"
@@ -15,8 +19,8 @@ export AUR="${HOME}/.local/opt/AUR"
 #export MANROFFOPT="-c"
 #export MOZ_USE_XINPUT2=1
 export OO_PS4_TOOLCHAIN="/home/macydnah/Downloads/v0.5"
+export PATH="${PATH}:/home/macydnah/Downloads/v0.5/bin"
 export OPT="${HOME}/.local/opt"
-export PATH="${PATH}:/home/macydnah/.local/bin:/home/macydnah/Downloads/v0.5/bin"
 
 # Turn off kbd_backlight if it's daytime or let them on if nighttime
 # if [[ 10#$(date +%H) -gt 10#07 && 10#$(date +%H) -lt 18 ]] ;

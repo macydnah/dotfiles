@@ -36,29 +36,40 @@ export OPT="$HOME/.local/opt"
 # auto exec tmux at ssh login
 if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 	declare -r SESSION_NAME='Shession'
-	declare -r INITIAL_PANE_CMD='yazi'
-	declare -r INITIAL_PANE_CMD_ARGS=''
-	declare TARGET_PANE_FOCUS='top'
+	declare -r DEFAULT_TARGET=$SESSION_NAME:1
+	declare -r DEFAULT_TARGET_PANE_FOCUS='top'
+	declare -r INITIAL_PROGRAM='yazi'
+	declare -r INITIAL_PROGRAM_ARGS=''
+	declare    TARGET=''
+	declare    TARGET_PANE_FOCUS=''
 
 	tmux has-session -t $SESSION_NAME 2>/dev/null
 	if [ $? != 0 ]; then
-		if command -v $INITIAL_PANE_CMD >/dev/null 2>&1
+		tmux new-session -d -s $SESSION_NAME
+
+		TARGET=$DEFAULT_TARGET
+		if command -v $INITIAL_PROGRAM >/dev/null 2>&1
 		then
-			if [ $INITIAL_PANE_CMD_ARGS ]; then
-				tmux new-session -d -s $SESSION_NAME "$INITIAL_PANE_CMD $INITIAL_PANE_CMD_ARGS"
+			# run a command in the initial pane
+			if [ $INITIAL_PROGRAM_ARGS ]; then
+				tmux respawn-pane -k -t $TARGET "$INITIAL_PROGRAM $INITIAL_PROGRAM_ARGS"
 			else
-				tmux new-session -d -s $SESSION_NAME "$INITIAL_PANE_CMD"
+				tmux respawn-pane -k -t $TARGET "$INITIAL_PROGRAM"
 			fi
-			tmux split-window -v -t $SESSION_NAME:1
-			# warning: focusing the 'bottom' pane makes `yazi` and maybe other
-			# programs to flood escape sequences to the host terminal
-			# TARGET_PANE_FOCUS='bottom'
+			# and a simple shell below the initial pane
+			tmux split-window -v -t $TARGET
+			# warning: focusing any other pane than the one with a INITIAL_PANE_CMD
+			# makes `yazi` and maybe other programs to flood escape sequences to the host terminal
+			TARGET_PANE_FOCUS='top'
 		else
 			# a simple session with two panes
-			tmux new-session -d -s $SESSION_NAME
-			tmux split-window -h -t $SESSION_NAME:1
+			tmux split-window -h -t $TARGET
 			TARGET_PANE_FOCUS='left'
 		fi
+	else
+		# session already exists, use defaults
+		TARGET=$DEFAULT_TARGET
+		TARGET_PANE_FOCUS=$DEFAULT_TARGET_PANE_FOCUS
 	fi
 
 	case $TARGET_PANE_FOCUS in
@@ -76,7 +87,7 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 			;;
 	esac
 
-	declare -r TARGET=$SESSION_NAME:$WIN_ID.$PANE_ID
+	TARGET=$SESSION_NAME:$WIN_ID.$PANE_ID
     tmux attach-session -t $TARGET
 	# exec tmux attach-session -t $TARGET
 fi

@@ -5,7 +5,7 @@
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
 case "${TERM}" in
-	tmux)
+	tmux|tmux-256color)
 		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
 		;;
 esac
@@ -30,7 +30,7 @@ alias pactree="pactree -c"
 alias rmi="rm -I"
 alias scrcpy="scrcpy --stay-awake --turn-screen-off --shortcut-mod=lalt --window-borderless -m 1024 --power-off-on-close"
 alias sudo="sudo -v; sudo "
-alias top="top -u $(whoami)"
+alias top="top -u ${USER}"
 alias tree="tree -C --dirsfirst --du -h --hyperlink"
 alias wablk="watch -ctn1 'echo ; lsblk'"
 alias wared="watch -ctn1 'nmcli -c yes | head -n20'"

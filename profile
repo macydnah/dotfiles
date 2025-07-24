@@ -58,9 +58,13 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 			fi
 			# and a simple shell below the initial pane
 			tmux split-window -v -t $TARGET
-			# warning: focusing any other pane than the one with a INITIAL_PANE_CMD
+
+			# warning: focusing any other pane than the one with an INITIAL_PROGRAM
 			# makes `yazi` and maybe other programs to flood escape sequences to the host terminal
-			TARGET_PANE_FOCUS='top'
+			# TARGET_PANE_FOCUS='top'
+			# sleeping here to wait for INITIAL_PROGRAM execution seems to help
+			sleep 1.25
+			TARGET_PANE_FOCUS='bottom'
 		else
 			# a simple session with two panes
 			tmux split-window -h -t $TARGET

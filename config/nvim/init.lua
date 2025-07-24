@@ -164,10 +164,10 @@ local function auto_crosshair()
   setlocal.cursorline = true
   setlocal.cursorcolumn = true
   if set.background:get() == "light" then
-    highlight({ "CursorLine", "guifg=NONE", "guibg=#d4d4d4", "gui=underline,italic" })
+    highlight({ "CursorLine", "guifg=NONE", "guibg=#d4d4d4", "gui=underline,bold,italic" })
     highlight({ "CursorColumn", "guifg=NONE", "guibg=#d4d4d4", "gui=bold" })
   else
-    highlight({ "CursorLine", "guifg=NONE", "guibg=#303030", "gui=underline,italic" })
+    highlight({ "CursorLine", "guifg=NONE", "guibg=#303030", "gui=underline,bold,italic" })
     highlight({ "CursorColumn", "guifg=NONE", "guibg=#303030", "gui=NONE" })
   end
 end

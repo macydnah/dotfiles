@@ -4,11 +4,11 @@
 [[ -f /tmp/hist ]] && export HISTFILE=/tmp/hist
 
 PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
-case "${TERM}" in
-	tmux|tmux-256color)
-		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
-		;;
-esac
+# case "${TERM}" in
+# 	tmux|tmux-256color)
+# 		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
+# 		;;
+# esac
 if [[ -n "${YAZI_LEVEL}" ]]; then
 	declare -r YAZI_PS1='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
 	PS1="${YAZI_PS1}${PS1}"

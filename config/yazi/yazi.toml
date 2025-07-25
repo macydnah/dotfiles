@@ -6,16 +6,17 @@
 
 # https://yazi-rs.github.io/docs/configuration/yazi#manager
 [mgr]
-ratio          = [ 3, 6, 8 ]
-sort_by        = "alphabetical"
+# ratio          = [ 3, 6, 8 ]
+ratio          = [ 5, 8, 13 ]
+sort_by        = "natural"
 sort_sensitive = false
 sort_reverse   = false
 sort_dir_first = true
-sort_translit  = false
+sort_translit  = true
 linemode       = "none"
 show_hidden    = false
 show_symlink   = true
-scrolloff      = 5
+scrolloff      = 255
 mouse_events   = [ "click", "scroll" ]
 title_format   = "{cwd} — File Manager"
 
@@ -26,10 +27,9 @@ tab_size        = 2
 max_width       = 600
 max_height      = 900
 cache_dir       = ""
-image_delay     = 30
+image_delay     = 100
 image_filter    = "triangle"
 image_quality   = 75
-sixel_fraction  = 15
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
 
@@ -104,9 +104,9 @@ rules = [
 micro_workers    = 10
 macro_workers    = 25
 bizarre_retry    = 5
+suppress_preload = false
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 0, 0 ]
-suppress_preload = false
 
 # https://yazi-rs.github.io/docs/configuration/yazi#plugin
 [plugin]
@@ -237,6 +237,3 @@ sort_by      	 = "none"
 sort_sensitive = false
 sort_reverse 	 = false
 sort_translit  = false
-
-[log]
-enabled = false

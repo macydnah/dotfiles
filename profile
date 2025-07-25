@@ -53,21 +53,23 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 			# run a command in the initial pane
 			if [ $INITIAL_PROGRAM_ARGS ]; then
 				tmux respawn-pane -k -t $TARGET "$INITIAL_PROGRAM $INITIAL_PROGRAM_ARGS"
+				# sleeping here to wait for INITIAL_PROGRAM execution seems to help
+				sleep 1.25
 			else
 				tmux respawn-pane -k -t $TARGET "$INITIAL_PROGRAM"
+				# sleeping here to wait for INITIAL_PROGRAM execution seems to help
+				sleep 1.25
 			fi
-			# and a simple shell below the initial pane
-			tmux split-window -v -t $TARGET
+			# and a simple shell above
+			tmux split-window -v -b -l '5%' -t $TARGET
 
 			# warning: focusing any other pane than the one with an INITIAL_PROGRAM
-			# makes `yazi` and maybe other programs to flood escape sequences to the host terminal
-			# TARGET_PANE_FOCUS='top'
-			# sleeping here to wait for INITIAL_PROGRAM execution seems to help
-			sleep 1.25
-			TARGET_PANE_FOCUS='bottom'
+			# makes `yazi` and maybe other programs to flood escape sequences
+			# to the host terminal (see comment in line 56)
+			TARGET_PANE_FOCUS='top'
 		else
 			# a simple session with two panes
-			tmux split-window -h -t $TARGET
+			tmux split-window -h -l '33%' -t $TARGET
 			TARGET_PANE_FOCUS='left'
 		fi
 	else

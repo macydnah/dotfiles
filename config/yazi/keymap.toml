@@ -30,12 +30,11 @@ keymap = [
 	{ on = "l", run = "enter",                     desc = "Go to child directory" },
 
 	# Previewer
-#	{ on = "i",    run = "plugin --sync max-preview",desc = "Maximize or restore preview" },
-	{ on = "i",    run = "plugin max-preview",desc = "Maximize or restore preview" },
-	{ on = "<A-k>",run = "seek -1",                  desc = "Seek up in the preview" },
-	{ on = "<A-j>",run = "seek 1",                   desc = "Seek down in the preview" },
-	{ on = "<C-y>",run = "seek -1",                  desc = "Seek up in the preview" },
-	{ on = "<C-e>",run = "seek 1",                   desc = "Seek down in the preview" },
+	{ on = "<A-f>",run = "plugin toggle-pane max-preview",desc = "Maximize or restore preview" },
+	{ on = "<A-k>",run = "seek -1",                       desc = "Seek up in the preview" },
+	{ on = "<A-j>",run = "seek 1",                        desc = "Seek down in the preview" },
+	{ on = "<C-y>",run = "seek -1",                       desc = "Seek up in the preview" },
+	{ on = "<C-e>",run = "seek 1",                        desc = "Seek down in the preview" },
 
 	# Selection
 	{ on = "<Space>", run = [ "toggle", "arrow 1" ], desc = "Toggle the current selection state" },

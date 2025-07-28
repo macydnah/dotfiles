@@ -3,15 +3,31 @@
 [[ $- != *i* ]] && return
 [[ -f /tmp/hist ]] && export HISTFILE=/tmp/hist
 
-PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
+# PS1='\[\e[1;32m\][\[\e[1;33m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h \[\e[1;34m\]\W\[\e[1;32m\]]\[\e[0;33m\]§\[\e[0;00m\] '
+# https://misc.flogisoft.com/bash/tip_colors_and_formatting
+BOLD='\[\e[1m\]'
+RESET='\[\e[0;00m\]'
+BLACK='\[\e[30m\]'
+RED='\[\e[31m\]'
+GREEN='\[\e[32m\]'
+YELLOW='\[\e[33m\]'
+BLUE='\[\e[34m\]'
+MAGENTA='\[\e[35m\]'
+CYAN='\[\e[36m\]'
+# PS1="${BOLD}${GREEN}[${YELLOW}\u${BLUE}@${GREEN}\h ${BLUE}\W${GREEN}]${RESET}${YELLOW}§${RESET} "
+# PS1="$BOLD$GREEN[$YELLOW\u$BLUE@$GREEN\h $BLUE\W$GREEN]$RESET$YELLOW§$RESET "
+PS1="${BOLD}${BLUE}\w ${YELLOW}\$${RESET} "
 # case "${TERM}" in
 # 	tmux|tmux-256color)
 # 		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
 # 		;;
 # esac
 if [[ -n "${YAZI_LEVEL}" ]]; then
-	declare -r YAZI_PS1='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
-	PS1="${YAZI_PS1}${PS1}"
+	# declare -r YAZI_PS1='\[\e[1;34m\]| 🗃️ L${YAZI_LEVEL} |\[\e[0;00m\] '
+	# declare -r YAZI_PS1="${BOLD}${BLUE}| 🗃️ L${YAZI_LEVEL} |${RESET} "
+	# PS1="${YAZI_PS1}${PS1}"
+	declare -r YAZI_PS1="${BOLD}${BLUE}| 🗃️ L${YAZI_LEVEL} \W |${RESET} ${YELLOW}\$${RESET} "
+	PS1="${YAZI_PS1}"
 fi
 
 # Alianzas

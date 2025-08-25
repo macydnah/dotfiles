@@ -16,10 +16,17 @@ keymap = [
 	{ on = "<C-q>",run = "quit --no-cwd-file",desc = "Exit the process without writing cwd-file" },
 
 	# Navigation
-	{ on = "H", run = "back",                      desc = "Go back to the previous directory" },
-	{ on = "L", run = "plugin smart-enter",        desc = "Go to child directory/Open file" },
-	{ on = "h", run = "leave",                     desc = "Go back to the parent directory" },
-	{ on = "l", run = "enter",                     desc = "Go to child directory" },
+	{ on = "<Enter>",   run = "plugin smart-enter",desc = "Open file/Enter directory" },
+	{ on = "<PageUp>",  run = "arrow -100%",       desc = "Move cursor up one page" },
+	{ on = "<PageDown>",run = "arrow 100%",        desc = "Move cursor down one page" },
+	{ on = "H",         run = "back",              desc = "Go back to the previous directory" },
+	{ on = "J",         run = "arrow 50%",         desc = "Move cursor down half page" },
+	{ on = "K",         run = "arrow -50%",        desc = "Move cursor up half page" },
+	{ on = "L",         run = "plugin smart-enter",desc = "Go to child directory/Open file" },
+	{ on = "h",         run = "leave",             desc = "Go back to the parent directory" },
+	{ on = "j",         run = "arrow 1",           desc = "Move cursor down" },
+	{ on = "k",         run = "arrow -1",          desc = "Move cursor up" },
+	{ on = "l",         run = "enter",             desc = "Go to child directory" },
 
 	# Previewer
 	{ on = "<A-f>",run = "plugin toggle-pane max-preview",desc = "Maximize or restore preview" },

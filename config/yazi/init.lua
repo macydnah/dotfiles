@@ -1,3 +1,8 @@
+-- [Cross-instance Yank](https://yazi-rs.github.io/docs/dds/#session.lua)
+require("session"):setup {
+	sync_yanked = true,
+}
+
 -- [Folder-specific rules](https://yazi-rs.github.io/docs/tips/#folder-rules)
 require("folder-rules"):setup()
 

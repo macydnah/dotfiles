@@ -75,6 +75,14 @@ dianoche() {
 	[[ "$(grep gtk-theme-name "${SETTINGS}" | cut -d'=' -f2)"  =~ dark$ ]] && sed '/gtk-theme-name/s/-dark$//' -i "${SETTINGS}" || sed '/gtk-theme-name/s/$/-dark/' -i "${SETTINGS}" ; import-gsettings
 }
 
+firefoxd() {
+	if ! pgrep -x firefox; then
+		firefox --new-window about:blank &
+		foot  --title 'firefoxd' --app-id 'firefoxd' &
+	fi
+	hyprctl dispatch togglespecialworkspace firefoxd
+}
+
 i3mpv() { i3-swallow mpv "${@}"; }
 
 loremipsum() {

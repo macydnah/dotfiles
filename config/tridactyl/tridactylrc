@@ -67,11 +67,12 @@ set update.checkintervalsecs 86400
 set configversion 2.0
 set smoothscroll true
 set scrollduration 150
-set theme dracula
+set theme test
 set newtab http://localhost:8888
 "seturl http://localhost:8888 allowautofocus false
 set searchengine searxng
 set searchurls.searxng http://localhost:8888/search?q=
+set searchurls.apa https://normas-apa.org/?s=
 set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
 set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=

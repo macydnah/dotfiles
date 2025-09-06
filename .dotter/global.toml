@@ -6,6 +6,7 @@ default_target_type = "symbolic"
 "config/procps" = {target = "~/.config/procps", type = "symbolic", recurse = false}
 "config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
 "config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = true}
+"fzfrc" = "~/.fzfrc"
 "profile" = "~/.profile"
 
 [terminal.files]

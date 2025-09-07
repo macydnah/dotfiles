@@ -51,6 +51,7 @@ vim.o.winborder = 'rounded'
 vim.lsp.enable({
   'clangd',
   'jedi_language_server',
+  'lemminx',
   'lua-language-server',
   'rust-analyzer',
   'texlab',
@@ -240,7 +241,7 @@ augroup('FileTypeSetting', { clear = true })
 autocmd('FileType', {
   desc = 'HTML FileType settings ts=8 sts=2 sw=2 noet ai wrap smoothscroll linebreak',
   group = 'FileTypeSetting',
-  pattern = 'html',
+  pattern = { 'html', 'xml', 'xhtml' },
   callback = function()
     setlocal.tabstop = 8
     setlocal.softtabstop = 2

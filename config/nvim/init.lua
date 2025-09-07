@@ -57,7 +57,6 @@ vim.lsp.enable({
 })
 
 --[[ Look and feel ]]
-set.guicursor = ""
 set.termguicolors = true
 colorscheme("PaperColor")
 autocmd({"BufWinEnter", "WinEnter"}, {
@@ -72,6 +71,15 @@ autocmd({"BufWinEnter", "WinEnter"}, {
     end
   end,
 })
+-- Cursor
+set.selection = 'exclusive'
+set.guicursor =
+  -- blink arguments seems to not work in foot(1)
+  'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,' ..
+  'n-v-c:hor20,i-ci-ve:ver25,r-cr:block,o:block-blinkon0,' ..
+  'sm:block-blinkwait175-blinkoff150-blinkon175,' ..
+  't:hor1,'
+-- Diff mode
 local diff_mode = vim.opt.diff:get()
 if diff_mode then
   colorscheme("evening")

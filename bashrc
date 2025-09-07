@@ -31,7 +31,7 @@ if [[ -n "${YAZI_LEVEL}" ]]; then
 fi
 
 # Alianzas
-alias bat="bat -p"
+alias bat="bat --plain"
 alias cls="clear"
 alias confhyp="${EDITOR} ~/.config/hypr/hyprland.conf"
 alias diff="diff --color"
@@ -52,7 +52,6 @@ alias wablk="watch -ctn1 'echo ; lsblk'"
 alias wared="watch -ctn1 'nmcli -c yes | head -n20'"
 alias watch="watch -cn0.5"
 alias whois="whois -H"
-#alias open="xdg-open"
 alias zgrep="zgrep --color"
 
 # Funciones

@@ -57,6 +57,76 @@ unbind zm
 unbind zo
 unbind zr
 unbind zz
+unbind ;i
+unbind ;b
+unbind ;o
+unbind ;I
+unbind ;k
+unbind ;K
+unbind ;y
+unbind ;Y
+unbind ;p
+unbind ;h
+unbind ;P
+unbind ;r
+unbind ;s
+unbind ;S
+unbind ;a
+unbind ;A
+unbind ;;
+unbind ;#
+unbind ;v
+unbind ;V
+unbind ;w
+unbind ;t
+unbind ;O
+unbind ;W
+unbind ;T
+unbind ;d
+unbind ;gd
+unbind ;z
+unbind ;m
+unbind ;M
+unbind ;gi
+unbind ;gI
+unbind ;gk
+unbind ;gy
+unbind ;gp
+unbind ;gP
+unbind ;gr
+unbind ;gs
+unbind ;gS
+unbind ;ga
+unbind ;gA
+unbind ;g;
+unbind ;g#
+unbind ;gv
+unbind ;gw
+unbind ;gb
+unbind ;gf
+unbind <AC-Escape>
+" }}}
+" Removed settings {{{
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.bing
+setnull searchurls.cnrtl
+setnull searchurls.duckduckgo
+setnull searchurls.gentoo_wiki
+setnull searchurls.github
+setnull searchurls.google
+setnull searchurls.googlelucky
+setnull searchurls.googleuk
+setnull searchurls.mdn
+setnull searchurls.osm
+setnull searchurls.qwant
+setnull searchurls.scholar
+setnull searchurls.searx
+setnull searchurls.startpage
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.yahoo
+setnull searchurls.youtube
 " }}}
 " General Settings
 set update.lastchecktime 1733800456537
@@ -65,11 +135,14 @@ set update.nagwait 7
 set update.lastnaggedversion 1.14.0
 set update.checkintervalsecs 86400
 set configversion 2.0
+
 set smoothscroll true
 set scrollduration 150
 set theme test
 set newtab http://localhost:8888
 "seturl http://localhost:8888 allowautofocus false
+
+" Searching
 set searchengine searxng
 set searchurls.searxng http://localhost:8888/search?q=
 set searchurls.apa https://normas-apa.org/?s=
@@ -102,27 +175,11 @@ bind yq text2qr --timeout 5
 bind yt clipboard yanktitle
 bind yy clipboard yank
 
-" Removed settings
-setnull searchurls.amazon
-setnull searchurls.amazonuk
-setnull searchurls.bing
-setnull searchurls.cnrtl
-setnull searchurls.duckduckgo
-setnull searchurls.gentoo_wiki
-setnull searchurls.github
-setnull searchurls.google
-setnull searchurls.googlelucky
-setnull searchurls.googleuk
-setnull searchurls.mdn
-setnull searchurls.osm
-setnull searchurls.qwant
-setnull searchurls.scholar
-setnull searchurls.searx
-setnull searchurls.startpage
-setnull searchurls.twitter
-setnull searchurls.wikipedia
-setnull searchurls.yahoo
-setnull searchurls.youtube
+bind ;i hint -I
+bind ;y hint -y
+bind ;p hint -wp
+bind ;; hint -;
+bind ;v hint -W mpvsafe
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker

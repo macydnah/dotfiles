@@ -336,11 +336,10 @@ autocmd('FileType', {
 })
 -- TXT FileType settings
 autocmd('FileType', {
-  desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll',
+  desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll spell spelllang=es',
   group = 'FileTypeSetting',
-  pattern = 'txt',
+  pattern = 'text',
   callback = function()
-    setlocal.filetype = 'text'
     setlocal.tabstop = 8
     setlocal.softtabstop = 8
     setlocal.shiftwidth = 8
@@ -349,8 +348,10 @@ autocmd('FileType', {
     setlocal.wrap = true
     setlocal.linebreak = true
     setlocal.smoothscroll = true
-    setlocal.cursorline = false
+    setlocal.cursorline = true
     setlocal.cursorcolumn = false
+    setlocal.spell = true
+    setlocal.spelllang = { 'es' }
   end,
 })
 

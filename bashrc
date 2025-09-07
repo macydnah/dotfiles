@@ -14,16 +14,11 @@ declare -r BLUE='\[\e[34m\]'
 declare -r MAGENTA='\[\e[35m\]'
 declare -r CYAN='\[\e[36m\]'
 PS1="${BOLD}${BLUE}\W ${YELLOW}\$${RESET} "
-# case "${TERM}" in
-# 	tmux|tmux-256color)
-# 		PS1='\[\e[0;33m\]\$\[\e[0;00m\] '
-# 		;;
-# esac
 if [[ "${UID}" -eq 0 ]]; then
 	PS1="${BOLD}${GREEN}[${RED}\u${BLUE}@${GREEN}\H ${BLUE}\w${GREEN}]${RESET}${RED}#${RESET} "
 fi
 if [[ "${SSH_CONNECTION}" ]]; then
-	PS1="${BOLD}${GREEN}[${YELLOW}\u${BLUE}@${GREEN}\H ${BLUE}\W${GREEN}]${RESET}${YELLOW}§${RESET} "
+	PS1="${BOLD}${GREEN}[${YELLOW}\u${BLUE}@${GREEN}\H ${BLUE}\W${GREEN}]${RESET}${YELLOW}\$${RESET} "
 fi
 if [[ -n "${YAZI_LEVEL}" ]]; then
 	declare -r YAZI_PS1="${BOLD}${BLUE}| 🗃️ L${YAZI_LEVEL} |${RESET} "

@@ -49,8 +49,10 @@ depends = ["X11"]
 
 
 ## Multimedia ##
+[mpd.files]
+"config/mpd" = {target = "~/.config/mpd", type = "symbolic", recurse = true}
 [mpv.files]
-"config/mpv" = {target = "~/.config/mpv", type = "symbolic", recurse = false}
+"config/mpv" = {target = "~/.config/mpv", type = "symbolic", recurse = true}
 [mpv-yt]
 depends = ["mpv", "yt-dlp"]
 [yt-dlp.files]

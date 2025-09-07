@@ -63,8 +63,7 @@ autocmd({"BufWinEnter", "WinEnter"}, {
   callback = function()
     local hour = tonumber(os.date("%H%M"))
     if hour < 1730 and hour > 0730 then
-      -- set.background = "light"
-      set.background = "dark"
+      set.background = "light"
     else
       set.background = "dark"
     end

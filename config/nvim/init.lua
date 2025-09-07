@@ -331,6 +331,19 @@ autocmd('BufNewFile', {
     vim.cmd("0r ~/Templates/skeleton.sh")
   end,
 })
+-- SQL FileType settings
+autocmd('FileType', {
+  desc = 'SQL FileType settings ts=8 sts=4 sw=4 et ai',
+  group = 'FileTypeSetting',
+  pattern = 'sql',
+  callback = function()
+    setlocal.tabstop = 8
+    setlocal.softtabstop = 4
+    setlocal.shiftwidth = 4
+    setlocal.expandtab = true
+    setlocal.autoindent = true
+  end,
+})
 -- SVG FileType settings
 autocmd('FileType', {
   desc = 'SVG FileType settings ts=8 sts=2 sw=2 noet ai',

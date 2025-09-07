@@ -238,6 +238,14 @@ autocmd('BufNewFile', {
     vim.cmd("0r ~/Templates/skeleton.html")
   end,
 })
+autocmd('BufNewFile', {
+  desc = 'Insert skeleton XML template',
+  group = 'FileTypeSetting',
+  pattern = '*.xml',
+  callback = function()
+    vim.cmd("0r ~/Templates/skeleton.xml")
+  end,
+})
 -- JSON FileType settings
 autocmd('FileType', {
   desc = 'JSON FileType settings ts=4 sts=2 sw=2 noet ai',

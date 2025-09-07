@@ -436,3 +436,15 @@ autocmd('FileType', {
     map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = "Hard stop SuperCollider", silent = true, buffer = true })
   end,
 }) --]]
+
+vim.api.nvim_create_user_command('Realpath', function()
+    local filepath = vim.api.nvim_buf_get_name(0)
+    if filepath == '' then
+      print("No file is currently being edited.")
+      return
+    end
+    vim.fn.setreg('+', filepath)
+    print("Copied to clipboard: " .. filepath)
+  end,
+  { desc = "Copy current file's realpath to the '+' register" }
+)

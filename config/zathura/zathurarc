@@ -1,0 +1,68 @@
+include map.zathurarc
+
+set n-completion-items 15
+set completion-bg "#232323"
+set completion-fg "#DDDDDD"
+
+set default-bg "rgba(0, 0, 0, 0.1)"
+set default-fg "#DDDDDD"
+
+#set guioptions "cshv"
+set guioptions "hv"
+
+set inputbar-bg "#131313"
+set inputbar-fg "#9FBC00"
+
+set statusbar-bg "#000000"
+set statusbar-fg "#FFFFFF"
+
+set abort-clear-search true
+set adjust-open "width"
+
+set filemonitor "glib"
+
+set highlight-active-color "rgba(0,188,0,0.5)"
+set highlight-color "rgba(159,251,0,0.5)"
+set highlight-fg "rgba(0,0,0,0.5)"
+
+set highlighter-modifier "shift"
+
+set index-active-bg "#9FBC00"
+set index-active-fg "#232323"
+set index-bg "#232323"
+set index-fg "#DDDDDD"
+
+set open-first-page false
+
+set page-cache-size 15
+
+set page-padding 20
+
+set selection-clipboard clipboard
+
+set show-directories true
+set show-hidden false
+set show-recent 10
+set show-signature-information false
+
+set statusbar-basename false
+set statusbar-home-tilde false
+set statusbar-page-percent false
+
+set synctex true
+set synctex-edit-modifier "ctrl"
+set synctex-editor-command "texlab inverse-search -i %{input} -l %{line}"
+
+set vertical-center false
+
+set window-icon-document false
+set window-title-basename false
+set window-title-home-tilde true
+set window-title-page true
+
+set zoom-center false
+set zoom-max 1000
+set zoom-min 10
+set zoom-step 10
+
+# vim: ft=zathurarc

@@ -1,0 +1,13 @@
+# Smooth scrolling
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"
+
+# Zoom
+map = zoom in
+map - zoom out
+map 0 zoom default
+
+# Abrir Normas APA
+map <A-a> feedkeys ':open "~/Documents/UnADM/Guia-Normas-APA-7ma-edicion.pdf" <Return>'
+
+# vim: ft=zathurarc

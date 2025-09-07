@@ -182,4 +182,51 @@ _no_mas_javascript
 
 ytda() { yt-dlp -f "bestaudio" -o "%(playlist_index)s - %(title)s.%(ext)s" --embed-metadata "${@}"; }
 
+# FZF fuzzy finder
+# https://github.com/junegunn/fzf?tab=readme-ov-file#setting-up-shell-integration
+# https://github.com/junegunn/fzf?tab=readme-ov-file#environment-variables
+export FZF_DEFAULT_COMMAND='fd --no-hidden --no-follow --type file'
+export FZF_DEFAULT_OPTS_FILE="$HOME/.fzfrc"
+export FZF_CTRL_T_COMMAND='fd --hidden --follow --type file --type dir --type symlink --exclude .git .'
+export FZF_CTRL_T_OPTS="--preview=''"
+export FZF_CTRL_R_OPTS="--ghost='Search for previous command...' --preview=''"
+export FZF_ALT_C_COMMAND='fd --hidden --no-follow --type dir --type symlink --exclude .git .'
+export FZF_ALT_C_OPTS="--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+# Settting up shell integration, fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+# https://github.com/junegunn/fzf#customizing-fzf-options-for-completion
+export FZF_COMPLETION_TRIGGER='**'
+# export FZF_COMPLETION_OPTS="--preview='bat --plain --color=always {}'"
+# export FZF_COMPLETION_PATH_OPTS="--ghost='Search for...' --preview='bat --plain --color=always {}'"
+# export FZF_COMPLETION_DIR_OPTS="--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+# fzf options via _fzf_comprun function
+_fzf_comprun() {
+	local command=$1
+	shift
+
+	case "$command" in
+		cd)
+			fzf --ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}' "$@"
+			;;
+		export|unset)
+			fzf --ghost='Search for variable...' --preview="eval 'echo \$'{}" "$@"
+			;;
+		ssh)
+			fzf --ghost='Search for host to connect...' --preview='' "$@"
+			;;
+		*)
+			fzf --preview='bat --plain --color=always {}' "$@"
+			;;
+	esac
+}
+# https://github.com/junegunn/fzf#customizing-completion-source-for-paths-and-directories
+# First argument to the function ($1) is the base path to start traversal
+# Use fd for listing path candidates.
+_fzf_compgen_path() {
+	fd --hidden --follow --type file --type dir --type symlink --exclude ".git" . "${1}"
+}
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+	fd --hidden --follow --type dir --type symlink --exclude ".git" . "${1}"
+}
 # vim: ft=sh foldmethod=marker

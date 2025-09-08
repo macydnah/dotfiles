@@ -1,40 +1,43 @@
-# ~./profile
-#
+# ~/.profile
 
-if [ -n "$BASH_VERSION" ]; then
-	[[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"
-fi
-
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$PATH:$HOME/.local/bin"
 fi
 
-# Exportar variables
-export allext="/run/media/$USER/*"
-export ALSOFT_DRIVERS="pulse"
+# Perfil
 export AUR="$HOME/.local/opt/AUR"
-#export EDITOR="vim"
-#export MANPAGER="bat -l man -p"
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-#export MANROFFOPT="-c"
-#export MOZ_USE_XINPUT2=1
-export OO_PS4_TOOLCHAIN="/home/macydnah/Downloads/v0.5"
-export PATH="$PATH:/home/macydnah/Downloads/v0.5/bin"
+export EDITOR="vim"
+export MANPAGER="sh -c 'col -bx | bat --plain --language=man'"
+export MANROFFOPT="-c"
 export OPT="$HOME/.local/opt"
 
-# Turn off kbd_backlight if it's daytime or let them on if nighttime
-# if [[ 10#$(date +%H) -gt 10#07 && 10#$(date +%H) -lt 18 ]] ;
-# 	then kblight -f ; kblight -f ;
-# 	else kblight -f ; kblight -a ;
-# fi
+# Misc
+export allext="/run/media/$USER/*"
 
-# Auto exec graphics (X, Wayland) at login
-# [ ! "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && exec startx -- >/dev/null 2>&1
-# [ ! "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && exec startsway -- >/dev/null 2>&1
+# OpenOrbis Toolchain
+export OO_PS4_TOOLCHAIN="/home/macydnah/Downloads/v0.5"
+export PATH="$PATH:/home/macydnah/Downloads/v0.5/bin"
+
+# PulseAudio
+export ALSOFT_DRIVERS="pulse"
+
+# FZF fuzzy finder
+# https://github.com/junegunn/fzf?tab=readme-ov-file#environment-variables
+export FZF_DEFAULT_COMMAND='fd --no-hidden --no-follow --type file'
+export FZF_DEFAULT_OPTS_FILE="$HOME/.fzfrc"
+export FZF_CTRL_T_COMMAND='fd --hidden --follow --type file --type dir --type symlink --exclude .git .'
+export FZF_CTRL_T_OPTS="--preview=''"
+export FZF_CTRL_R_OPTS="--ghost='Search for previous command...' --preview=''"
+export FZF_ALT_C_COMMAND='fd --hidden --no-follow --type dir --type symlink --exclude .git .'
+export FZF_ALT_C_OPTS="--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+# https://github.com/junegunn/fzf#customizing-fzf-options-for-completion
+export FZF_COMPLETION_TRIGGER='**'
+# export FZF_COMPLETION_OPTS="--preview='bat --plain --color=always {}'"
+# export FZF_COMPLETION_PATH_OPTS="--ghost='Search for...' --preview='bat --plain --color=always {}'"
+# export FZF_COMPLETION_DIR_OPTS="--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
 
 # TMUX
-# auto exec tmux at ssh login
-if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
+_tmux_auto_session() {
 	declare -r SESSION_NAME='Shession'
 	declare -r DEFAULT_TARGET=$SESSION_NAME:1
 	declare -r DEFAULT_TARGET_PANE_FOCUS='top'
@@ -94,22 +97,60 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 	esac
 
 	TARGET=$SESSION_NAME:$WIN_ID.$PANE_ID
-    tmux attach-session -t $TARGET
-	# exec tmux attach-session -t $TARGET
+	case $1 in
+		--exec)
+			exec tmux attach-session -t $TARGET
+			;;
+		*)
+			tmux attach-session -t $TARGET
+			;;
+	esac
+}
+_tmux_auto_session_mini() {
+	declare -r SESSION_NAME='VTSession'
+
+	tmux has-session -t $SESSION_NAME 2>/dev/null
+	if [ $? != 0 ]; then
+		# create a simple session with two panes
+		tmux new-session -d -s $SESSION_NAME
+		tmux split-window -h -t $SESSION_NAME:1
+	fi
+
+	declare -r TARGET=$SESSION_NAME:1.1
+	case $1 in
+		--exec)
+			exec tmux attach-session -t $TARGET
+			;;
+		*)
+			tmux attach-session -t $TARGET
+			;;
+	esac
+}
+# auto start tmux at ssh login
+if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
+	_tmux_auto_session
+	# _tmux_auto_session --exec
 fi
-# auto start tmux at local login in tty2
-# if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 2 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
-# then
-# 	declare -r SESSION_NAME='VTSession'
-#
-# 	tmux has-session -t $SESSION_NAME 2>/dev/null
-# 	if [ $? != 0 ]; then
-# 		# create a simple session with two panes
-# 		tmux new-session -d -s $SESSION_NAME
-# 		tmux split-window -h -t $SESSION_NAME:1
-# 	fi
-#
-# 	declare -r TARGET=$SESSION_NAME:1.1
-# 	tmux attach-session -t $TARGET
-# 	# exec tmux attach-session -t $TARGET
-# fi
+# auto start tmux at local login in tty6
+if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 6 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
+then
+	_tmux_auto_session_mini
+	# _tmux_auto_session_mini --exec
+fi
+
+# Source ~/.bashrc at the end
+if [ -n "$BASH_VERSION" ]; then
+	export HISTCONTROL=ignorespace
+	export HISTFILE="${HOME}/.bash_history"
+	export HISTFILESIZE=-1
+	export HISTSIZE=-1
+
+	[[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"
+fi
+
+# Auto exec graphics (X, Wayland) at login
+# [ ! "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && exec startx -- >/dev/null 2>&1
+# [ ! "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && exec startsway -- >/dev/null 2>&1
+# [ ! "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && exec hyrland -- >/dev/null 2>&1
+
+# vim: ft=sh foldmethod=marker

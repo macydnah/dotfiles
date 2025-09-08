@@ -227,7 +227,7 @@ _fzf_compgen_dir() {
 
 # Ejecutar fish(1) como shell interactivo al terminar de declarar todo lo demás
 # https://wiki.archlinux.org/title/Fish#Modify_.bashrc_to_drop_into_fish
-if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} -gt 1  && -z "${TMUX}" ]]
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} -gt 1  && -z ${TMUX} ]]
 then
 	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
 	exec fish $LOGIN_OPTION

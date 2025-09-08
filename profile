@@ -97,7 +97,7 @@ _tmux_auto_session() {
 	esac
 
 	TARGET=$SESSION_NAME:$WIN_ID.$PANE_ID
-	case $1 in
+	case "$1" in
 		--exec)
 			exec tmux attach-session -t $TARGET
 			;;
@@ -117,7 +117,7 @@ _tmux_auto_session_mini() {
 	fi
 
 	declare -r TARGET=$SESSION_NAME:1.1
-	case $1 in
+	case "$1" in
 		--exec)
 			exec tmux attach-session -t $TARGET
 			;;
@@ -128,14 +128,14 @@ _tmux_auto_session_mini() {
 }
 # auto start tmux at ssh login
 if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
-	_tmux_auto_session
-	# _tmux_auto_session --exec
+	# _tmux_auto_session
+	_tmux_auto_session --exec
 fi
 # auto start tmux at local login in tty6
 if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 6 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
 then
-	_tmux_auto_session_mini
-	# _tmux_auto_session_mini --exec
+	# _tmux_auto_session_mini
+	_tmux_auto_session_mini --exec
 fi
 
 # Source ~/.bashrc at the end

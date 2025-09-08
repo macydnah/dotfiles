@@ -3,6 +3,7 @@ default_target_type = "symbolic"
 
 [shell.files]
 "bashrc" = "~/.bashrc"
+"config/fish" = {target = "~/.config/fish", type = "symbolic", recurse = true}
 "config/procps" = {target = "~/.config/procps", type = "symbolic", recurse = false}
 "config/tmux" = {target = "~/.config/tmux", type = "symbolic", recurse = false}
 "config/vim" = {target = "~/.config/vim", type = "symbolic", recurse = true}

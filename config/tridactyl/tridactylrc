@@ -181,5 +181,13 @@ bind ;p hint -wp
 bind ;; hint -;
 bind ;v hint -W mpvsafe
 
+" Open editor and fills the browser's input with whatever is written into that file
+" moz-extension://08143f9a-b7b2-454a-8964-25ad7c0daef5/static/docs/modules/_src_excmds_.html#editor
+" set editorcmd footclient --app-id=floating-editor -- $EDITOR
+set editorcmd footclient --app-id=floating-editor -- nvim -c "lua if vim.fn.line2byte(1) == -1 then vim.cmd('startinsert') end"
+alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
+bind --mode=insert <C-i> editor_rm
+bind --mode=input <C-i> editor_rm
+
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker

@@ -46,6 +46,7 @@ alias scrcpy="scrcpy --stay-awake --turn-screen-off --shortcut-mod=lalt --window
 alias sudo="sudo -v; sudo "
 alias top="top -u ${USER}"
 alias tree="tree -C --dirsfirst --du -h --hyperlink"
+alias vim="nvim"
 alias wablk="watch -ctn1 'echo ; lsblk'"
 alias wared="watch -ctn1 'nmcli -c yes | head -n20'"
 alias watch="watch -cn0.5"

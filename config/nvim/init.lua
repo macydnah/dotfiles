@@ -108,8 +108,10 @@ end, { desc = "Move cursor to Nth window right of current one", silent = true })
 --]]
 
 --[[ General Autocommands ]]
+local highlight_yank_group = augroup('HighlightYank', { clear = true })
 autocmd('TextYankPost', {
   desc = "Briefly highlight yanked text",
+  group = highlight_yank_group,
   callback = function() vim.hl.on_yank() end
 })
 autocmd('LspAttach', {

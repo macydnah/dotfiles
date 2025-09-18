@@ -40,8 +40,18 @@ set.cmdheight = 0
 set.foldlevelstart = 0
 set.foldmethod = 'marker'
 set.shortmess:append('I')
--- set.list = true
-set.listchars = { tab = "⎽⎽⏌", lead = "⎽", trail = "·", eol = "↵" }
+-- set.list = false
+-- set.listchars = {
+--   eol = "↵",
+--   -- tab = "⎽⎽⏌",
+--   tab = "│ ",
+--   space = "·",
+--   multispace = "· ",
+--   lead = "⎽",
+--   leadmultispace = "│   ",
+--   trail = "·",
+--   nbsp = "⍽",
+-- }
 -- Add noselect to completeopt, otherwise autocompletion is annoying
 -- set.completeopt:append('noselect')
 set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }

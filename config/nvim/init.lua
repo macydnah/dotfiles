@@ -188,7 +188,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 }) --]]
 
---[[ Highlight the current cursor coordinate within the active window (crosshair) ]]
+--[[ Highlight the current cursor coordinate within the active window (crosshair)
 local function auto_crosshair()
   setlocal.cursorline = true
   setlocal.cursorcolumn = true
@@ -234,6 +234,7 @@ autocmd("InsertLeave", {
     auto_crosshair()
   end,
 })
+--]]
 
 --[[ FileType settings ]]
 -- augroup('FileTypeSetting', { clear = true })

@@ -24,6 +24,8 @@ export ALSOFT_DRIVERS="pulse"
 # FZF fuzzy finder
 # https://github.com/junegunn/fzf?tab=readme-ov-file#environment-variables
 export FZF_DEFAULT_COMMAND='fd --no-hidden --no-follow --type file'
+# Beware that '--preview-window' in FZF_DEFAULTS_OPTS may conflict 'fzf-lua' within 'nvim'
+export FZF_DEFAULT_OPTS="--preview-window='right,50%,nowrap,nofollow,nocycle,info,~1,<50(down,60%,border-top,nowrap,nofollow,nocycle,info,~1)'"
 export FZF_DEFAULT_OPTS_FILE="$HOME/.fzfrc"
 export FZF_CTRL_T_COMMAND='fd --hidden --follow --type file --type dir --type symlink --exclude .git .'
 export FZF_CTRL_T_OPTS="--preview=''"

@@ -10,11 +10,16 @@ if status is-interactive
     abbr --command git log1 -- "log -1 (wl-paste -n) | bat -p -lgitlog"
     abbr --add vim          -- nvim
 
-    # set -gx FZF_DEFAULT_COMMAND "fd --no-hidden --no-follow --type file"
+    # FZF fuzzy finder
+    # https://github.com/junegunn/fzf?tab=readme-ov-file#environment-variables
+    # most of these are already set by `~/.profile`
+    # set -gx FZF_DEFAULT_COMMAND   "fd --no-hidden --no-follow --type file"
+    # set -gx FZF_DEFAULT_OPTS      "--preview-window='right,50%,nowrap,nofollow,nocycle,info,~1,<50(down,60%,border-top,nowrap,nofollow,nocycle,info,~1)'"
     # set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.fzfrc"
-    set -gx FZF_CTRL_T_COMMAND "fd --hidden --follow --type file --type dir --type symlink --exclude .git . \$dir"
-    # set -gx FZF_CTRL_T_OPTS "--preview=''"
-    # set -gx FZF_CTRL_R_OPTS "--ghost='Search for previous command...' --preview=''"
-    set -gx FZF_ALT_C_COMMAND "fd --hidden --no-follow --type dir --type symlink --exclude .git . \$dir"
-    # set -gx FZF_ALT_C_OPTS "--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+    set -gx FZF_CTRL_T_COMMAND    "fd --hidden --follow --type file --type dir --type symlink --exclude .git . \$dir"
+    # set -gx FZF_CTRL_T_OPTS       "--preview=''"
+    # set -gx FZF_CTRL_R_OPTS       "--ghost='Search for previous command...' --preview=''"
+    set -gx FZF_ALT_C_COMMAND     "fd --hidden --no-follow --type dir --type symlink --exclude .git . \$dir"
+    # set -gx FZF_ALT_C_OPTS        "--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+
 end

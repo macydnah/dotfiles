@@ -1,6 +1,6 @@
 -- ~/.config/nvim/init.lua
 
-local vim = vim
+-- local vim = vim
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local colorscheme = vim.cmd.colorscheme
@@ -15,6 +15,7 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 --[[ bg.nvim (Background)     ]] Plug('https://github.com/typicode/bg.nvim.git')
 --[[ Colorscheme (PaperColor) ]] Plug('https://github.com/NLKNguyen/papercolor-theme.git')
 --[[ Copilot                  ]] Plug('https://github.com/github/copilot.vim.git')
+--[[ fzf-lua                  ]] Plug('https://github.com/ibhagwan/fzf-lua')
 --[[ nvim-lastplace           ]] Plug('https://github.com/ethanholz/nvim-lastplace.git')
 --[[ nvim-treesitter          ]] Plug('https://github.com/nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
 --[[ SCVim (SuperCollider)    ]] Plug('https://github.com/supercollider/scvim.git', { ['for'] = 'supercollider' })

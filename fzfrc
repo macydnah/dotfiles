@@ -29,7 +29,6 @@
 --preview='bat -p --color=always {}'
 --preview-border=rounded
 --preview-label-pos=0:top
---preview-window='right,50%,nowrap,nofollow,nocycle,info,~1,<50(down,60%,border-top,nowrap,nofollow,nocycle,info,~1)'
 
 --bind='alt-j:preview-down'
 --bind='alt-k:preview-up'

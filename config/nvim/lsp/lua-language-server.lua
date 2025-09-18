@@ -1,6 +1,8 @@
 ---@type vim.lsp.Config
---
--- https://luals.github.io/wiki/settings/
+---@brief
+---
+--- https://luals.github.io/wiki/settings/
+--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 
 return {
   cmd = { 'lua-language-server' },
@@ -18,19 +20,28 @@ return {
   settings = {
     Lua = {
       completion = {
-        callSnippet = 'Replace',
-        displayContext = 0,
+        autoRequire = true,
+        callSnippet = 'Disable',
+        displayContext = 20,
         enable = true,
         keywordSnippet = 'Both',
+        postfix = '@',
+        requireSeparator = '.',
+        showParams = true,
+        showWord = 'Fallback',
+        workspaceWord = true,
       },
-      diagnostic = {
+      diagnostics = {
         enable = true,
       },
       format = {
         enable = true,
       },
-      hints = {
+      hint = {
+        arrayIndex = 'Auto',
         enable = true,
+        paramName = 'Disable',
+        setType = false,
       },
       hover = {
         enable = true,
@@ -39,7 +50,8 @@ return {
         path = { 'lua/?.lua', 'lua/?/init.lua' },
       },
       workspace = {
-        checkThirdParty = false,
+        checkThirdParty = 'Disable',
+        --[[
         library = {
           vim.env.VIMRUNTIME,
           -- NOTE: this below is a lot slower and will cause issues
@@ -47,6 +59,7 @@ return {
           -- See https://github.com/neovim/nvim-lspconfig/issues/3189
           -- vim.api.nvim_get_runtime_file('', true),
         },
+        --]]
       },
     },
   },

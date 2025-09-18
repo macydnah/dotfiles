@@ -408,13 +408,13 @@ autocmd("InsertLeave", {
 
 --[[ Plugin Settings ]]
 
----[[ Copilot
+require'plugins.copilot'
+--[[ Copilot
 vim.g.copilot_enabled = false
--- vim.b.copilot_enabled = true
+
 local function ToggleCopilot()
-  -- 0 and 1 are both truthy in Lua, can't rely on just calling the
-  -- Vimscript copilot function to retrieve its enabled/disabled state
   -- https://github.com/neovim/neovim/issues/26983
+  -- 0 and 1 are both truthy in Lua, can't check `if vim.cmd('Copilot status') ...`
   if vim.fn['copilot#Enabled']() == 1 then
     vim.cmd('Copilot disable')
   else
@@ -422,9 +422,24 @@ local function ToggleCopilot()
   end
   vim.cmd('Copilot status')
 end
-map({'i', 'n'}, '<F1>', function()
-  ToggleCopilot()
-end, { desc = "Toggle Copilot On/Off", silent = false })
+
+autocmd('LspAttach', {
+  desc = 'Copilot key mappings',
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client.name == 'GitHub Copilot' then
+
+      map({'i', 'n'}, '<F13>', function() ToggleCopilot() end,
+        { buffer = true, desc = "Toggle Copilot On/Off" })
+
+      map({'i'}, '<C-f>', '<Plug>(copilot-accept-line)',
+        { buffer = true, desc = "Copilot: Accept line" })
+
+      map({'i'}, '<M-f>', '<Plug>(copilot-accept-word)',
+        { buffer = true, desc = "Copilot: Accept word" })
+    end
+  end
+})
 --]]
 
 -- require'plugins/fzf-lua'

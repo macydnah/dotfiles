@@ -236,175 +236,175 @@ autocmd("InsertLeave", {
 })
 
 --[[ FileType settings ]]
-augroup('FileTypeSetting', { clear = true })
+-- augroup('FileTypeSetting', { clear = true })
 -- HTML FileType settings
-autocmd('FileType', {
-  desc = 'HTML FileType settings ts=8 sts=2 sw=2 noet ai wrap smoothscroll linebreak',
-  group = 'FileTypeSetting',
-  pattern = { 'html', 'xml', 'xhtml' },
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 2
-    setlocal.shiftwidth = 2
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-    setlocal.wrap = true
-    setlocal.smoothscroll = true
-    setlocal.linebreak = true
-    map({''}, '<F12>', function()
-      os.execute('firefox ' .. vim.fn.expand('%'))
-    end,
-    { desc = 'Open current HTML file in Firefox', silent = true, buffer = true })
-  end,
-})
-autocmd('BufNewFile', {
-  desc = 'Insert skeleton HTML template',
-  group = 'FileTypeSetting',
-  pattern = '*.html',
-  callback = function()
-    vim.cmd("0r ~/Templates/skeleton.html")
-  end,
-})
-autocmd('BufNewFile', {
-  desc = 'Insert skeleton XML template',
-  group = 'FileTypeSetting',
-  pattern = '*.xml',
-  callback = function()
-    vim.cmd("0r ~/Templates/skeleton.xml")
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'HTML FileType settings ts=8 sts=2 sw=2 noet ai wrap smoothscroll linebreak',
+--   group = 'FileTypeSetting',
+--   pattern = { 'html', 'xml', 'xhtml' },
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 2
+--     setlocal.shiftwidth = 2
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--     setlocal.wrap = true
+--     setlocal.smoothscroll = true
+--     setlocal.linebreak = true
+--     map({''}, '<F12>', function()
+--       os.execute('firefox ' .. vim.fn.expand('%'))
+--     end,
+--     { desc = 'Open current HTML file in Firefox', silent = true, buffer = true })
+--   end,
+-- })
+-- autocmd('BufNewFile', {
+--   desc = 'Insert skeleton HTML template',
+--   group = 'FileTypeSetting',
+--   pattern = '*.html',
+--   callback = function()
+--     vim.cmd("0r ~/Templates/skeleton.html")
+--   end,
+-- })
+-- autocmd('BufNewFile', {
+--   desc = 'Insert skeleton XML template',
+--   group = 'FileTypeSetting',
+--   pattern = '*.xml',
+--   callback = function()
+--     vim.cmd("0r ~/Templates/skeleton.xml")
+--   end,
+-- })
 -- JSON FileType settings
-autocmd('FileType', {
-  desc = 'JSON FileType settings ts=4 sts=2 sw=2 noet ai',
-  group = 'FileTypeSetting',
-  pattern = 'json',
-  callback = function()
-    setlocal.tabstop = 4
-    setlocal.softtabstop = 2
-    setlocal.shiftwidth = 2
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'JSON FileType settings ts=4 sts=2 sw=2 noet ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'json',
+--   callback = function()
+--     setlocal.tabstop = 4
+--     setlocal.softtabstop = 2
+--     setlocal.shiftwidth = 2
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--   end,
+-- })
 -- LUA FileType settings
-autocmd('FileType', {
-  desc = 'LUA FileType settings ts=8 sw=2 sts=2 et ai',
-  group = 'FileTypeSetting',
-  pattern = 'lua',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 2
-    setlocal.shiftwidth = 2
-    setlocal.expandtab = true
-    setlocal.autoindent = true
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'LUA FileType settings ts=8 sw=2 sts=2 et ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'lua',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 2
+--     setlocal.shiftwidth = 2
+--     setlocal.expandtab = true
+--     setlocal.autoindent = true
+--   end,
+-- })
 -- RS FileType settings
-autocmd('FileType', {
-  desc = 'Rust FileType settings ts=8 sts=4 sw=4 et ai',
-  group = 'FileTypeSetting',
-  pattern = 'rust',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 4
-    setlocal.shiftwidth = 4
-    setlocal.expandtab = true
-    setlocal.autoindent = true
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'Rust FileType settings ts=8 sts=4 sw=4 et ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'rust',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 4
+--     setlocal.shiftwidth = 4
+--     setlocal.expandtab = true
+--     setlocal.autoindent = true
+--   end,
+-- })
 -- SH FileType settings
-autocmd('FileType', {
-  desc = 'SH FileType settings ts=4 sw=4 noet ai',
-  group = 'FileTypeSetting',
-  pattern = 'sh',
-  callback = function()
-    setlocal.tabstop = 4
-    setlocal.shiftwidth = 4
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-  end,
-})
-autocmd('BufNewFile', {
-  desc = 'Insert skeleton bash script template',
-  group = 'FileTypeSetting',
-  pattern = '*.sh',
-  callback = function()
-    vim.cmd("0r ~/Templates/skeleton.sh")
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'SH FileType settings ts=4 sw=4 noet ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'sh',
+--   callback = function()
+--     setlocal.tabstop = 4
+--     setlocal.shiftwidth = 4
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--   end,
+-- })
+-- autocmd('BufNewFile', {
+--   desc = 'Insert skeleton bash script template',
+--   group = 'FileTypeSetting',
+--   pattern = '*.sh',
+--   callback = function()
+--     vim.cmd("0r ~/Templates/skeleton.sh")
+--   end,
+-- })
 -- SQL FileType settings
-autocmd('FileType', {
-  desc = 'SQL FileType settings ts=8 sts=4 sw=4 et ai',
-  group = 'FileTypeSetting',
-  pattern = 'sql',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 4
-    setlocal.shiftwidth = 4
-    setlocal.expandtab = true
-    setlocal.autoindent = true
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'SQL FileType settings ts=8 sts=4 sw=4 et ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'sql',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 4
+--     setlocal.shiftwidth = 4
+--     setlocal.expandtab = true
+--     setlocal.autoindent = true
+--   end,
+-- })
 -- SVG FileType settings
-autocmd('FileType', {
-  desc = 'SVG FileType settings ts=8 sts=2 sw=2 noet ai',
-  group = 'FileTypeSetting',
-  pattern = 'svg',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 2
-    setlocal.shiftwidth = 2
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-  end,
-})
-autocmd('BufNewFile', {
-  desc = 'Insert skeleton SVG template',
-  group = 'FileTypeSetting',
-  pattern = '*.svg',
-  callback = function()
-    vim.cmd("0r ~/Templates/skeleton.svg")
-    vim.cmd("2")
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'SVG FileType settings ts=8 sts=2 sw=2 noet ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'svg',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 2
+--     setlocal.shiftwidth = 2
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--   end,
+-- })
+-- autocmd('BufNewFile', {
+--   desc = 'Insert skeleton SVG template',
+--   group = 'FileTypeSetting',
+--   pattern = '*.svg',
+--   callback = function()
+--     vim.cmd("0r ~/Templates/skeleton.svg")
+--     vim.cmd("2")
+--   end,
+-- })
 -- TEX FileType settings
-autocmd('FileType', {
-  desc = 'TEX FileType settings ts=8 sts=8 sw=8 noet noai wrap linebreak smoothscroll',
-  group = 'FileTypeSetting',
-  pattern = 'tex',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 8
-    setlocal.shiftwidth = 8
-    setlocal.expandtab = false
-    setlocal.autoindent = false
-    setlocal.wrap = true
-    setlocal.linebreak = true
-    setlocal.smoothscroll = true
-    setlocal.cursorcolumn = false
-    colorscheme("unokai")
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'TEX FileType settings ts=8 sts=8 sw=8 noet noai wrap linebreak smoothscroll',
+--   group = 'FileTypeSetting',
+--   pattern = 'tex',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 8
+--     setlocal.shiftwidth = 8
+--     setlocal.expandtab = false
+--     setlocal.autoindent = false
+--     setlocal.wrap = true
+--     setlocal.linebreak = true
+--     setlocal.smoothscroll = true
+--     setlocal.cursorcolumn = false
+--     colorscheme("unokai")
+--   end,
+-- })
 -- TXT FileType settings
-autocmd('FileType', {
-  desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll spell spelllang=es',
-  group = 'FileTypeSetting',
-  pattern = 'text',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 8
-    setlocal.shiftwidth = 8
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-    setlocal.wrap = true
-    setlocal.linebreak = true
-    setlocal.smoothscroll = true
-    setlocal.cursorline = true
-    setlocal.cursorcolumn = false
-    setlocal.spell = true
-    setlocal.spelllang = { 'es' }
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll spell spelllang=es',
+--   group = 'FileTypeSetting',
+--   pattern = 'text',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 8
+--     setlocal.shiftwidth = 8
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--     setlocal.wrap = true
+--     setlocal.linebreak = true
+--     setlocal.smoothscroll = true
+--     setlocal.cursorline = true
+--     setlocal.cursorcolumn = false
+--     setlocal.spell = true
+--     setlocal.spelllang = { 'es' }
+--   end,
+-- })
 
 --[[ Plugin Settings ]]
 
@@ -470,23 +470,23 @@ local simplenoterc = os.getenv('HOME') .. '/.config/vim/simplenoterc.vim'
 vim.cmd.source(simplenoterc) --]]
 
 ---[[ SuperCollider
-vim.g.sclangTerm = 'footclient --title sclang'
-vim.g.scFlash = 1
-autocmd('FileType', {
-  desc = 'SuperCollider FileType settings ts=4 sts=2 sw=2 noet ai',
-  group = 'FileTypeSetting',
-  pattern = 'supercollider',
-  callback = function()
-    setlocal.tabstop = 8
-    setlocal.softtabstop = 4
-    setlocal.shiftwidth = 4
-    setlocal.expandtab = false
-    setlocal.autoindent = true
-    map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = "Send line to SuperCollider", silent = true, buffer = true })
-    map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = "Send block to SuperCollider", silent = true, buffer = true })
-    map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = "Hard stop SuperCollider", silent = true, buffer = true })
-  end,
-}) --]]
+-- vim.g.sclangTerm = 'footclient --title sclang'
+-- vim.g.scFlash = 1
+-- autocmd('FileType', {
+--   desc = 'SuperCollider FileType settings ts=4 sts=2 sw=2 noet ai',
+--   group = 'FileTypeSetting',
+--   pattern = 'supercollider',
+--   callback = function()
+--     setlocal.tabstop = 8
+--     setlocal.softtabstop = 4
+--     setlocal.shiftwidth = 4
+--     setlocal.expandtab = false
+--     setlocal.autoindent = true
+--     map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = "Send line to SuperCollider", silent = true, buffer = true })
+--     map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = "Send block to SuperCollider", silent = true, buffer = true })
+--     map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = "Hard stop SuperCollider", silent = true, buffer = true })
+--   end,
+-- }) --]]
 
 vim.api.nvim_create_user_command('Realpath', function()
     local filepath = vim.api.nvim_buf_get_name(0)

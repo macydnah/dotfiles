@@ -3,12 +3,20 @@ if status is-interactive
 
     # Abreviaciones
     abbr --add aur          -- auracle
+    abbr --add bat          -- 'bat -p'
+    abbr --add cls          -- clear
     abbr --add confhyp      -- '$EDITOR ~/.config/hypr/hyprland.conf'
+    abbr --add feh          -- 'feh --conversion-timeout=0'
     abbr --command git fza  -- "ls-files -m -o --exclude-standard | fzf -m --list-label=' Add files to stage ' --ghost='Search for files...' --print0 | xargs -0 -o -t git add"
     abbr --command git fzap -- "ls-files -m -o --exclude-standard | fzf -m --list-label=' Add files to stage ' --ghost='Search for files...' --print0 | xargs -0 -o -t git add -p"
     abbr --command git fzl  -- "log --oneline | fzf --accept-nth=1 --tiebreak=index --multi --list-label=' Commits ' --ghost='Search for commits...' --preview='git show --color=always {+1} | bat --plain --color=always -l gitlog' | wl-copy -n"
     abbr --command git log1 -- "log -1 (wl-paste -n) | bat -p -lgitlog"
+    abbr --add mpa          -- "mpv --no-resume-playback --ytdl-format='bestaudio' --video=no"
     abbr --add vim          -- nvim
+    abbr --add wablk        -- "watch -ctn1 'echo ; lsblk'"
+    abbr --add wared        -- "watch -ctn1 'nmcli -c yes | head -n20'"
+    abbr --add watch        -- "watch -cn0.5"
+    abbr --add whois        -- "whois -H"
 
     # FZF fuzzy finder
     # https://github.com/junegunn/fzf?tab=readme-ov-file#environment-variables

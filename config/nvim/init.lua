@@ -438,7 +438,8 @@ require'nvim-lastplace'.setup {
   lastplace_open_folds = false
 } --]]
 
----[[ nvim-treesitter
+require'plugins.nvim-treesitter'
+--[[ nvim-treesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'c',

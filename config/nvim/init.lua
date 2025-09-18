@@ -1,6 +1,5 @@
 -- ~/.config/nvim/init.lua
 
--- local vim = vim
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local colorscheme = vim.cmd.colorscheme
@@ -40,18 +39,6 @@ set.cmdheight = 0
 set.foldlevelstart = 0
 set.foldmethod = 'marker'
 set.shortmess:append('I')
--- set.list = false
--- set.listchars = {
---   eol = "↵",
---   -- tab = "⎽⎽⏌",
---   tab = "│ ",
---   space = "·",
---   multispace = "· ",
---   lead = "⎽",
---   leadmultispace = "│   ",
---   trail = "·",
---   nbsp = "⍽",
--- }
 -- Add noselect to completeopt, otherwise autocompletion is annoying
 -- set.completeopt:append('noselect')
 set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
@@ -66,12 +53,16 @@ vim.lsp.enable({
   'rust-analyzer',
   'texlab',
 })
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+})
 
 --[[ Look and feel ]]
 set.termguicolors = true
 colorscheme("PaperColor")
 autocmd({"BufWinEnter", "WinEnter"}, {
   desc = "Set background color based on time of the day",
+  group = vim.api.nvim_create_augroup('AutoLightDarkBackground', { clear = true }),
   pattern = "*",
   callback = function()
     local hour = tonumber(os.date("%H%M"))
@@ -96,26 +87,6 @@ if diff_mode then
   colorscheme("evening")
   set.diffopt = { "filler", "context:1000000" }
 end
-
---[[ General Mappings ]]
-
---[[
--- Use ctrl-[hjkl] to select the active split
--- http://vim.wikia.com/wiki/Switch_between_Vim_window_splits_easily
--- https://stackoverflow.com/questions/6053301/easier-way-to-navigate-between-vim-split-panes
-map({'n'}, '<c-h>', function()
-  vim.cmd('wincmd h')
-end, { desc = "Move cursor to Nth window left of current one", silent = true })
-map({'n'}, '<c-j>', function()
-  vim.cmd('wincmd j')
-end, { desc = "Move cursor to Nth window below current one", silent = true })
-map({'n'}, '<c-k>', function()
-  vim.cmd('wincmd k')
-end, { desc = "Move cursor to Nth window above current one", silent = true })
-map({'n'}, '<c-l>', function()
-  vim.cmd('wincmd l')
-end, { desc = "Move cursor to Nth window right of current one", silent = true })
---]]
 
 --[[ General Autocommands ]]
 local highlight_yank_group = augroup('HighlightYank', { clear = true })
@@ -194,335 +165,14 @@ autocmd('LspAttach', {
     }) --]]
   end,
 })
---[[ Executes the import-gsettings script when the settings.ini file is saved
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "$HOME/.config/gtk-3.0/settings.ini",
-  callback = function()
-    vim.cmd("silent! !import-gsettings")
-  end,
-}) --]]
 
---[[ Highlight the current cursor coordinate within the active window (crosshair)
-local function auto_crosshair()
-  setlocal.cursorline = true
-  setlocal.cursorcolumn = true
-  if set.background:get() == "light" then
-    highlight({ "CursorLine", "guifg=NONE", "guibg=#d4d4d4", "gui=bold,italic" })
-    highlight({ "CursorColumn", "guifg=NONE", "guibg=#d4d4d4", "gui=NONE" })
-  else
-    highlight({ "CursorLine", "guifg=NONE", "guibg=#303030", "gui=bold,italic" })
-    highlight({ "CursorColumn", "guifg=NONE", "guibg=#303030", "gui=NONE" })
-  end
-end
-augroup('CrossHair', { clear = true })
-autocmd({"BufWinEnter", "WinEnter"}, {
-  desc = "Enable cursorline and cursorcolumn in the current buffer/window",
-  group = 'CrossHair',
-  pattern = "*",
-  callback = function()
-    auto_crosshair()
-  end,
-})
-autocmd("WinLeave", {
-  desc = "Disable cursorline and cursorcolumn when leaving the current window",
-  group = 'CrossHair',
-  pattern = "*",
-  callback = function()
-    setlocal.cursorline = false
-    setlocal.cursorcolumn = false
-  end,
-})
-autocmd("InsertEnter", {
-  desc = "Disable underline and italic cursorline when entering insert mode",
-  group = 'CrossHair',
-  pattern = "*",
-  callback = function()
-    highlight({ "CursorLine", "gui=NONE" })
-  end,
-})
-autocmd("InsertLeave", {
-  desc = "Enable cursorline and cursorcolumn when leaving insert mode",
-  group = 'CrossHair',
-  pattern = "*",
-  callback = function()
-    auto_crosshair()
-  end,
-})
---]]
-
---[[ FileType settings ]]
--- augroup('FileTypeSetting', { clear = true })
--- HTML FileType settings
--- autocmd('FileType', {
---   desc = 'HTML FileType settings ts=8 sts=2 sw=2 noet ai wrap smoothscroll linebreak',
---   group = 'FileTypeSetting',
---   pattern = { 'html', 'xml', 'xhtml' },
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 2
---     setlocal.shiftwidth = 2
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---     setlocal.wrap = true
---     setlocal.smoothscroll = true
---     setlocal.linebreak = true
---     map({''}, '<F12>', function()
---       os.execute('firefox ' .. vim.fn.expand('%'))
---     end,
---     { desc = 'Open current HTML file in Firefox', silent = true, buffer = true })
---   end,
--- })
--- autocmd('BufNewFile', {
---   desc = 'Insert skeleton HTML template',
---   group = 'FileTypeSetting',
---   pattern = '*.html',
---   callback = function()
---     vim.cmd("0r ~/Templates/skeleton.html")
---   end,
--- })
--- autocmd('BufNewFile', {
---   desc = 'Insert skeleton XML template',
---   group = 'FileTypeSetting',
---   pattern = '*.xml',
---   callback = function()
---     vim.cmd("0r ~/Templates/skeleton.xml")
---   end,
--- })
--- JSON FileType settings
--- autocmd('FileType', {
---   desc = 'JSON FileType settings ts=4 sts=2 sw=2 noet ai',
---   group = 'FileTypeSetting',
---   pattern = 'json',
---   callback = function()
---     setlocal.tabstop = 4
---     setlocal.softtabstop = 2
---     setlocal.shiftwidth = 2
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---   end,
--- })
--- LUA FileType settings
--- autocmd('FileType', {
---   desc = 'LUA FileType settings ts=8 sw=2 sts=2 et ai',
---   group = 'FileTypeSetting',
---   pattern = 'lua',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 2
---     setlocal.shiftwidth = 2
---     setlocal.expandtab = true
---     setlocal.autoindent = true
---   end,
--- })
--- RS FileType settings
--- autocmd('FileType', {
---   desc = 'Rust FileType settings ts=8 sts=4 sw=4 et ai',
---   group = 'FileTypeSetting',
---   pattern = 'rust',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 4
---     setlocal.shiftwidth = 4
---     setlocal.expandtab = true
---     setlocal.autoindent = true
---   end,
--- })
--- SH FileType settings
--- autocmd('FileType', {
---   desc = 'SH FileType settings ts=4 sw=4 noet ai',
---   group = 'FileTypeSetting',
---   pattern = 'sh',
---   callback = function()
---     setlocal.tabstop = 4
---     setlocal.shiftwidth = 4
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---   end,
--- })
--- autocmd('BufNewFile', {
---   desc = 'Insert skeleton bash script template',
---   group = 'FileTypeSetting',
---   pattern = '*.sh',
---   callback = function()
---     vim.cmd("0r ~/Templates/skeleton.sh")
---   end,
--- })
--- SQL FileType settings
--- autocmd('FileType', {
---   desc = 'SQL FileType settings ts=8 sts=4 sw=4 et ai',
---   group = 'FileTypeSetting',
---   pattern = 'sql',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 4
---     setlocal.shiftwidth = 4
---     setlocal.expandtab = true
---     setlocal.autoindent = true
---   end,
--- })
--- SVG FileType settings
--- autocmd('FileType', {
---   desc = 'SVG FileType settings ts=8 sts=2 sw=2 noet ai',
---   group = 'FileTypeSetting',
---   pattern = 'svg',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 2
---     setlocal.shiftwidth = 2
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---   end,
--- })
--- autocmd('BufNewFile', {
---   desc = 'Insert skeleton SVG template',
---   group = 'FileTypeSetting',
---   pattern = '*.svg',
---   callback = function()
---     vim.cmd("0r ~/Templates/skeleton.svg")
---     vim.cmd("2")
---   end,
--- })
--- TEX FileType settings
--- autocmd('FileType', {
---   desc = 'TEX FileType settings ts=8 sts=8 sw=8 noet noai wrap linebreak smoothscroll',
---   group = 'FileTypeSetting',
---   pattern = 'tex',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 8
---     setlocal.shiftwidth = 8
---     setlocal.expandtab = false
---     setlocal.autoindent = false
---     setlocal.wrap = true
---     setlocal.linebreak = true
---     setlocal.smoothscroll = true
---     setlocal.cursorcolumn = false
---     colorscheme("unokai")
---   end,
--- })
--- TXT FileType settings
--- autocmd('FileType', {
---   desc = 'TXT FileType settings ts=8 sts=8 sw=8 noet ai wrap linebreak smoothscroll spell spelllang=es',
---   group = 'FileTypeSetting',
---   pattern = 'text',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 8
---     setlocal.shiftwidth = 8
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---     setlocal.wrap = true
---     setlocal.linebreak = true
---     setlocal.smoothscroll = true
---     setlocal.cursorline = true
---     setlocal.cursorcolumn = false
---     setlocal.spell = true
---     setlocal.spelllang = { 'es' }
---   end,
--- })
-
---[[ Plugin Settings ]]
-
+--[[ Plugin Requirements ]]
 require'plugins.copilot'
---[[ Copilot
-vim.g.copilot_enabled = false
-
-local function ToggleCopilot()
-  -- https://github.com/neovim/neovim/issues/26983
-  -- 0 and 1 are both truthy in Lua, can't check `if vim.cmd('Copilot status') ...`
-  if vim.fn['copilot#Enabled']() == 1 then
-    vim.cmd('Copilot disable')
-  else
-    vim.cmd('Copilot enable')
-  end
-  vim.cmd('Copilot status')
-end
-
-autocmd('LspAttach', {
-  desc = 'Copilot key mappings',
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client.name == 'GitHub Copilot' then
-
-      map({'i', 'n'}, '<F13>', function() ToggleCopilot() end,
-        { buffer = true, desc = "Toggle Copilot On/Off" })
-
-      map({'i'}, '<C-f>', '<Plug>(copilot-accept-line)',
-        { buffer = true, desc = "Copilot: Accept line" })
-
-      map({'i'}, '<M-f>', '<Plug>(copilot-accept-word)',
-        { buffer = true, desc = "Copilot: Accept word" })
-    end
-  end
-})
---]]
-
--- require'plugins/fzf-lua'
 require'plugins.fzf-lua'
-
 require'plugins.nvim-lastplace'
---[[ nvim-lastplace
-require'nvim-lastplace'.setup {
-  lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
-  lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
-  lastplace_open_folds = false
-} --]]
-
 require'plugins.nvim-treesitter'
---[[ nvim-treesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    'c',
-    'css',
-    'html',
-    'json',
-    'latex',
-    'lua',
-    'markdown',
-    'markdown_inline',
-    'python',
-    'query',
-    'rust',
-    'supercollider',
-    'toml',
-    'vim',
-    'vimdoc',
-  },
-  auto_install = false,
-  ignore_install = { '' },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-    disable = { '' }
-  },
-  indent = {
-    enable = false,
-  },
-} --]]
 
---[[ Simplenote
-local simplenoterc = os.getenv('HOME') .. '/.config/vim/simplenoterc.vim'
-vim.cmd.source(simplenoterc) --]]
-
----[[ SuperCollider
--- vim.g.sclangTerm = 'footclient --title sclang'
--- vim.g.scFlash = 1
--- autocmd('FileType', {
---   desc = 'SuperCollider FileType settings ts=4 sts=2 sw=2 noet ai',
---   group = 'FileTypeSetting',
---   pattern = 'supercollider',
---   callback = function()
---     setlocal.tabstop = 8
---     setlocal.softtabstop = 4
---     setlocal.shiftwidth = 4
---     setlocal.expandtab = false
---     setlocal.autoindent = true
---     map({''}, '<s-enter>', vim.fn['SClang_line'], { desc = "Send line to SuperCollider", silent = true, buffer = true })
---     map({''}, '<c-enter>', vim.fn['SClang_block'], { desc = "Send block to SuperCollider", silent = true, buffer = true })
---     map({''}, '<c-.>', vim.fn['SClangHardstop'], { desc = "Hard stop SuperCollider", silent = true, buffer = true })
---   end,
--- }) --]]
-
+--[[ User Commands ]]
 vim.api.nvim_create_user_command('Realpath', function()
     local filepath = vim.api.nvim_buf_get_name(0)
     if filepath == '' then

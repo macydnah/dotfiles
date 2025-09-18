@@ -12,7 +12,7 @@ vim.opt.listchars = {
   nbsp = '⍽',
 }
 
-local group = vim.api.nvim_create_augroup('ListChars', { clear = true })
+local group = vim.api.nvim_create_augroup('FormattingMarks', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
   group = group,
   pattern = '*',

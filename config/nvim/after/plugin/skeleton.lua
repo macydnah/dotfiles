@@ -10,12 +10,12 @@ local enable_filetype_skeleton = {
   'svg',
 }
 
-local skel_group = vim.api.nvim_create_augroup('FileTypeSkeleton', { clear = true })
+local group = vim.api.nvim_create_augroup('FileTypeSkeleton', { clear = true })
 
 local function insert_skeleton(filetype)
   vim.api.nvim_create_autocmd('BufNewFile', {
-    desc = "Insert skeleton " .. filetype .. " template",
-    group = skel_group,
+    desc = "Insert " .. filetype .. " skeleton template",
+    group = group,
     pattern = '*.' .. filetype,
     callback = function()
       local dir = os.getenv('HOME') .. '/Templates/skeleton' .. '.'

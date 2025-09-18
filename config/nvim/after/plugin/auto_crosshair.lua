@@ -16,11 +16,11 @@ local function auto_crosshair()
 
 end
 
-vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
+local group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
 
 vim.api.nvim_create_autocmd({'BufWinEnter', 'WinEnter'}, {
   desc = "Enable cursorline and cursorcolumn in the current buffer/window",
-  group = 'AutoCrossHair',
+  group = group,
   pattern = '*',
   callback = function()
     auto_crosshair()
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({'BufWinEnter', 'WinEnter'}, {
 })
 vim.api.nvim_create_autocmd('WinLeave', {
   desc = "Disable cursorline and cursorcolumn when leaving the current window",
-  group = 'AutoCrossHair',
+  group = group,
   pattern = '*',
   callback = function()
     vim.opt_local.cursorline = false
@@ -36,8 +36,8 @@ vim.api.nvim_create_autocmd('WinLeave', {
   end,
 })
 vim.api.nvim_create_autocmd('InsertEnter', {
-  desc = "Disable underline and italic cursorline when entering insert mode",
-  group = 'AutoCrossHair',
+  desc = "Disable italic cursorline when entering insert mode",
+  group = group,
   pattern = '*',
   callback = function()
     vim.cmd.highlight({ 'CursorLine', 'gui=NONE' })
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 vim.api.nvim_create_autocmd('InsertLeave', {
   desc = "Enable cursorline and cursorcolumn when leaving insert mode",
-  group = 'AutoCrossHair',
+  group = group,
   pattern = '*',
   callback = function()
     auto_crosshair()

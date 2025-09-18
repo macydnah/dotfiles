@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 ---@brief
 ---
 --- https://github.com/latex-lsp/texlab

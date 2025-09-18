@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 ---@brief
 ---
 --- https://github.com/rust-lang/rust-analyzer

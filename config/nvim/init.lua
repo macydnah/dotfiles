@@ -427,7 +427,10 @@ map({'i', 'n'}, '<F1>', function()
 end, { desc = "Toggle Copilot On/Off", silent = false })
 --]]
 
----[[ nvim-lastplace
+-- require'plugins/fzf-lua'
+require'plugins.fzf-lua'
+
+--[[ nvim-lastplace
 require'nvim-lastplace'.setup {
   lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
   lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },

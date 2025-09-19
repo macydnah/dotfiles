@@ -18,21 +18,24 @@ local group = vim.api.nvim_create_augroup('CopilotKeymaps', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = "Copilot key mappings",
   group = group,
-  callback =
-  function(ev)
+  callback = function(ev)
+
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client == nil then
+      return
+    end
     if client.name == 'GitHub Copilot' then
 
       local SHIFT_F1 = '<F13>'
       vim.keymap.set({'i', 'n'}, SHIFT_F1, function() ToggleCopilot() end,
-        { buffer = true, desc = "Toggle Copilot On/Off" })
+        { buffer = true, desc = "Copilot: Toggle On/Off" })
 
       vim.keymap.set({'i'}, '<C-f>', '<Plug>(copilot-accept-line)',
         { buffer = true, desc = "Copilot: Accept line" })
 
       vim.keymap.set({'i'}, '<M-f>', '<Plug>(copilot-accept-word)',
         { buffer = true, desc = "Copilot: Accept word" })
-
     end
+
   end
 })

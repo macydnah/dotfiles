@@ -9,6 +9,8 @@ vim.opt.listchars = {
   -- multispace = '·',
   lead = '⎽',
   trail = '·',
+  extends = '»',
+  precedes = '«',
   nbsp = '⍽',
 }
 
@@ -29,10 +31,10 @@ local CTRL_F10 = '<F34>'
 vim.keymap.set({'n'}, CTRL_F10, function()
   if vim.opt_local.list:get() then
     vim.opt_local.list = false
-    print("Formatting marks: OFF")
+    vim.opt_local.cursorcolumn = true
   else
     vim.opt_local.list = true
-    print("Formatting marks: ON")
+    vim.opt_local.cursorcolumn = false
   end
 end, { desc = "Toggle formatting marks On/Off" })
 

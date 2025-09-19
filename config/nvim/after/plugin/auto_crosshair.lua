@@ -4,7 +4,11 @@
 
 local function auto_crosshair()
   vim.opt_local.cursorline = true
-  vim.opt_local.cursorcolumn = true
+  if vim.opt_local.list:get() then
+    vim.opt_local.cursorcolumn = false
+  else
+    vim.opt_local.cursorcolumn = true
+  end
 
   if vim.opt.background:get() == 'light' then
     vim.cmd.highlight({ 'CursorLine', 'guifg=NONE', 'guibg=#d4d4d4', 'gui=bold,italic' })

@@ -21,8 +21,8 @@ return {
     Lua = {
       completion = {
         autoRequire = true,
-        callSnippet = 'Disable',
-        displayContext = 20,
+        callSnippet = 'Replace',
+        displayContext = 10,
         enable = true,
         keywordSnippet = 'Both',
         postfix = '@',

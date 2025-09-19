@@ -25,7 +25,7 @@ vim.fn['plug#end']()
 
 --[[ General Settings ]]
 set.title = true
--- set.titlestring['%t%( %M%)%( (%{expand("%:~:.:h")})%)%( %a%)']
+set.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a - Nvim'
 set.ignorecase = true
 set.smartcase = true
 set.wrap = false
@@ -39,37 +39,22 @@ set.cmdheight = 0
 set.foldlevelstart = 0
 set.foldmethod = 'marker'
 set.shortmess:append('I')
--- Add noselect to completeopt, otherwise autocompletion is annoying
--- set.completeopt:append('noselect')
-set.completeopt = { 'menu', 'popup', 'menuone', 'noselect' }
--- Enable rounded borders in floating windows
-vim.o.winborder = 'rounded'
--- Language Server Protocol (LSP) enable list
-vim.lsp.enable({
-  'clangd',
-  'jedi_language_server',
-  'lemminx',
-  'lua-language-server',
-  'rust-analyzer',
-  'texlab',
-})
-vim.lsp.config('*', {
-  root_markers = { '.git' },
-})
+set.completeopt = { 'fuzzy', 'menuone', 'noinsert', 'popup' }
 
---[[ Look and feel ]]
+--[[ UI ]]
 set.termguicolors = true
-colorscheme("PaperColor")
-autocmd({"BufWinEnter", "WinEnter"}, {
+colorscheme('PaperColor')
+set.winborder = 'rounded'
+autocmd({'BufWinEnter', 'WinEnter'}, {
   desc = "Set background color based on time of the day",
   group = vim.api.nvim_create_augroup('AutoLightDarkBackground', { clear = true }),
-  pattern = "*",
+  pattern = '*',
   callback = function()
-    local hour = tonumber(os.date("%H%M"))
+    local hour = tonumber(os.date('%H%M'))
     if hour < 1700 and hour > 0730 then
-      set.background = "light"
+      set.background = 'light'
     else
-      set.background = "dark"
+      set.background = 'dark'
     end
   end,
 })
@@ -81,11 +66,11 @@ set.guicursor =
   'n-v-c:hor20,i-ci-ve:ver25,r-cr:block,o:block-blinkon0,' ..
   'sm:block-blinkwait175-blinkoff150-blinkon175,' ..
   't:hor1,'
--- Diff mode
+-- VimDiff UI
 local diff_mode = vim.opt.diff:get()
 if diff_mode then
-  colorscheme("evening")
-  set.diffopt = { "filler", "context:1000000" }
+  colorscheme('evening')
+  set.diffopt = { 'filler', 'context:1000000' }
 end
 
 --[[ General Autocommands ]]
@@ -95,82 +80,6 @@ autocmd('TextYankPost', {
   group = highlight_yank_group,
   callback = function() vim.hl.on_yank() end
 })
-autocmd('LspAttach', {
-  desc = 'Enable LSP autocompletion by client capabilities',
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
-    end
-  end,
-})
-autocmd('LspAttach', {
-  desc = 'LSP key mappings',
-  callback = function()
-    ---[[ LSP key mappings
-    local bufmap = function(mode, lhs, rhs)
-      local opts = { buffer = true }
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
-    -- Displays hover information about the symbol under the cursor
-    bufmap('n', 'K', function() vim.lsp.buf.hover() end)
-    -- Jump to the definition
-    bufmap('n', 'gd', function() vim.lsp.buf.definition() end)
-    -- Jump to declaration
-    bufmap('n', 'gD', function() vim.lsp.buf.declaration() end)
-    -- Lists all the implementations for the symbol under the cursor
-    bufmap('n', 'gi', function() vim.lsp.buf.implementation() end)
-    -- Jumps to the definition of the type symbol
-    bufmap('n', 'go', function() vim.lsp.buf.type_definition() end)
-    -- Lists all the references
-    bufmap('n', 'gr', function() vim.lsp.buf.references() end)
-    -- Displays a function's signature information
-    bufmap('n', 'gs', function() vim.lsp.buf.signature_help() end)
-    -- Renames all references to the symbol under the cursor
-    bufmap('n', '<F2>', function() vim.lsp.buf.rename() end)
-    -- Selects a code action available at the current cursor position
-    bufmap('n', '<F4>', function() vim.lsp.buf.code_action() end)
-    -- Show diagnostics in a floating window
-    bufmap('n', 'gl', function() vim.diagnostic.open_float() end)
-    --]]
-
-    ---[[ Diagnostics config
-    vim.diagnostic.config({
-      -- see :help vim.diagnostic.Opts
-      underline = true,
-      virtual_text = false,
-      virtual_lines = { current_line = true },
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = '✘',
-          [vim.diagnostic.severity.WARN] = '▲',
-          [vim.diagnostic.severity.HINT] = '⚑',
-          [vim.diagnostic.severity.INFO] = '»',
-        },
-        linehl = {
-          -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-          -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
-          -- [vim.diagnostic.severity.HINT] = 'HintMsg',
-          -- [vim.diagnostic.severity.INFO] = 'InfoMsg',
-        },
-        numhl = {
-          -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-          -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
-          -- [vim.diagnostic.severity.HINT] = 'HintMsg',
-          -- [vim.diagnostic.severity.INFO] = 'InfoMsg',
-        },
-      },
-      update_in_insert = true,
-      severity_sort = true,
-    }) --]]
-  end,
-})
-
---[[ Plugin Requirements ]]
-require'plugins.copilot'
-require'plugins.fzf-lua'
-require'plugins.nvim-lastplace'
-require'plugins.nvim-treesitter'
 
 --[[ User Commands ]]
 vim.api.nvim_create_user_command('Realpath', function()
@@ -184,3 +93,10 @@ vim.api.nvim_create_user_command('Realpath', function()
   end,
   { desc = "Copy current file's realpath to the '+' register" }
 )
+
+--[[ Requirables ]]
+require'plugins.copilot'
+require'plugins.fzf-lua'
+require'plugins.nvim-lastplace'
+require'plugins.nvim-treesitter'
+require'lsp'

@@ -181,6 +181,9 @@ bind ;p hint -wp
 bind ;; hint -;
 bind ;v hint -W mpvsafe
 
+" choose which text input to enter (https://github.com/tridactyl/tridactyl/issues/3209)
+bind gI js tri.excmds.hint("-c",tri.excmds.INPUTTAGS_selectors)
+
 " Open editor and fills the browser's input with whatever is written into that file
 " moz-extension://08143f9a-b7b2-454a-8964-25ad7c0daef5/static/docs/modules/_src_excmds_.html#editor
 " set editorcmd footclient --app-id=floating-editor -- $EDITOR

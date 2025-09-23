@@ -174,6 +174,7 @@ return {
         args = { '-X', 'compile', '%f', '--synctex', '--keep-logs', '--keep-intermediates' },
         forwardSearchAfter = true,
         onSave = true,
+        useFileList = false,
       },
       forwardSearch = {
         executable = 'zathura',
@@ -195,6 +196,10 @@ return {
       },
       completion = {
         matcher = 'fuzzy-ignore-case',
+      },
+      hover = {
+        -- https://github.com/latex-lsp/texlab/issues/1261
+        symbols = 'glyph',
       },
       experimental = {
         citationCommands = { 'citaenbloque' },
@@ -226,5 +231,6 @@ return {
     vim.api.nvim_buf_create_user_command(0, 'LspTexlabChangeEnvironment', client_with_fn(buf_change_env), {
       desc = 'Change the environment at current position',
     })
+    vim.keymap.set({'n'}, '<Enter>', client_with_fn(buf_search), { buffer = true })
   end,
 }

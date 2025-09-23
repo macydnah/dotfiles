@@ -40,6 +40,11 @@ set.foldlevelstart = 0
 set.foldmethod = 'marker'
 set.shortmess:append('I')
 set.completeopt = { 'fuzzy', 'menuone', 'noinsert', 'popup' }
+-- Spelling
+set.spell = false
+set.spelllang = { 'es', 'en' }
+-- set.spelloptions = { 'camel', 'noplainbuffer' }
+set.spellsuggest = { 'best', 10 }
 
 --[[ UI ]]
 set.termguicolors = true

@@ -4,6 +4,7 @@ if status is-interactive
     # Abreviaciones
     abbr --add aur          -- auracle
     abbr --add bat          -- 'bat -p'
+    abbr --add batdif       -- 'bat -p -l diff'
     abbr --add cls          -- clear
     abbr --add confhyp      -- '$EDITOR ~/.config/hypr/hyprland.conf'
     abbr --add feh          -- 'feh --conversion-timeout=0'

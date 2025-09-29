@@ -235,5 +235,6 @@ return {
       desc = 'Change the environment at current position',
     })
     vim.keymap.set({'n'}, '<Enter>', client_with_fn(buf_search), { buffer = true })
+    vim.keymap.set({'n','i'}, '<C-s>', function() vim.cmd('update') end, { buffer = true } )
   end,
 }

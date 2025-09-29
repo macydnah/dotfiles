@@ -1,24 +1,40 @@
 include map.zathurarc
 
+# girara
 set n-completion-items 15
-set completion-bg "#232323"
+set completion-bg "#131313"
 set completion-fg "#DDDDDD"
+
+set completion-group-bg "#000000"
+set completion-group-fg "#DED0D0"
+
+set completion-highlight-bg "#97D01A"
+set completion-highlight-fg "#232323"
 
 set default-bg "rgba(0, 0, 0, 0.1)"
 set default-fg "#DDDDDD"
 
-#set guioptions "cshv"
+set font "SF Mono 12"
+
+# set guioptions "cshv"
 set guioptions "hv"
 
 set inputbar-bg "#131313"
-set inputbar-fg "#9FBC00"
+set inputbar-fg "#97D01A"
 
 set statusbar-bg "#000000"
 set statusbar-fg "#FFFFFF"
+set statusbar-h-padding 16
+set statusbar-v-padding 4
 
+# zathura
 set abort-clear-search true
 set adjust-open "width"
-
+set continuous-hist-save false
+set database "sqlite"
+set dbus-raise-window true
+set dbus-service true # If disabled, SyncTeX forward synchronization is not available.
+set double-click-follow true
 set filemonitor "glib"
 
 set highlight-active-color "rgba(0,188,0,0.5)"
@@ -26,19 +42,22 @@ set highlight-color "rgba(159,251,0,0.5)"
 set highlight-fg "rgba(0,0,0,0.5)"
 
 set highlighter-modifier "shift"
+set incremental-search true
 
 set index-active-bg "#9FBC00"
 set index-active-fg "#232323"
 set index-bg "#232323"
 set index-fg "#DDDDDD"
 
+set nohlsearch false
 set open-first-page false
 
 set page-cache-size 15
-
-set page-padding 20
+set page-v-padding 20
+set page-h-padding 10
 
 set selection-clipboard clipboard
+set selection-notification true
 
 set show-directories true
 set show-hidden false
@@ -46,7 +65,7 @@ set show-recent 10
 set show-signature-information false
 
 set statusbar-basename false
-set statusbar-home-tilde false
+set statusbar-home-tilde true
 set statusbar-page-percent false
 
 set synctex true

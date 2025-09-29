@@ -185,7 +185,10 @@ return {
         onEdit = true,
         additionalArgs = {},
       },
-      diagnosticsDelay = 300,
+      diagnosticsDelay = 200,
+      diagnostics = {
+        ignoredPatterns = { 'Underfull.*10000' },
+      },
       formatterLineLength = 80,
       bibtexFormatter = 'texlab',
       latexFormatter = 'latexindent',

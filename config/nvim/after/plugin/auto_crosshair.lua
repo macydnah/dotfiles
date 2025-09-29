@@ -2,22 +2,42 @@
 
 -- Highlight the current cursor coordinate within the active window (crosshair)
 
+local filetype_blacklist = {
+  'plaintex',
+  'tex',
+  'text',
+}
+
+local function __need_cursorcolumn()
+  if vim.opt_local.list:get() then
+    return false
+  end
+  for _, blacklisted in ipairs(filetype_blacklist) do
+    if vim.opt_local.filetype:get() == blacklisted then
+      return false
+    end
+  end
+  return true
+end
+
 local function auto_crosshair()
   vim.opt_local.cursorline = true
-  if vim.opt_local.list:get() then
-    vim.opt_local.cursorcolumn = false
-  else
+  vim.cmd.highlight({ 'CursorLine', 'gui=bold,italic' })
+  if __need_cursorcolumn() then
     vim.opt_local.cursorcolumn = true
+    vim.cmd.highlight({ 'CursorColumn', 'gui=NONE' })
+  else
+    vim.opt_local.cursorcolumn = false
   end
-
-  if vim.opt.background:get() == 'light' then
+  --[[
+  if vim.opt_local.background:get() == 'light' then
     vim.cmd.highlight({ 'CursorLine', 'guifg=NONE', 'guibg=#d4d4d4', 'gui=bold,italic' })
     vim.cmd.highlight({ 'CursorColumn', 'guifg=NONE', 'guibg=#d4d4d4', 'gui=NONE' })
   else
     vim.cmd.highlight({ 'CursorLine', 'guifg=NONE', 'guibg=#303030', 'gui=bold,italic' })
     vim.cmd.highlight({ 'CursorColumn', 'guifg=NONE', 'guibg=#303030', 'gui=NONE' })
   end
-
+  --]]
 end
 
 local group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })

@@ -13,13 +13,17 @@ local Plug = vim.fn['plug#']
 vim.fn['plug#begin']('~/.config/nvim/plugged')
 --[[ bg.nvim (Background)     ]] Plug('https://github.com/typicode/bg.nvim.git')
 --[[ Colorscheme (PaperColor) ]] Plug('https://github.com/NLKNguyen/papercolor-theme.git')
+--[[ Colorscheme (PCSlim)     ]] Plug('https://github.com/pappasam/papercolor-theme-slim')
 --[[ Copilot                  ]] Plug('https://github.com/github/copilot.vim.git')
 --[[ fzf-lua                  ]] Plug('https://github.com/ibhagwan/fzf-lua')
+--[[ indent-blankline         ]] Plug('https://github.com/lukas-reineke/indent-blankline.nvim')
 --[[ nvim-lastplace           ]] Plug('https://github.com/ethanholz/nvim-lastplace.git')
---[[ nvim-treesitter          ]] Plug('https://github.com/nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
---[[ SCVim (SuperCollider)    ]] Plug('https://github.com/supercollider/scvim.git', { ['for'] = 'supercollider' })
+--[[ nvim-treesitter          ]] Plug('https://github.com/nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate', ['branch'] = 'master'})
+--[[ nvim-ts-autotag          ]] Plug('https://github.com/windwp/nvim-ts-autotag')
+---[[ render-markdown          ]] Plug('https://github.com/MeanderingProgrammer/render-markdown.nvim', {['for'] = 'markdown'})
+--[[ SCVim (SuperCollider)    ]] Plug('https://github.com/supercollider/scvim.git', {['for'] = 'supercollider' })
 --[[ Simplenote               ]] Plug('https://github.com/simplenote-vim/simplenote.vim.git')
---[[ Syntax (Tridactyl)       ]] Plug('https://github.com/tridactyl/vim-tridactyl.git', { ['for'] = 'tridactyl' })
+--[[ Syntax (Tridactyl)       ]] Plug('https://github.com/tridactyl/vim-tridactyl.git', {['for'] = 'tridactyl' })
 --[[ vim-smoothie             ]] Plug('https://github.com/psliwka/vim-smoothie.git')
 vim.fn['plug#end']()
 
@@ -48,21 +52,27 @@ set.spellsuggest = { 'best', 10 }
 
 --[[ UI ]]
 set.termguicolors = true
-colorscheme('PaperColor')
+-- colorscheme('PaperColor')
+-- colorscheme('PaperColorSlim')
 set.winborder = 'rounded'
-autocmd({'BufWinEnter', 'WinEnter'}, {
-  desc = "Set background color based on time of the day",
-  group = vim.api.nvim_create_augroup('AutoLightDarkBackground', { clear = true }),
-  pattern = '*',
-  callback = function()
-    local hour = tonumber(os.date('%H%M'))
-    if hour < 1700 and hour > 0730 then
-      set.background = 'light'
-    else
-      set.background = 'dark'
-    end
-  end,
-})
+-- autocmd({'BufWinEnter', 'WinEnter'}, {
+--   desc = "Set background color based on time of the day",
+--   group = vim.api.nvim_create_augroup('AutoLightDarkBackground', { clear = true }),
+--   pattern = '*',
+--   callback = function()
+--     local hour = tonumber(os.date('%H%M'))
+--     if hour < 1600 and hour > 0730 then
+--       colorscheme('PaperColorSlimLight')
+--       set.background = 'light'
+--     else
+--       -- recurda, cambiar el colorscheme aquí
+--       -- está interfiriendo con grupo `hl-Whitspace`
+--       -- de alguna forma se está chingando `ibl`
+--       -- colorscheme('PaperColorSlim')
+--       set.background = 'dark'
+--     end
+--   end,
+-- })
 -- Cursor
 set.selection = 'exclusive'
 set.guicursor =
@@ -102,6 +112,7 @@ vim.api.nvim_create_user_command('Realpath', function()
 --[[ Requirables ]]
 require'plugins.copilot'
 require'plugins.fzf-lua'
+require'plugins.indent-blankline'
 require'plugins.nvim-lastplace'
 require'plugins.nvim-treesitter'
 require'lsp'

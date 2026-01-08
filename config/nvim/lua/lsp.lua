@@ -2,6 +2,7 @@
 
 vim.lsp.enable({
   'clangd',
+  'jdtls',
   'jedi_language_server',
   'lemminx',
   'lua-language-server',

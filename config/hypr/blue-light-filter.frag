@@ -2,6 +2,7 @@
 
 //
 // https://github.com/hyprwm/Hyprland/blob/main/example/screenShader.frag
+// https://github.com/hyprwm/Hyprland/raw/refs/heads/main/example/screenShader.frag
 //
 // Example blue light filter shader.
 //

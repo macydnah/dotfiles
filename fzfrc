@@ -22,7 +22,7 @@
 
 --prompt='🔍 '
 --info=inline-right:''
---ghost='Search for...' --color=ghost:italic
+--ghost='Search for...' --color='ghost:italic,ghost:dim'
 --input-border=rounded
 --input-label-pos=4:top
 

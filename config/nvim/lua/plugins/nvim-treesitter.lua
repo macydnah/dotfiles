@@ -5,8 +5,10 @@ require('nvim-treesitter.configs').setup {
     'c',
     'css',
     'html',
+    'java',
     'json',
-    'latex',
+    'jsonc',
+    -- 'latex',
     'lua',
     'markdown',
     'markdown_inline',
@@ -18,14 +20,23 @@ require('nvim-treesitter.configs').setup {
     'vim',
     'vimdoc',
   },
-  auto_install = false,
+  auto_install = true,
   ignore_install = { '' },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-    disable = { '' }
+    disable = { 'tmux' }
   },
   indent = {
     enable = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
   },
 }

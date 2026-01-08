@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-    if client == nil or client.name == 'GitHub Copilot' then
+    if not client or client.name == 'GitHub Copilot' then
       return
     end
 
@@ -27,7 +27,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
 
-    -- if client:supports_method('textDocument/diagnostic') then
     if client:supports_method('textDocument/publishDiagnostics') then
       vim.diagnostic.config({
         -- see :help vim.diagnostic.Opts
@@ -69,7 +68,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client == nil or client.name == 'GitHub Copilot' then
+
+    if not client or client.name == 'GitHub Copilot' then
       return
     end
 

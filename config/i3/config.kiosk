@@ -11,3 +11,5 @@ bindsym Mod4+Shift+Escape exec --no-startup-id "i3-msg exit"
 #exec --no-startup-id "st ; i3-msg exit"
 #exec --no-startup-id "qemu-system-x86_64 -drive file=/tmp/FreeBSD-14.0-CURRENT-amd64.qcow2,format=qcow2 -m 5G -full-screen ; i3-msg exit"
 exec --no-startup-id "qemu-system-x86_64 -drive file=/ubuntu-22.10-desktop-amd64.iso,format=raw,if=virtio -vga virtio -m 5G -accel kvm -full-screen ; i3-msg exit"
+
+# vim: ft=i3config

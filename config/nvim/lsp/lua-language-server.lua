@@ -1,9 +1,10 @@
----@type vim.lsp.Config
 ---@brief
 ---
 --- https://luals.github.io/wiki/settings/
 --- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+--- https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json
 
+---@type vim.lsp.Config
 return {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
@@ -20,10 +21,10 @@ return {
   settings = {
     Lua = {
       completion = {
+        enable = true,
         autoRequire = true,
         callSnippet = 'Replace',
         displayContext = 10,
-        enable = true,
         keywordSnippet = 'Both',
         postfix = '@',
         requireSeparator = '.',
@@ -38,8 +39,8 @@ return {
         enable = true,
       },
       hint = {
-        arrayIndex = 'Auto',
         enable = true,
+        arrayIndex = 'Auto',
         paramName = 'Disable',
         setType = false,
       },
@@ -47,7 +48,21 @@ return {
         enable = true,
       },
       runtime = {
-        path = { 'lua/?.lua', 'lua/?/init.lua' },
+        path = {
+          -- 'lua/?.lua',
+          -- 'lua/?/init.lua'
+          '?.lua',
+          '?/init.lua'
+        },
+      },
+      semantic = {
+        enable = false,
+        annotation = true,
+        keyword = false,
+        variable = true,
+      },
+      signatureHelp = {
+        enable = true,
       },
       workspace = {
         checkThirdParty = 'Disable',
@@ -63,4 +78,7 @@ return {
       },
     },
   },
+  -- on_init = function(client)
+  --   client.server_capabilities.semanticTokensProvider = nil
+  -- end,
 }

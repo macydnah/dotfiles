@@ -35,22 +35,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
         virtual_lines = { current_line = true },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = '✘',
-            [vim.diagnostic.severity.WARN] = '▲',
-            [vim.diagnostic.severity.HINT] = '⚑',
-            [vim.diagnostic.severity.INFO] = '»',
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
           },
           linehl = {
             -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
             -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
-            -- [vim.diagnostic.severity.HINT] = 'HintMsg',
             -- [vim.diagnostic.severity.INFO] = 'InfoMsg',
+            -- [vim.diagnostic.severity.HINT] = 'HintMsg',
           },
           numhl = {
             -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
             -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
-            -- [vim.diagnostic.severity.HINT] = 'HintMsg',
             -- [vim.diagnostic.severity.INFO] = 'InfoMsg',
+            -- [vim.diagnostic.severity.HINT] = 'HintMsg',
           },
         },
         update_in_insert = true,

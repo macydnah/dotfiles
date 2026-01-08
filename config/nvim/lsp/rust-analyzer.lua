@@ -1,4 +1,3 @@
----@type vim.lsp.Config
 ---@brief
 ---
 --- https://github.com/rust-lang/rust-analyzer
@@ -64,6 +63,7 @@ local function open_external_docs()
   end)
 end
 
+---@type vim.lsp.Config
 return {
   cmd = { 'rust-analyzer' },
   filetypes = { 'rust' },

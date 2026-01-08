@@ -1,4 +1,3 @@
----@type vim.lsp.Config
 ---@brief
 ---
 --- https://clangd.llvm.org/installation.html
@@ -11,6 +10,8 @@
 ---   ```
 --- - clangd relies on a [JSON compilation database](https://clang.llvm.org/docs/JSONCompilationDatabase.html)
 ---   specified as compile_commands.json, see https://clangd.llvm.org/installation#compile_commandsjson
+
+-- https://raw.githubusercontent.com/neovim/nvim-lspconfig/refs/heads/master/lsp/clangd.lua
 
 -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
 local function switch_source_header(bufnr)
@@ -58,6 +59,7 @@ local function symbol_info()
   end, bufnr)
 end
 
+---@type vim.lsp.Config
 return {
   cmd = { 'clangd' },
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },

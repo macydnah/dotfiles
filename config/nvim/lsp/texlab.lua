@@ -1,4 +1,3 @@
----@type vim.lsp.Config
 ---@brief
 ---
 --- https://github.com/latex-lsp/texlab
@@ -162,6 +161,7 @@ local function buf_change_env(client, bufnr)
   }
 end
 
+---@type vim.lsp.Config
 return {
   cmd = { 'texlab' },
   filetypes = { 'tex', 'plaintex', 'bib' },

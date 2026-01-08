@@ -1,10 +1,10 @@
----@type vim.lsp.Config
 ---@brief
 ---
 --- https://github.com/pappasam/jedi-language-server
 ---
 --- `jedi-language-server`, a language server for Python, built on top of jedi
 
+---@type vim.lsp.Config
 return {
   cmd = { 'jedi-language-server' },
   filetypes = { 'python' },

@@ -18,7 +18,7 @@ require('fzf-lua').setup {
     -- title = "Title",
     title_pos = 'left',
     title_flags = false,
-    fullscreen = true,
+    fullscreen = false,
     preview = {
       default = 'builtin',
       border = 'rounded',

@@ -68,30 +68,30 @@ if vim.opt.diff:get() then
 end
 
 --[[ General Autocommands ]]
-local highlight_yank_group = augroup('HighlightYank', { clear = true })
+local __group_hl_yank = augroup('HighlightYank', { clear = true })
 autocmd('TextYankPost', {
   desc = "Briefly highlight yanked text",
-  group = highlight_yank_group,
+  group = __group_hl_yank,
   callback = function() vim.hl.on_yank() end
 })
 
 --[[ User Commands ]]
 vim.api.nvim_create_user_command('Realpath', function()
-    local filepath = vim.api.nvim_buf_get_name(0)
-    if filepath == '' then
+    local __filepath = vim.api.nvim_buf_get_name(0)
+    if __filepath == '' then
       print("No file is currently being edited.")
       return
     end
-    vim.fn.setreg('+', filepath)
-    print("Copied to clipboard: " .. filepath)
+    vim.fn.setreg('+', __filepath)
+    print("Copied to clipboard: " .. __filepath)
   end,
   { desc = "Copy current file's realpath to the '+' register" }
 )
 
 --[[ Requirables ]]
-require'plugins.copilot'
-require'plugins.fzf-lua'
-require'plugins.indent-blankline'
-require'plugins.nvim-lastplace'
-require'plugins.nvim-treesitter'
-require'lsp'
+require('plugins.nvim-lastplace')
+require('plugins.nvim-treesitter')
+require('lsp')
+require('plugins.indent-blankline')
+require('plugins.copilot')
+require('plugins.fzf-lua')

@@ -2,78 +2,79 @@
 
 -- Highlight the current cursor coordinate within the active window (crosshair)
 
-local filetype_blacklist = {
+---Filetypes where cursorcolumn should be disabled
+---@type string[]
+local no_cursorcolumn_filetypes = {
   'plaintex',
   'tex',
   'text',
 }
 
+---@return boolean true In case cursorcolumn is needed in the current buffer; false otherwise
 local function __need_cursorcolumn()
   if vim.opt_local.list:get() then
     return false
   end
-  for _, blacklisted in ipairs(filetype_blacklist) do
+
+  for _, blacklisted in ipairs(no_cursorcolumn_filetypes) do
     if vim.opt_local.filetype:get() == blacklisted then
       return false
     end
   end
+
   return true
 end
 
-local function auto_crosshair()
+---Enable cursorline (and cursorcolumn if needed) in the current buffer
+local function __crosshair_on()
   vim.opt_local.cursorline = true
-  vim.cmd.highlight({ 'CursorLine', 'gui=bold,italic' })
+
   if __need_cursorcolumn() then
     vim.opt_local.cursorcolumn = true
-    vim.cmd.highlight({ 'CursorColumn', 'gui=NONE' })
   else
     vim.opt_local.cursorcolumn = false
   end
-  --[[
-  if vim.opt_local.background:get() == 'light' then
-    vim.cmd.highlight({ 'CursorLine', 'guifg=NONE', 'guibg=#d4d4d4', 'gui=bold,italic' })
-    vim.cmd.highlight({ 'CursorColumn', 'guifg=NONE', 'guibg=#d4d4d4', 'gui=NONE' })
-  else
-    vim.cmd.highlight({ 'CursorLine', 'guifg=NONE', 'guibg=#303030', 'gui=bold,italic' })
-    vim.cmd.highlight({ 'CursorColumn', 'guifg=NONE', 'guibg=#303030', 'gui=NONE' })
-  end
-  --]]
 end
 
-local group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
+---Disable cursorline and cursorcolumn in the current buffer
+local function __crosshair_off()
+  vim.opt_local.cursorline = false
+  vim.opt_local.cursorcolumn = false
+end
 
-vim.api.nvim_create_autocmd({'BufWinEnter', 'WinEnter'}, {
+---Highlight the current cursor coordinate within the active window (crosshair)
+---@param enable boolean? true to enable; false to disable; defaults to true
+local function auto_crosshair(enable)
+  if enable == false then
+    __crosshair_off()
+  else
+    __crosshair_on()
+  end
+end
+
+local __group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
+vim.api.nvim_create_autocmd({'BufWinEnter', 'FocusGained', 'InsertLeave', 'WinEnter'}, {
   desc = "Enable cursorline and cursorcolumn in the current buffer/window",
-  group = group,
+  group = __group,
   pattern = '*',
   callback = function()
     auto_crosshair()
   end,
 })
-vim.api.nvim_create_autocmd('WinLeave', {
+vim.api.nvim_create_autocmd({'FocusLost', 'WinLeave'}, {
   desc = "Disable cursorline and cursorcolumn when leaving the current window",
-  group = group,
+  group = __group,
   pattern = '*',
   callback = function()
-    vim.opt_local.cursorline = false
-    vim.opt_local.cursorcolumn = false
+    auto_crosshair(false)
   end,
 })
 vim.api.nvim_create_autocmd('InsertEnter', {
-  desc = "Disable italic cursorline when entering insert mode",
-  group = group,
+  desc = "Disable cursorcolumn when entering insert mode",
+  group = __group,
   pattern = '*',
   callback = function()
-    vim.cmd.highlight({ 'CursorLine', 'gui=NONE' })
+    vim.opt_local.cursorcolumn = false
   end,
 })
-vim.api.nvim_create_autocmd('InsertLeave', {
-  desc = "Enable cursorline and cursorcolumn when leaving insert mode",
-  group = group,
-  pattern = '*',
-  callback = function()
-    auto_crosshair()
-  end,
-})
-
 --]]

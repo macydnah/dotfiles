@@ -5,17 +5,14 @@
 vim.g.manual_colorscheme = nil
 
 if vim.g.colorscheme_timer == nil then
-
   vim.g.colorscheme_timer = true
 
   local function update_colorscheme()
-
     if vim.g.manual_colorscheme then
       return
     end
 
     local hour = tonumber(os.date('%H%M'))
-
     if hour < 1600 and hour > 0730 then
       vim.cmd('colorscheme PaperColorSlimLight')
       vim.opt.background = 'light'

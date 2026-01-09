@@ -52,27 +52,7 @@ set.spellsuggest = { 'best', 10 }
 
 --[[ UI ]]
 set.termguicolors = true
--- colorscheme('PaperColor')
--- colorscheme('PaperColorSlim')
 set.winborder = 'rounded'
--- autocmd({'BufWinEnter', 'WinEnter'}, {
---   desc = "Set background color based on time of the day",
---   group = vim.api.nvim_create_augroup('AutoLightDarkBackground', { clear = true }),
---   pattern = '*',
---   callback = function()
---     local hour = tonumber(os.date('%H%M'))
---     if hour < 1600 and hour > 0730 then
---       colorscheme('PaperColorSlimLight')
---       set.background = 'light'
---     else
---       -- recurda, cambiar el colorscheme aquí
---       -- está interfiriendo con grupo `hl-Whitspace`
---       -- de alguna forma se está chingando `ibl`
---       -- colorscheme('PaperColorSlim')
---       set.background = 'dark'
---     end
---   end,
--- })
 -- Cursor
 set.selection = 'exclusive'
 set.guicursor =
@@ -82,8 +62,7 @@ set.guicursor =
   'sm:block-blinkwait175-blinkoff150-blinkon175,' ..
   't:hor1,'
 -- VimDiff UI
-local diff_mode = vim.opt.diff:get()
-if diff_mode then
+if vim.opt.diff:get() then
   colorscheme('evening')
   set.diffopt = { 'filler', 'context:1000000' }
 end

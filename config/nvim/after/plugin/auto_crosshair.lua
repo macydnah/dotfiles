@@ -5,9 +5,15 @@
 ---Filetypes where cursorcolumn should be disabled
 ---@type string[]
 local no_cursorcolumn_filetypes = {
+  'gitcommit',
+  'help',
+  'html',
+  'markdown',
   'plaintex',
   'tex',
   'text',
+  'xhtml',
+  'xml',
 }
 
 ---@return boolean true In case cursorcolumn is needed in the current buffer; false otherwise

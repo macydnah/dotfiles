@@ -3,13 +3,13 @@
 vim.opt.list = false
 
 vim.opt.listchars = {
-  -- eol = '↵',
+  eol = '↵',
   tab = '│ ',
-  -- space = '·',
-  -- multispace = '·',
+  space = '·',
+  multispace = '·',
   lead = '⎽',
   -- leadmultispace = '│   ',
-  trail = '·',
+  trail = '•',
   extends = '»',
   precedes = '«',
   nbsp = '⍽',
@@ -41,5 +41,4 @@ vim.keymap.set({'n'}, CTRL_F10, function()
     vim.opt_local.cursorcolumn = false
   end
 end, { desc = "Toggle formatting marks On/Off" })
-
 --]]

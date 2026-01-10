@@ -1,4 +1,4 @@
----[[ ~/.config/nvim/after/plugin/time_based_theme.lua
+---[[ ~/.config/nvim/after/plugin/theme.lua
 
 -- Set colorscheme (and/or background color) based on time of the day
 

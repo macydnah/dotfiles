@@ -14,7 +14,7 @@ require('fzf-lua').setup {
     row = 0.35,
     col = 0.50,
     border = 'none',
-    backdrop = 60,
+    backdrop = 70,
     -- title = "Title",
     title_pos = 'left',
     title_flags = false,
@@ -173,25 +173,59 @@ require('fzf-lua').setup {
     },
     fzf_opts = {
       ['--ghost'] = "Buffers...",
-      ['--no-input'] = false,
+      -- ['--no-input'] = false,
+    },
+  },
+
+  helptags = {
+    winopts = {
+      title = "",
+      border = 'none',
+      fullscreen = true,
+    },
+    actions = {
+      ['enter'] = function(selected)
+        if vim.opt_local.filetype:get() == 'help' then
+          return actions.help(selected)
+        else
+          return actions.help_tab(selected)
+        end
+      end,
+    },
+    fzf_opts = {
+      ['--ghost'] = "Search for help...",
     },
   },
 }
 
-vim.keymap.set('n', '<C-\\>', function() require('fzf-lua').buffers() end,
-  { desc = "FzfLua: List open buffers", silent = true })
+require('fzf-lua').register_ui_select()
 
--- vim.keymap.set('n', '<C-k>', function() require('fzf-lua').builtin() end,
---   { desc = "FzfLua: Fuzzy search fzf-lua functions", silent = true })
+---Wrapper around |vim.keymap.set| to set keymaps for FzfLua functions
+---@param mode string|string[] Mode "short-name" (see nvim_set_keymap()), or a list thereof.
+---@param lhs string Left-hand side |{lhs}| of the mapping.
+---@param desc string Description of the mapping.
+---@param rhs string|function Right-hand side |{rhs}| of the mapping, can be a Lua function.
+---@param opts table? Additional options for the mapping.
+local function keymap(mode, lhs, desc, rhs, opts)
+  local defaults = { silent = true, desc = 'FzfLua: ' .. desc }
+  opts = vim.tbl_extend('force', defaults, opts or {})
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
 
-vim.keymap.set('n', '<C-p>', function() require('fzf-lua').files() end,
-  { desc = "FzfLua: Fuzzy search files in cwd", silent = true })
+keymap('n', '<C-\\>', "List open buffers",
+  function() require('fzf-lua').buffers() end)
 
--- vim.keymap.set('n', '<C-l>', function() require('fzf-lua').live_grep() end,
---   { desc = "FzfLua: Live grep in cwd", silent = true })
+-- keymap('n', '<C-k>', "Fuzzy search fzf-lua functions",
+--   function() require('fzf-lua').builtin() end)
 
--- vim.keymap.set('n', '<C-g>', function() require('fzf-lua').grep_project() end,
---   { desc = "FzfLua: Grep in project", silent = true })
+keymap('n', '<C-p>', "Fuzzy search files in cwd",
+  function() require('fzf-lua').files() end)
 
-vim.keymap.set('n', '<F1>', function() require('fzf-lua').help_tags() end,
-  { desc = "FzfLua: Search help tags", silent = true })
+-- keymap('n', '<C-l>', "Live grep in cwd",
+--   function() require('fzf-lua').live_grep() end)
+
+keymap('n', '<C-g>', "Grep in project",
+  function() require('fzf-lua').grep_project() end)
+
+keymap('n', '<F1>', "Search help tags",
+  function() require('fzf-lua').help_tags() end)

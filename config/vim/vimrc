@@ -69,12 +69,12 @@ autocmd BufWritePost $HOME/.config/gtk-3.0/settings.ini silent! !import-gsetting
 "" and highlight it only in the active window.
 set cursorline
 set cursorcolumn
-highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
+highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=bold,italic
 au WinEnter * setlocal cursorline cursorcolumn
 au WinLeave * setlocal nocursorline nocursorcolumn
 au InsertEnter * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
-au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=underline,italic
-au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=bold
+au InsertLeave * highlight CursorLine ctermfg=NONE ctermbg=NONE cterm=bold,italic
+au InsertEnter * highlight CursorColumn ctermfg=NONE ctermbg=NONE cterm=NONE
 au InsertLeave * highlight CursorColumn ctermfg=NONE ctermbg=DarkGray cterm=NONE
 
 """ Tweaks for Foot terminal (https://codeberg.org/dnkl/foot/wiki#vim)
@@ -127,14 +127,3 @@ au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 " let g:sclangTerm = "foot"
 let g:sclangTerm = "st"
 let g:scFlash = 1
-"
-"" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { "mode": "passive" }
-" nnoremap <F12> :SyntasticCheck<CR>

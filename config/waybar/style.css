@@ -1,82 +1,116 @@
 /* ~/.config/waybar/style.css */
 
 /* https://github.com/Alexays/Waybar/wiki/Styling */
+/* https://docs.gtk.org/gtk3/css-properties.html */
+
+@define-color bg rgba(43, 48, 59, 0.5);
+@define-color fg rgba(255, 255, 255, 0.9);
+@define-color ac rgba(151, 208, 26, 1);
+@define-color fg-dim rgba(255, 255, 255, 0.5);
+@define-color bg-dim rgba(43, 48, 59, 0.4);
+@define-color ac-dim rgba(151, 208, 26, 0.06);
+
+@define-color border rgba(100, 114, 125, 0.1);
+
 * {
     border: none;
-    border-radius: 0px;
-    font-family: SF Pro Rounded, Twemoji, JetBrainsMono Nerd Font;
-    font-size: 14px;
-    min-height: 0px;
+    border-radius: 0;
+    font-family: SF Pro Display, Twemoji, Symbols Nerd Font;
+    font-size: 1em;
+    font-style: normal;
+    /* font-weight: bold; */
+    min-height: 0;
 }
 
+/* https://github.com/Alexays/Waybar/wiki/Styling#bar-styling */
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background;
-    transition-duration: .5s;
+    background-color: @bg;
+    color: @fg;
+    box-shadow: inset 0 -1px @border;
 }
 
-#workspaces button {
-    padding: 0 5px;
+/* https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#style */
+#workspaces {
     background-color: transparent;
-    color: #ffffff;
 }
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-    /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-    box-shadow: inset 0 -3px #ffffff;
+#workspaces > button {
+    padding: 0 0.4em;
+    color: @fg-dim;
+    font-weight: bold;
 }
-
-#workspaces button.active {
-    background: #64727d;
-    box-shadow: inset 0 -3px #97d01a;
-    color: #97d01a;
-    font-weight: bolder;
+#workspaces > button.active {
+    background-color: @ac-dim;
+    color: @ac;
+    box-shadow: inset 0 -1px @ac;
 }
-
-#workspaces button.urgent {
+#workspaces > button.visible:not(.active) {
+    /* background-color: @bg-dim; */
+    box-shadow: inset 0 -1px @ac;
+}
+#workspaces > button.urgent {
     background-color: #eb4d4b;
 }
-
-#window, #workspaces {
-    margin: 0 4px;
+#workspaces > button:hover {
+    background: none;
+    color: @fg-dim;
+    /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+    box-shadow: inset 0 -3px @ac;
+    text-shadow: inherit;
 }
-
+#workspaces > button.active:hover {
+    background: @ac-dim;
+    color: @ac;
+    box-shadow: inset 0 -1px @ac;
+}
+#workspaces > button.visible:hover:not(.active) {
+    box-shadow: inset 0 -3px @ac;
+}
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 0em;
 }
 
-#mode, #clock, #battery {
-    padding: 0 10px;
+/* https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#style-1 */
+#window {
+    /* border-radius: 0.4em; */
+    padding: 0em 1em;
+    box-shadow: none;
+    background-color: transparent;
+    color: @fg;
+    font-weight: normal;
+    /* box-shadow: inset 0 -1px transparent */
+}
+/* make window module transparent when no windows present */
+window#waybar.empty #window {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    box-shadow: none;
 }
 
-#mode {
-    background: #64727d;
-    box-shadow: inset 0 -3px #ffffff;
+.modules-right {
+    margin-right: 0em;
+    background: transparent;
+    color: @fg;
+    box-shadow: inset 0 -1px @border;
 }
-
-#clock {
-    background-color: #64727d;
-}
-
-#custom-wttr {
-	font-weight: bolder;
-	background: #64727d;
-	padding: 0px 10px;
+#mode, #clock, #battery, #custom-wttr {
+    padding: 0em 0.5em;
+    background: transparent;
+    color: @fg;
+    /* box-shadow: inset 0 -1px @border; */
+    font-weight: bold;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    font-weight: normal;
 }
-
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26a65b;
-    /* background-color: #97d01a; */
+    background-color: @ac-dim;
+    color: @ac;
+}
+#battery.plugged {
+    color: @fg;
 }
 
 @keyframes blink {
@@ -85,7 +119,6 @@ window#waybar {
         color: #000000;
     }
 }
-
 #battery.critical:not(.charging) {
     background-color: #f53c3c;
     color: #ffffff;

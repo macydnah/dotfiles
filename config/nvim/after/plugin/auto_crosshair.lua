@@ -10,6 +10,7 @@ local no_cursorcolumn_filetypes = {
   'html',
   'markdown',
   'plaintex',
+  'qf',
   'tex',
   'text',
   'xhtml',
@@ -75,12 +76,12 @@ vim.api.nvim_create_autocmd({'FocusLost', 'WinLeave'}, {
     auto_crosshair(false)
   end,
 })
-vim.api.nvim_create_autocmd('InsertEnter', {
-  desc = "Disable cursorcolumn when entering insert mode",
-  group = __group,
-  pattern = '*',
-  callback = function()
-    vim.opt_local.cursorcolumn = false
-  end,
-})
+-- vim.api.nvim_create_autocmd('InsertEnter', {
+--   desc = "Disable cursorcolumn when entering insert mode",
+--   group = __group,
+--   pattern = '*',
+--   callback = function()
+--     vim.opt_local.cursorcolumn = false
+--   end,
+-- })
 --]]

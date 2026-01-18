@@ -18,8 +18,16 @@ keymap = [
 
 	# Navigation
 	{ on = '<Enter>',    run = 'plugin smart-enter', desc = "Open file/Enter the child directory" },
+        { on = '<Home>',     run = 'arrow top',          desc = "Go to the top of the file list" },
+        { on = '<End>',      run = 'arrow bot',          desc = "Go to the bottom of the file list" },
 	{ on = '<PageUp>',   run = 'arrow -100%',        desc = "Move cursor up one page" },
 	{ on = '<PageDown>', run = 'arrow 100%',         desc = "Move cursor down one page" },
+
+        { on = '<C-u>',      run = 'arrow -50%',         desc = "Move cursor up half page" },
+        { on = '<C-d>',      run = 'arrow 50%',          desc = "Move cursor down half page" },
+        { on = '<C-b>',      run = 'arrow -100%',        desc = "Move cursor up one page" },
+        { on = '<C-f>',      run = 'arrow 100%',         desc = "Move cursor down one page" },
+
 	{ on = 'H',          run = 'back',               desc = "Go back to the previous directory" },
 	{ on = 'J',          run = 'arrow 50%',          desc = "Move cursor down half page" },
 	{ on = 'K',          run = 'arrow -50%',         desc = "Move cursor up half page" },

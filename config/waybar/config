@@ -3,7 +3,7 @@
 /* https://github.com/Alexays/Waybar/wiki/Configuration */
 {
   "layer": "top",
-  "output": "LVDS-1",
+  // "output": "LVDS-1",
   "position": "top",
   "height": 24,
   //"width": 1280,
@@ -22,7 +22,9 @@
   "modules-center": [
   ],
   "modules-right": [
+    "hyprland/submap",
     "custom/wttr",
+    "clock",
     "tray",
     "battery"
   ],
@@ -104,6 +106,8 @@
   // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#window
   "hyprland/window": {
     // "format": "{title}",
+    // "format": "> {title}",
+    // "format": "  {}",
     // "format": "  {}",
     "format": "  {}",
     "max-length": 100,
@@ -113,15 +117,23 @@
       // "(.*) - VIM": "$1 📝",
       // "(.*) - Nvim": "$1 📝",
       // "(.*) — File Manager": "$1 🗂"
+      "(.*) - (Apache NetBeans IDE .*)": " $1 - $2",
+      "(.*) — File Manager": "🗂 $1",
       "(.*) — Mozilla Firefox": "🌎 $1",
       "(.*) — Mozilla Firefox Private Browsing": "🕵️‍♂️ $1",
-      "(.*) - VIM": "📝 $1",
+      "(.*) - mpv": "  $1",
       "(.*) - Nvim": "📝 $1",
-      "(.*) — File Manager": "🗂 $1"
+      "(.*) - VIM": "📝 $1"
     },
     "separate-outputs": false,
     "icon": false,
     "icon-size": 20
+  },
+  // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#submap
+  "hyprland/submap": {
+    "format": "Submap: <span style=\"italic\">{}</span>",
+    "max-length": 20,
+    "tooltip": false
   },
   "keyboard-state": {
     "numlock": true,
@@ -179,8 +191,16 @@
     // "icon-size": 21,
     "spacing": 10
   },
+  // https://github.com/Alexays/Waybar/wiki/Module:-Clock#config
   "clock": {
+    "interval": 60,
+    // "format": "{:%H:%M}",
+    // "format": "{:L%A %e %B %Y %H:%M}",
+    "format": "{:L%H:%M %A %e %B %Y}",
     // "timezone": "America/New_York",
+    // "timezone": "America/Mexico_City",
+    // "timezone": "America/Mazatlan",
+    // "locale": "es_MX.UTF-8",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
   },

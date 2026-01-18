@@ -1,3 +1,7 @@
+" ~/.config/tridactyl/tridactylrc
+
+" https://github.com/tridactyl/tridactyl/raw/refs/heads/master/.tridactylrc
+
 " Unbind everything first {{{
 unbind A
 unbind B
@@ -128,6 +132,7 @@ setnull searchurls.wikipedia
 setnull searchurls.yahoo
 setnull searchurls.youtube
 " }}}
+
 " General Settings
 set update.lastchecktime 1733800456537
 set update.nag true
@@ -149,6 +154,8 @@ set searchurls.apa https://normas-apa.org/?s=
 set searchurls.alw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
 set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.dem https://dem.colmex.mx/Ver/
+set searchurls.javadoc https://docs.oracle.com/en/java/javase/25/docs/api/search.html?q=
 set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
 set searchurls.rae https://dle.rae.es/
 set searchurls.rscrate https://crates.io/search?q=
@@ -191,6 +198,15 @@ set editorcmd footclient --app-id=floating-editor -- nvim -c "lua if vim.fn.line
 alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
 bind --mode=insert <C-i> editor_rm
 bind --mode=input <C-i> editor_rm
+
+" toggle darkmod (dark mode even in sites that don't support it)
+bind <F6> js -r webdarkmode.js
+
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+" better hinting in certain pages
+bindurl ^https://campus.unadmexico.mx f hint -Jc a[href],button,[role="link"],[role="button"]
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker

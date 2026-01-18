@@ -7,7 +7,6 @@
 -- HTML/XHTML FileType settings ts=8 sts=2 sw=2 et ai wrap smoothscroll linebreak breakindent spell
 
 local bufnr = vim.api.nvim_get_current_buf()
-
 ---Set a keymap for the current buffer.
 ---@param mode string|string[] Mode "short-name" (see nvim_set_keymap()), or a list thereof.
 ---@param lhs string Left-hand side |{lhs}| of the mapping.
@@ -30,6 +29,11 @@ vim.opt_local.autoindent = true
 
 vim.opt_local.cursorline = true
 vim.opt_local.cursorcolumn = false
+
+require('nvim-ts-autotag').setup()
+
+bufmap({''}, '<F12>', "Open current file in Firefox",
+  function() os.execute('firefox ' .. vim.fn.expand('%')) end, { silent = true })
 
 -- HTML/XHTML specific settings
 local ft = vim.bo.filetype
@@ -59,8 +63,4 @@ if ft == 'html' or ft == 'xhtml' then
   bufmap('n', 'j', "Move down a visual line for wrap enabled lines", 'gj')
   bufmap('n', 'k', "Move up a visual line for wrap enabled lines", 'gk')
 end
-
-bufmap({''}, '<F12>', "Open current file in Firefox",
-  function() os.execute('firefox ' .. vim.fn.expand('%')) end, { silent = true })
-
 --]]

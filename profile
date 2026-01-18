@@ -7,6 +7,7 @@ fi
 # Perfil
 export AUR="$HOME/.local/opt/AUR"
 export EDITOR="vim"
+export LC_TIME=es_MX.UTF-8
 export MANPAGER="sh -c 'col -bx | bat --plain --language=man'"
 export MANROFFOPT="-c"
 export OPT="$HOME/.local/opt"

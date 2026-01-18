@@ -13,7 +13,7 @@ if vim.g.colorscheme_timer == nil then
     end
 
     local hour = tonumber(os.date('%H%M'))
-    if hour < 1600 and hour > 0730 then
+    if hour < 1700 and hour > 0730 then
       vim.cmd('colorscheme PaperColorSlimLight')
       vim.opt.background = 'light'
     else

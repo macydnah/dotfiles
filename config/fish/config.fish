@@ -15,6 +15,7 @@ if status is-interactive
     abbr --add math --set-cursor=! -- "math '!'"
     # abbr --add mpa                 -- "mpv --no-resume-playback --ytdl-format='bestaudio' --video=no"
     abbr --add mpv --set-cursor=!  -- "mpv '!'"
+    abbr --add ssh-keygen          -- 'ssh-keygen -C "$(whoami)@$(uname -n)-$(date -I)"'
     abbr --add vim                 -- nvim
     abbr --add wablk               -- "watch -ctn1 'echo ; lsblk'"
     abbr --add wared               -- "watch -ctn1 'nmcli -c yes | head -n20'"

@@ -135,11 +135,14 @@ if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
 	_tmux_auto_session --exec
 fi
 # auto start tmux at local login in tty6
-if [ -z "$TMUX" ] && [ "$XDG_VTNR" -eq 6 ] && [ "$SSH_CONNECTION" == "" ] && [ -z "$DISPLAY" ]
-then
-	# _tmux_auto_session_mini
-	_tmux_auto_session_mini --exec
-fi
+case "$XDG_VTNR" in
+	6)
+		if [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ] && [ -z "$DISPLAY" ]; then
+			# _tmux_auto_session_mini
+			_tmux_auto_session_mini --exec
+		fi
+		;;
+esac
 
 # Source ~/.bashrc at the end
 if [ -n "$BASH_VERSION" ]; then

@@ -90,4 +90,8 @@ if status is-interactive
     set -gx FZF_ALT_C_COMMAND     "fd --hidden --no-follow --type dir --type symlink --exclude .git . \$dir"
     # set -gx FZF_ALT_C_OPTS        "--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
 
+    # Disable greeting
+    # see file:///usr/share/doc/fish/cmds/fish_greeting.html
+    set -g fish_greeting
+
 end

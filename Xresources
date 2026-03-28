@@ -4,8 +4,17 @@
 !#include "/home/macydnah/.local/share/Xresources-themes/gnometerm.Xresources"
 !#include "/home/macydnah/.local/share/Xresources-themes/google-dark.Xresources"
 !#include "/home/macydnah/.local/share/Xresources-themes/Mathias.Xresources"
-#include "/home/macydnah/.local/share/Xresources-themes/Neon.Xresources"
+!#include "/home/macydnah/.local/share/Xresources-themes/Neon.Xresources"
 !#include "/home/macydnah/.local/share/Xresources-themes/Symfonic.Xresources"
+
+!! base dpi (1.25=120, 1.5=144, 2=192)
+Xft.dpi:	96
+Xft.autohint:	0
+Xft.lcdfilter:	lcddefault
+Xft.hintstyle:	hintfull
+Xft.hinting:	1
+Xft.antialias:	1
+Xft.rgba:	rgb
 
 *background:	#0F0F0F
 *foreground:	#EBEBEB

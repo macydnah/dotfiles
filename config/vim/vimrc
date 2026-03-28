@@ -119,7 +119,7 @@ inoremap <F1> <Esc>:call ToggleCopilot()<CR>a
 nnoremap <F1> :call ToggleCopilot()<CR>
 "
 "" Simplenote
-source $HOME/.config/vim/simplenoterc.vim
+"source $HOME/.config/vim/simplenoterc.vim
 "
 "" SuperCollider
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider

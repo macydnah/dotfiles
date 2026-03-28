@@ -30,7 +30,8 @@ vim.fn['plug#end']()
 
 --[[ General Settings ]]
 set.title = true
-set.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a - Nvim'
+-- set.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a - Nvim'
+set.titlestring = '%t - Nvim'
 set.ignorecase = true
 set.smartcase = true
 set.wrap = false
@@ -87,6 +88,19 @@ vim.api.nvim_create_user_command('Realpath', function()
     print("Copied to clipboard: " .. __filepath)
   end,
   { desc = "Copy current file's realpath to the '+' register" }
+)
+vim.api.nvim_create_user_command('RealpathURI', function()
+    local __uri = vim.uri_from_bufnr(0)
+    if __uri == '' then
+      print("Could not convert file path to URI.")
+      return
+    end
+
+    vim.fn.system("wl-copy -t text/uri-list", __uri .. "\n")
+
+    print("Copied to clipboard: " .. __uri)
+  end,
+  { desc = "Copy current file's URI to the '+' register" }
 )
 
 --[[ Requirables ]]

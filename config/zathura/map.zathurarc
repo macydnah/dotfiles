@@ -1,6 +1,6 @@
 # Smooth scrolling
-map j feedkeys "<C-Down>"
-map k feedkeys "<C-Up>"
+map j scroll smooth-down
+map k scroll smooth-up
 
 # Zoom
 map = zoom in

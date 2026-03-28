@@ -56,6 +56,21 @@ set page-cache-size 15
 set page-v-padding 20
 set page-h-padding 10
 
+set recolor false
+set recolor-adjust-lightness false
+set recolor-darkcolor "#FFFFFF"
+set recolor-keephue true
+set recolor-lightcolor "#000000"
+set recolor-reverse-video false
+
+set scroll-full-overlap 0.0
+set scroll-hstep -1.0
+set scroll-step 80.0
+set scroll-page-aware false
+set scroll-wrap false
+
+set search-hadjust true
+
 set selection-clipboard clipboard
 set selection-notification true
 

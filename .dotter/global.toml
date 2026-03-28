@@ -15,6 +15,7 @@ default_target_type = "symbolic"
 "config/foot" = {target = "~/.config/foot", type = "symbolic", recurse = false}
 
 [WUtils.files]
+"config/darkman" = {target = "~/.config/darkman", type = "symbolic", recurse = false}
 "config/networkmanager-dmenu" = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 "config/swayimg" = {target = "~/.config/swayimg", type = "symbolic", recurse = false}
@@ -64,6 +65,10 @@ depends = ["mpv", "yt-dlp"]
 [neovim.files]
 "config/nvim" = {target = "~/.config/nvim", type = "symbolic", recurse = true}
 
+
+## OpenCode ##
+[opencode.files]
+"config/opencode" = {target = "~/.config/opencode", type = "symbolic", recurse = true}
 
 ## PDF viewer ##
 [zathura.files]

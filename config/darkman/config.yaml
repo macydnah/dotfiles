@@ -1,0 +1,6 @@
+lat: 19.42847
+lng: -99.12766
+usegeoclue: false
+dbusserver: true
+portal: true
+socketpath: "${XDG_RUNTIME_DIR}/darkman/control.sock"

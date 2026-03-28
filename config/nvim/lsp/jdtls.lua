@@ -167,7 +167,7 @@ return {
         },
       },
       saveActions = {
-        organizeImports = false,
+        organizeImports = true,
       },
       signatureHelp = {
         enabled = true,

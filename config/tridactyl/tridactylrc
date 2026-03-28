@@ -63,6 +63,7 @@ unbind zr
 unbind zz
 unbind ;i
 unbind ;b
+unbind ;c
 unbind ;o
 unbind ;I
 unbind ;k
@@ -134,12 +135,13 @@ setnull searchurls.youtube
 " }}}
 
 " General Settings
-set update.lastchecktime 1733800456537
-set update.nag true
-set update.nagwait 7
-set update.lastnaggedversion 1.14.0
-set update.checkintervalsecs 86400
-set configversion 2.0
+" set configversion 2.0
+" set update.checkintervalsecs 86400
+" set update.lastchecktime 1733800456537
+" set update.lastnaggedversion 1.14.0
+" set update.nag true
+" set update.nagwait 7
+set update.nag false
 
 set smoothscroll true
 set scrollduration 150
@@ -156,6 +158,7 @@ set searchurls.aur https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&
 set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.dem https://dem.colmex.mx/Ver/
 set searchurls.javadoc https://docs.oracle.com/en/java/javase/25/docs/api/search.html?q=
+set searchurls.mvn https://central.sonatype.com/search?q=%s
 set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
 set searchurls.rae https://dle.rae.es/
 set searchurls.rscrate https://crates.io/search?q=
@@ -194,7 +197,8 @@ bind gI js tri.excmds.hint("-c",tri.excmds.INPUTTAGS_selectors)
 " Open editor and fills the browser's input with whatever is written into that file
 " moz-extension://08143f9a-b7b2-454a-8964-25ad7c0daef5/static/docs/modules/_src_excmds_.html#editor
 " set editorcmd footclient --app-id=floating-editor -- $EDITOR
-set editorcmd footclient --app-id=floating-editor -- nvim -c "lua if vim.fn.line2byte(1) == -1 then vim.cmd('startinsert') end"
+" set editorcmd footclient --app-id=floating-editor -- nvim -c "lua if vim.fn.line2byte(1) == -1 then vim.cmd('startinsert') end"
+set editorcmd footclient --app-id=floating-editor -- nvim -c "lua vim.cmd('set ft=markdown conceallevel=0') if vim.fn.line2byte(1) == -1 then vim.cmd('startinsert') end"
 alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
 bind --mode=insert <C-i> editor_rm
 bind --mode=input <C-i> editor_rm
@@ -207,6 +211,11 @@ bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//
 
 " better hinting in certain pages
 bindurl ^https://campus.unadmexico.mx f hint -Jc a[href],button,[role="link"],[role="button"]
+bindurl ^https://www.reddit.com f hint -Jc a[href],button,[role="link"],[role="button"]
+bindurl ^http(s?)://localhost f hint -Jc a[class="url_header"],a[class="link_on_top_preferences"],button[class="category category_button"],details[class="sidebar-collapsible"]
+
+" Comment toggler for Reddit, Hacker News and Lobste.rs
+" bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker

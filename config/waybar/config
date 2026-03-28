@@ -23,10 +23,12 @@
   ],
   "modules-right": [
     "hyprland/submap",
-    "custom/wttr",
-    "clock",
     "tray",
-    "battery"
+    "bluetooth",
+    "network",
+    "battery",
+    // "custom/wttr",
+    "clock"
   ],
 
   // Modules configuration
@@ -103,6 +105,7 @@
     "show-special": true,
     "special-visible-only": true
   },
+
   // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#window
   "hyprland/window": {
     // "format": "{title}",
@@ -110,175 +113,119 @@
     // "format": "  {}",
     // "format": "  {}",
     "format": "  {}",
+    // "format": "❭  {}",
     "max-length": 100,
     "rewrite": {
-      // "(.*) — Mozilla Firefox": "$1 🌎",
-      // "(.*) — Mozilla Firefox Private Browsing": "$1 — 🕵️‍♂️",
-      // "(.*) - VIM": "$1 📝",
-      // "(.*) - Nvim": "$1 📝",
-      // "(.*) — File Manager": "$1 🗂"
-      "(.*) - (Apache NetBeans IDE .*)": " $1 - $2",
-      "(.*) — File Manager": "🗂 $1",
-      "(.*) — Mozilla Firefox": "🌎 $1",
+      // "(.*) - (Apache NetBeans IDE .*)": " $1 - $2",
+      "(.*) - (Apache NetBeans IDE .*)": " $1 - $2",
+      "(.*MySQL Workbench.*)": " $1",
+      // 󰶈  󰶉  󰶊  󰶋  󰶌  󰶍  󰶎
+      // 󰇮  󰛏  󰻧  󰻩        󰇮  󰇯  󰇰
+      // "Inbox \\(3 unread\\) — Evolution": 
+      // "(.*) \\(([0-9]+) unread\\) — Evolution": "󰶈  $1    $2  󰇮",
+      "(.*) — Evolution": "󰇮  $1",
+      "  ~/(.*) — File Manager": "    $1",
+      "  /(.*) — File Manager": "    $1",
+      "(.*) — Mozilla Firefox|^  Mozilla Firefox$": "🌎 $1",
+      // "(.*) — Mozilla Firefox": "  $1",
+      // "(.*) — Mozilla Firefox": "󰖟  $1",
       "(.*) — Mozilla Firefox Private Browsing": "🕵️‍♂️ $1",
+      // "(.*) — Mozilla Firefox Private Browsing": "󱁘 $1",
+      // "(.*) — Mozilla Firefox Private Browsing": "󰗹 $1",
       "(.*) - mpv": "  $1",
-      "(.*) - Nvim": "📝 $1",
-      "(.*) - VIM": "📝 $1"
+      // "(.*) \\(.*\\) - Nvim": "📝  $1",
+      "(.*) - Nvim": "📝  $1",
+      "(.*)swayimg: (.*)": "  $1 $2",
+      "Telegram": "  $1",
+      "(.*) - VIM": "📝 $1",
+      "(.*)Volume control": "  $1 Volume Control",
+      ".*/(.*)\\.pdf \\[([0-9]*)/([0-9]*)\\]": "    Página $2 de $3    $1"
     },
     "separate-outputs": false,
     "icon": false,
     "icon-size": 20
   },
+
   // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#submap
   "hyprland/submap": {
     "format": "Submap: <span style=\"italic\">{}</span>",
     "max-length": 20,
     "tooltip": false
   },
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
-    }
-  },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
-  "sway/scratchpad": {
-    "format": "{icon} {count}",
-    "show-empty": false,
-    "format-icons": ["", ""],
-    "tooltip": true,
-    "tooltip-format": "{app}: {title}"
-  },
-  "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "Disconnected ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-    "unknown-tag": "N/A",
-    "interval": 5,
-    "consume-icons": {
-      "on": " "
-    },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
-  },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
+
+  // https://github.com/Alexays/Waybar/wiki/Module:-Tray#config
   "tray": {
-    // "icon-size": 21,
-    "spacing": 10
+    "icon-size": 16,
+    "show-passive-items": true,
+    "spacing": 10,
+    "reverse-direction": true
   },
-  // https://github.com/Alexays/Waybar/wiki/Module:-Clock#config
-  "clock": {
-    "interval": 60,
-    // "format": "{:%H:%M}",
-    // "format": "{:L%A %e %B %Y %H:%M}",
-    "format": "{:L%H:%M %A %e %B %Y}",
-    // "timezone": "America/New_York",
-    // "timezone": "America/Mexico_City",
-    // "timezone": "America/Mazatlan",
-    // "locale": "es_MX.UTF-8",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
-  },
-  "cpu": {
-    "format": "{usage}% ",
-    "tooltip": false
-  },
-  "memory": {
-    "format": "{}% "
-  },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""]
-  },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
-  },
-  "battery": {
-    "states": {
-      "full": 98,
-      "good": 78,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{capacity}% {icon}",
-    //"format-full": "{capacity}% {icon}",
-    "format-full": "",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% {icon} ",
-    "format-alt": "{time} {icon}",
-    "format-good": "{capacity}% {icon}", // An empty format will hide the module
-    "format-icons": ["", "", "", "", "", "", "", "", "", ""]
-  },
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
-    }
-  },
+
+  // https://github.com/Alexays/Waybar/wiki/Module:-Network#config
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "interval": 60,
+    "family": "ipv4_6",
+
+    "format-ethernet": "󰌘",
+    "format-wifi": "{icon}",
+    "format-linked": "{icon}",
+    "format-disconnected": "󰤫",
+    // "format-disabled": "{icon}",
+    "format-alt": "{ifname}: {ipaddr}",
+    "format-icons": ["󰤮","󰤟","󰤢","󰤥","󰤨"],
+
+    "max-length": 20,
+    // "on-click": "nm-connection-editor",
+
+    "tooltip": true,
+    "tooltip-format-ethernet": "󰩟  {ipaddr} via {gwaddr}/{cidr}",
+    "tooltip-format-wifi": "{essid}  {icon} ({signalStrength}%)\n\n󰩟  {ipaddr}\n󰩩  {gwaddr}/{cidr}",
+    "tooltip-format-disconnected": "Network disconnected",
+    "tooltip-format-disabled": "Network disabled"
   },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+
+  // https://github.com/Alexays/Waybar/wiki/Module:-Bluetooth#config
+  "bluetooth": {
+    // "controller": "", // Recommended to define when there is more than 1 controller available to the system.
+    "format": "{status}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "format-connected-battery": "󰂱",
+
+    "tooltip": true,
+    "tooltip-format-disabled": "Bluetooth radio is {status}",
+    "tooltip-format-off": "Bluetooth is {status}",
+    "tooltip-format-on": "Bluetooth is {status}\n\nNo connected devices",
+    "tooltip-format-connected": "󰂱  {device_alias}",
+    "tooltip-format-connected-battery": "󰂱 {device_alias} (󰥉 {device_battery_percentage}%)",
+    "tooltip-format-no-controller": "No Bluetooth controller found"
+  },
+
+  // https://github.com/Alexays/Waybar/wiki/Module:-Battery#config
+  "battery": {
+    "full-at": 100,
+    "interval": 60,
+    "states": {
+      "full": 100,
+      "good": 60,
+      "warning": 55,
+      "critical": 45
     },
-    "on-click": "pavucontrol"
+    "format": "{icon}",
+    "format-full": "{icon}",
+    "format-good": "{icon}",
+    "format-critical": "󰂃",
+    "format-charging": "{icon} ",
+    "format-plugged": "󰂄 ",
+    "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+    "tooltip": true,
+    "tooltip-format": "{timeTo} ({capacity}%)"
   },
+
   "custom/media": {
     "format": "{icon} {}",
     "return-type": "json",
@@ -291,13 +238,46 @@
     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
   },
+
   "custom/wttr": {
     "format": "{}°",
     "tooltip": true,
     "interval": 3600,
     "exec": "~/.config/waybar/scripts/wttr.py",
     "return-type": "json"
-  }
+  },
+
+  // https://github.com/Alexays/Waybar/wiki/Module:-Clock#config
+  "clock": {
+    "interval": 60,
+    "format": "{:L%a %e %b %Y %H:%M}",
+    "format-alt": "{:%a %e %b %Y %I:%M%p}",
+    // "timezone": "America/New_York",
+    // "timezone": "America/Mexico_City",
+    // "timezone": "America/Mazatlan",
+    // "locale": "es_MX.UTF-8",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-scroll-up": "tz_up",
+      "on-scroll-down": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
 }
 
 // vim: ft=jsonc

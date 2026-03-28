@@ -8,7 +8,8 @@
 @define-color ac rgba(151, 208, 26, 1);
 @define-color fg-dim rgba(255, 255, 255, 0.5);
 @define-color bg-dim rgba(43, 48, 59, 0.4);
-@define-color ac-dim rgba(151, 208, 26, 0.06);
+/* @define-color ac-dim rgba(151, 208, 26, 0.06); */
+@define-color ac-dim rgba(151, 208, 26, 0.1);
 
 @define-color border rgba(100, 114, 125, 0.1);
 
@@ -18,7 +19,7 @@
     font-family: SF Pro Display, Twemoji, Symbols Nerd Font;
     font-size: 1em;
     font-style: normal;
-    /* font-weight: bold; */
+    /* font-weight: normal; */
     min-height: 0;
 }
 
@@ -34,14 +35,32 @@ window#waybar {
     background-color: transparent;
 }
 #workspaces > button {
-    padding: 0 0.4em;
+    padding: 0 0.5em;
     color: @fg-dim;
     font-weight: bold;
+
+    transition: all 100ms ease;
+}
+@keyframes ws-pulse {
+    0% {
+        background-color: @ac-dim;
+        box-shadow: inset 0 -1px @ac;
+    }
+    40% {
+        background-color: rgba(151, 208, 26, 0.2);
+        box-shadow: inset 0 -3px @ac;
+    }
+    100% {
+        background-color: @ac-dim;
+        box-shadow: inset 0 -1px @ac;
+    }
 }
 #workspaces > button.active {
     background-color: @ac-dim;
     color: @ac;
     box-shadow: inset 0 -1px @ac;
+
+    animation: ws-pulse 500ms ease 1;
 }
 #workspaces > button.visible:not(.active) {
     /* background-color: @bg-dim; */
@@ -72,59 +91,102 @@ window#waybar {
 
 /* https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#style-1 */
 #window {
-    /* border-radius: 0.4em; */
-    padding: 0em 1em;
-    box-shadow: none;
-    background-color: transparent;
+    padding: 0em 0.5em;
+    /* border-radius: 0.6em; */
+    /* background-color: @bg-dim; */
     color: @fg;
+    box-shadow: none;
     font-weight: normal;
-    /* box-shadow: inset 0 -1px transparent */
+
+    transition: all 100ms ease;
 }
 /* make window module transparent when no windows present */
 window#waybar.empty #window {
-    background-color: transparent;
-    color: transparent;
-    border: none;
-    box-shadow: none;
+    padding: 0em 0em;
+    opacity: 0;
 }
 
 .modules-right {
     margin-right: 0em;
     background: transparent;
     color: @fg;
-    box-shadow: inset 0 -1px @border;
+    /* box-shadow: inset 0 -1px @border; */
 }
-#mode, #clock, #battery, #custom-wttr {
+#submap, #bluetooth, #tray, #network, #battery, #clock, #custom-wttr {
     padding: 0em 0.5em;
     background: transparent;
     color: @fg;
     /* box-shadow: inset 0 -1px @border; */
-    font-weight: bold;
+    font-weight: normal;
+
+    transition: all 1s ease;
 }
 
-#battery {
-    font-weight: normal;
-}
-#battery.charging, #battery.plugged {
-    background-color: @ac-dim;
+/* https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#style-4 */
+#submap {
     color: @ac;
 }
+
+/* https://github.com/Alexays/Waybar/wiki/Module:-Tray#style */
+/*
+#tray {
+    box-shadow: inset 0 -1px @fg;
+}
+ */
+#tray menu {
+    background-color: @bg;
+    color: @fg;
+}
+#tray > .needs-attention {
+    padding: 0em 2em;
+    background-color: @ac;
+    box-shadow: inset 0 -1px @ac;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/Module:-Bluetooth#style */
+#bluetooth.off, #bluetooth.disabled, #bluetooth.no-controller {
+    color: @fg-dim;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/Module:-Network#style */
+#network.disabled, #network.disconnected, #network.linked {
+    color: @fg-dim;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/Module:-Battery#style */
+#battery.good, #battery.full {
+    color: @ac;
+}
+#battery.warning {
+    color: rgba(245, 158, 66, 1);
+}
+@keyframes blink-battery {
+    to {
+        color: rgba(220, 53, 69, 0.6);
+        box-shadow: inset 0 -1px rgba(220, 53, 69, 0.1);
+    }
+}
+#battery.critical:not(.charging) {
+    color: rgba(220, 53, 69, 1);
+    box-shadow: inset 0 -3px rgba(220, 53, 69, 1);
+
+    animation-name: blink-battery;
+    animation-duration: 1s;
+    animation-timing-function: steps(24);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+/*
+#battery.charging {
+    color: @ac;
+}
+*/
 #battery.plugged {
     color: @fg;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+/* https://github.com/Alexays/Waybar/wiki/Module:-Clock#style */
+#clock {
+    font-weight: bold;
+    font-feature-settings: "tnum";
 }

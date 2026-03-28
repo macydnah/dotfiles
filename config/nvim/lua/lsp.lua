@@ -2,8 +2,9 @@
 
 vim.lsp.enable({
   'clangd',
+  'basedpyright',
   'jdtls',
-  'jedi_language_server',
+  -- 'jedi_language_server',
   'lemminx',
   'lua-language-server',
   'rust-analyzer',
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             -- [vim.diagnostic.severity.HINT] = 'HintMsg',
           },
         },
-        update_in_insert = true,
+        update_in_insert = false,
         severity_sort = true,
       })
     end

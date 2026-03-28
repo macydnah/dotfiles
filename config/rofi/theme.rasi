@@ -44,34 +44,34 @@ inputbar {
     expand:           false;
 }
 prompt {
-    enabled:          false;
+    enabled:          true;
     padding:          0.0000% 0.0000% 0.0000% 0.0000% ;
-    font:             "JetBrainsMono Nerd Font 10";
-    text-color:       var(fg);
+    font:             "SF Pro Display, Symbols Nerd Font 18";
+    text-color:       var(ac);
     background-color: var(al);
 }
 entry {
     padding:           0.0000% 0.0000% 0.0000% 0.5000% ;
-    font:             "SF Pro Display, JetBrainsMono Nerd Font Bold 10";
+    font:             "SF Pro Display 14";
     text-color:        var(fg);
-    placeholder:       "                          ";
+    // placeholder:       "                          ";
     placeholder-color: var(ac);
     blink:             true;
     cursor:            text;
     cursor-width:      2px;
     cursor-color:      var(ac);
     background-color:  var(al);
-    expand:            false;
+    expand:            true;
 }
 listview {
     columns:          2;
     dynamic:          true;
     cycle:            false;
     spacing:          1.0000% ;
-    lines:            7;
+    lines:            6;
     layout:           vertical;
     flow:             vertical;
-    padding:          10px ;
+    padding:          1em ;
     background-color: var(al);
 }
 element {
@@ -81,7 +81,7 @@ element {
     text-color:       var(fg);
 }
 element-icon {
-    size:             24px ;
+    size:             2.25em ;
     vertical-align:   0.50;
     horizontal-align: 0.50;
     cursor:           pointer;

@@ -1,141 +1,107 @@
 # AGENTS.md - Dotfiles Repository
 
-Personal dotfiles repository managed with [Dotter](https://github.com/SuperCuber/dotter).
-Contains configuration files for shell, editors, window managers, and various tools.
+Personal dotfiles managed with [Dotter](https://github.com/SuperCuber/dotter).
+Contains shell, editor, WM, and tool configurations for Arch Linux.
 
 ## Project Structure
 
 ```
 .dotfiles/
-├── .dotter/                # Dotter deployment configuration
-│   ├── global.toml         # Package definitions and file mappings
-│   └── local.toml          # Machine-specific package selection (gitignored)
-├── bashrc                  # Bash shell configuration
-├── profile                 # Login shell profile
-├── fzfrc                   # FZF fuzzy finder config
-├── xinitrc                 # X11 initialization
-├── Xresources              # X11 resources
-├── cargo/                  # Rust/Cargo configuration
-└── config/                 # XDG_CONFIG_HOME configurations
-    ├── fish/               # Fish shell
-    ├── nvim/               # Neovim (Lua-based config)
-    ├── hypr/               # Hyprland compositor
-    ├── sway/               # Sway compositor
-    ├── i3/                 # i3 window manager
-    ├── waybar/             # Waybar status bar
-    ├── rofi/               # Rofi launcher
-    ├── alacritty/          # Alacritty terminal
-    ├── foot/               # Foot terminal
-    ├── tmux/               # Tmux multiplexer
-    ├── yazi/               # Yazi file manager
-    ├── mpv/                # MPV video player
-    ├── opencode/           # OpenCode AI assistant (has its own AGENTS.md)
-    └── ...                 # Other tool configs
+├── .dotter/            # Dotter config (global.toml = packages, local.toml = machine-specific)
+├── bashrc, profile     # Shell entrypoints
+├── fzfrc, xinitrc      # FZF config, X11 init
+├── Xresources          # X11 resources
+├── cargo/              # Rust/Cargo config
+└── config/             # XDG_CONFIG_HOME
+    ├── fish/           # Fish shell
+    ├── nvim/           # Neovim (Lua)
+    ├── hypr/           # Hyprland compositor
+    ├── sway/, i3/      # Sway/i3 WMs
+    ├── waybar/, rofi/  # Status bar, launcher
+    ├── foot/, tmux/    # Terminal, multiplexer
+    ├── yazi/, mpv/     # File manager, media player
+    └── opencode/       # OpenCode AI (has own AGENTS.md)
 ```
 
 ## Build/Lint/Test Commands
 
-This is a dotfiles repository - no compilation or tests. Deployment is managed by Dotter.
+No compilation or test suite. Deployment via Dotter; validation per-file.
+
+### Dotter Operations
 
 ```bash
-# Deploy all packages defined in local.toml
-dotter deploy
-
-# Deploy specific packages only
-dotter deploy -p shell -p neovim
-
-# Dry run - show what would be deployed
-dotter deploy --dry-run
-
-# Undeploy (remove symlinks)
-dotter undeploy
-
-# Force deploy (overwrite existing files)
-dotter deploy --force
+dotter deploy                    # Deploy packages from local.toml
+dotter deploy -p shell -p neovim # Deploy specific packages
+dotter deploy --dry-run          # Preview changes
+dotter undeploy                  # Remove symlinks
+dotter deploy --force            # Overwrite existing files
 ```
 
-### Dotter Package Organization
+### Single-File Validation
 
-Packages are defined in `.dotter/global.toml`. Common packages:
+```bash
+bash -n bashrc                              # Syntax-check Bash
+fish --no-execute config/fish/config.fish   # Syntax-check Fish
+shellcheck config/waybar/scripts/*.sh       # Lint shell scripts
+luac -p config/nvim/init.lua                # Syntax-check Lua
+dotter deploy --dry-run -p hyprland         # Validate single package
+```
+
+### Dotter Packages (in .dotter/global.toml)
+
 - `shell` - bashrc, fish, tmux, vim, fzfrc, profile
 - `neovim` - Neovim configuration
 - `hyprland` / `sway` - Wayland compositors
-- `i3` / `qtile` / `openbox` - X11 window managers (depend on `X11` package)
+- `i3` / `qtile` / `openbox` - X11 WMs (depend on `X11` package)
 - `terminal` - alacritty, foot
-- `yazi` - File manager
-- `mpv` / `mpd` - Multimedia
+- `yazi`, `mpv`, `mpd` - File manager, multimedia
 
 ## Code Style Guidelines
 
-### Shell Scripts (Bash)
+### Bash
 
 ```bash
-# Indentation: Tabs
-# Quotes: Double for variables, single for literals
-# Constants: UPPER_SNAKE_CASE with declare -r
-declare -r BOLD='\[\e[1m\]'
-declare -r RESET='\[\e[0;00m\]'
+# Indentation: Tabs | Quotes: double for vars, single for literals
+declare -r BOLD='\[\e[1m\]'  # Constants: UPPER_SNAKE_CASE
 
-# Functions: name() { ... } style
 my_function() {
-    local var="value"
-    # ...
+    local var="value"        # Locals: lower_snake_case
+    if [[ -f "$file" ]]; then
+        # Use [[ ]] for tests
+    fi
 }
-
-# Conditionals: Use [[ ]] for tests
-if [[ -f "$file" ]]; then
-    # ...
-fi
-
-# Modeline at end of file
 # vim: ft=sh foldmethod=marker
 ```
 
-### Fish Shell
+### Fish
 
 ```fish
-# Indentation: Tabs
-# Use abbr for command shortcuts (not alias)
+# Indentation: Tabs | Use abbr (not alias)
 abbr --add vim -- nvim
-abbr --add cls -- clear
 
-# Functions: function name; ...; end
 function my_func --description 'Description'
     set local_var "value"
-    # ...
 end
 ```
 
 ### Lua (Neovim)
 
 ```lua
--- File header comment
 -- ~/.config/nvim/filename.lua
-
--- Indentation: 2 spaces
--- Quotes: Single quotes preferred
--- No semicolons
--- Always use local keyword
+-- Indentation: 2 spaces | Quotes: single | No semicolons
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
--- Group names: __double_underscore_prefix for private groups
-local __group_name = augroup('GroupName', { clear = true })
+local __group_name = augroup('GroupName', { clear = true })  -- Private: __prefix
 
--- Autocommands with descriptive comments
 autocmd('Event', {
-  desc = 'Description of what this does',
+  desc = 'Description',
   group = __group_name,
   callback = function() end
 })
 
--- LSP type annotations
----@type vim.lsp.Config
-local config = { ... }
-
--- Function documentation
 ---Brief description.
 ---@param name type Description
 ---@return type
@@ -144,75 +110,46 @@ local function my_func(name)
 end
 ```
 
-### Configuration Files
+### Config Files
 
-**TOML** (dotter, yazi, alacritty, cargo):
-```toml
-# Indentation: 2 spaces or tabs (varies by tool)
-# Use $schema when available
-'$schema' = 'https://...'
+- **TOML**: Use `$schema` when available; snake_case keys
+- **JSONC**: Double quotes; snake_case keys; include `$schema`
+- **Hyprland/Sway/i3**: Tabs; `$var` declarations at top; doc URLs in comments
+- **CSS** (waybar): 4-space indent; colors via `@define-color`
 
-[section]
-key = "value"
-```
+## Naming Conventions
 
-**JSONC** (opencode):
-```jsonc
-{
-  "$schema": "https://...",
-  "snake_case_keys": "value"
-}
-```
+| Type             | Convention       | Examples                        |
+|------------------|------------------|---------------------------------|
+| Shell constants  | UPPER_SNAKE_CASE | `$EDITOR`, `$TERMINAL`          |
+| Shell locals     | lower_snake_case | `last_status`, `prompt_host`    |
+| Lua locals       | camelCase        | `augroup`, `bufmap`             |
+| Lua private      | __camelCase      | `__group_lsp_features`          |
+| Config keys      | snake_case       | `small_model`, `sort_by`        |
+| Files            | lowercase/kebab  | `config.fish`, `fzf-lua.lua`    |
 
-**Window Manager Configs** (Hyprland, Sway, i3):
-```
-# Indentation: Tabs
-# Variables: $variable = value
-# Group related settings with blank lines
-# Include documentation URLs in comments
+## Error Handling
 
-$terminal = foot
-$menu = rofi -show drun
+- **Shell**: Check exit codes; use `set -e` in scripts; guard with `[[ ]]`
+- **Lua**: Use `pcall`/`xpcall` for risky operations; validate preconditions
+- **Scripts**: Print errors to stderr; exit non-zero on failure
 
-# vim: ft=hyprlang ts=4 sts=0 sw=4 noet
-```
+## Comments
 
-### Naming Conventions
-
-| Type              | Convention        | Examples                           |
-|-------------------|-------------------|------------------------------------|
-| Shell constants   | UPPER_SNAKE_CASE  | `$EDITOR`, `$TERMINAL`             |
-| Shell local vars  | lower_snake_case  | `last_status`, `prompt_host`       |
-| Lua locals        | camelCase         | `augroup`, `bufmap`, `setlocal`    |
-| Lua private vars  | __camelCase       | `__group_lsp_features`             |
-| Config keys       | snake_case        | `small_model`, `sort_by`           |
-| Directories       | lowercase         | `config`, `plugins`, `lsp`         |
-| Files             | lowercase/kebab   | `config.fish`, `fzf-lua.lua`       |
-
-### Comments
-
-- Shell: `#` prefix, Spanish or English
+- Shell: `#` prefix (Spanish or English OK)
 - Lua: `--` single line, `--[[ ]]` blocks
-- Include URLs to documentation where helpful
-- Use vim modelines at end of files when needed
+- Include doc URLs for non-obvious settings
+- Use vim modelines at file end when needed
 
-### Error Handling
+## Hardware-Specific Configuration
 
-- Shell: Check exit codes, use `set -e` in scripts when appropriate
-- Lua: Use pcall/xpcall for error-prone operations
-- Prefer defensive checks over try/catch patterns
-
-## File Organization
-
-- Each application config is self-contained in `config/<app>/`
-- Dotter handles symlink deployment to target locations
 - Machine-specific settings go in `.dotter/local.toml` (gitignored)
-- The `[all]` package in global.toml deploys everything (use with caution)
+- In Hyprland: isolate monitor/device/GPU configs; don't commit host-specific values
+- The `[all]` package deploys everything (use with caution)
 
 ## Environment
 
-- Primary compositor: Hyprland (Wayland)
-- Fallback: Sway (Wayland) or i3 (X11)
+- Compositor: Hyprland (Wayland) / Sway / i3 (X11)
 - Terminal: foot (Wayland), alacritty (X11)
 - Editor: Neovim
 - Shell: Fish (interactive), Bash (scripts)
@@ -220,4 +157,4 @@ $menu = rofi -show drun
 
 ## Subdirectory Documentation
 
-- `config/opencode/AGENTS.md` - OpenCode AI assistant plugin development guidelines
+- `config/opencode/AGENTS.md` - OpenCode plugin development guidelines

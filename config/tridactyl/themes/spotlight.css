@@ -1,0 +1,57 @@
+:root {
+    --spot-w: 760px;
+    --radius: 22px;
+}
+
+/* Centrado real */
+#cmdline_iframe {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -52%) !important;
+    width: var(--spot-w) !important;
+    max-width: 92vw !important;
+    height: auto !important;
+}
+
+/* Input panel */
+#command-line-holder {
+    background: #111214 !important;
+    border-radius: var(--radius) !important;
+    padding: 24px 28px !important;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.04) inset !important;
+}
+
+/* Input text */
+#tridactyl-input {
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    color: #f2f2f2 !important;
+    background: transparent !important;
+}
+
+/* Completions panel */
+#completions {
+    margin-top: 18px !important;
+    background: #151618 !important;
+    border-radius: calc(var(--radius) - 6px) !important;
+    padding: 14px 18px !important;
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(255,255,255,0.03) inset !important;
+    max-height: 280px !important;
+    overflow-y: auto !important;
+}
+
+/* Compact rows */
+.option {
+    padding: 6px 0 !important;
+}
+
+/* Selected row */
+.option.active {
+    background: rgba(255,255,255,0.06) !important;
+    border-radius: 8px !important;
+}

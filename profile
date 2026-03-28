@@ -131,8 +131,8 @@ _tmux_auto_session_mini() {
 }
 # auto start tmux at ssh login
 if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ]; then
-	# _tmux_auto_session
-	_tmux_auto_session --exec
+	_tmux_auto_session
+	# _tmux_auto_session --exec
 fi
 # auto start tmux at local login in tty6
 case "$XDG_VTNR" in

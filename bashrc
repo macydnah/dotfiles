@@ -149,8 +149,8 @@ pactl() {
 tetemporizador() { (sleep "${1:-5m}" && notify-send -i '/usr/share/icons/breeze/apps/48/kteatime.svg' 'Yastá' 'listo el té') & }
 
 trafego() {
-	declare -r ENP0S=$(ip l | grep -o enp0s20u.)
-	[[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlp1s0 || nload -u H -m wlp1s0 ;
+	declare -r ENP0S=$(ip l | grep -o enp0s31f. )
+	[[ -n $ENP0S ]] && nload -u H -m $ENP0S -m wlan0 || nload -u H -m wlan0 ;
 }
 
 webdarkmodejs() {

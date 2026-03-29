@@ -44,6 +44,7 @@ bash -n bashrc                              # Syntax-check Bash
 fish --no-execute config/fish/config.fish   # Syntax-check Fish
 shellcheck config/waybar/scripts/*.sh       # Lint shell scripts
 luac -p config/nvim/init.lua                # Syntax-check Lua
+hyprctl reload                              # Validate/reload Hyprland config
 dotter deploy --dry-run -p hyprland         # Validate single package
 ```
 
@@ -54,79 +55,75 @@ dotter deploy --dry-run -p hyprland         # Validate single package
 - `hyprland` / `sway` - Wayland compositors
 - `i3` / `qtile` / `openbox` - X11 WMs (depend on `X11` package)
 - `terminal` - alacritty, foot
+- `WUtils` - darkman, rofi, waybar, swayimg
 - `yazi`, `mpv`, `mpd` - File manager, multimedia
+- `opencode` - OpenCode AI assistant
+- `all` - Everything (use with caution)
 
 ## Code Style Guidelines
 
 ### Bash
-
-```bash
-# Indentation: Tabs | Quotes: double for vars, single for literals
-declare -r BOLD='\[\e[1m\]'  # Constants: UPPER_SNAKE_CASE
-
-my_function() {
-    local var="value"        # Locals: lower_snake_case
-    if [[ -f "$file" ]]; then
-        # Use [[ ]] for tests
-    fi
-}
-# vim: ft=sh foldmethod=marker
-```
+- **Indentation:** Tabs
+- **Quotes:** Double for vars, single for literals
+- **Constants:** UPPER_SNAKE_CASE (`declare -r`)
+- **Locals:** lower_snake_case
+- **Tests:** Use `[[ ]]`
+- **Modeline:** `# vim: ft=sh foldmethod=marker`
 
 ### Fish
-
-```fish
-# Indentation: Tabs | Use abbr (not alias)
-abbr --add vim -- nvim
-
-function my_func --description 'Description'
-    set local_var "value"
-end
-```
+- **Indentation:** Tabs
+- **Abbreviations:** Use `abbr` (not `alias`)
+- **Functions:** `function name --description 'desc'`
 
 ### Lua (Neovim)
+- **Indentation:** 2 spaces
+- **Quotes:** Single
+- **Semicolons:** None
+- **Private vars:** `__` prefix (`__group_name`)
+- **Annotations:** Use `---@param`, `---@return`
 
-```lua
--- ~/.config/nvim/filename.lua
--- Indentation: 2 spaces | Quotes: single | No semicolons
-
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-local map = vim.keymap.set
-
-local __group_name = augroup('GroupName', { clear = true })  -- Private: __prefix
-
-autocmd('Event', {
-  desc = 'Description',
-  group = __group_name,
-  callback = function() end
-})
-
----Brief description.
----@param name type Description
----@return type
-local function my_func(name)
-  return name
-end
-```
+### Hyprland
+- **Indentation:** Tabs
+- **Variables:** `$prefix` at top of file
+- **Windowrule names:** kebab-case (`volume-control`, `firefox-file-upload`)
+- **Modeline:** `# vim: ft=hyprlang`
 
 ### Config Files
-
-- **TOML**: Use `$schema` when available; snake_case keys
-- **JSONC**: Double quotes; snake_case keys; include `$schema`
-- **Hyprland/Sway/i3**: Tabs; `$var` declarations at top; doc URLs in comments
-- **CSS** (waybar): 4-space indent; colors via `@define-color`
+- **TOML/JSONC:** snake_case keys; include `$schema` when available
+- **CSS (waybar):** 4-space indent; colors via `@define-color`
 
 ## Naming Conventions
 
-| Type             | Convention       | Examples                        |
-|------------------|------------------|---------------------------------|
-| Shell constants  | UPPER_SNAKE_CASE | `$EDITOR`, `$TERMINAL`          |
-| Shell locals     | lower_snake_case | `last_status`, `prompt_host`    |
-| Lua locals       | camelCase        | `augroup`, `bufmap`             |
-| Lua private      | __camelCase      | `__group_lsp_features`          |
-| Config keys      | snake_case       | `small_model`, `sort_by`        |
-| Files            | lowercase/kebab  | `config.fish`, `fzf-lua.lua`    |
+| Type              | Convention       | Examples                         |
+|-------------------|------------------|----------------------------------|
+| Shell constants   | UPPER_SNAKE_CASE | `$EDITOR`, `$TERMINAL`           |
+| Shell locals      | lower_snake_case | `last_status`, `prompt_host`     |
+| Lua locals        | camelCase        | `augroup`, `bufmap`              |
+| Lua private       | __camelCase      | `__group_lsp_features`           |
+| Config keys       | snake_case       | `small_model`, `sort_by`         |
+| Files             | lowercase/kebab  | `config.fish`, `fzf-lua.lua`     |
+| Hyprland rules    | kebab-case       | `volume-control`, `netbeans-*`   |
+
+## Commit Message Convention
+
+Use [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+```
+
+**Types:** `feat`, `fix`, `refactor`, `docs`, `chore`, `style`
+**Scopes:** `hyprland`, `neovim`, `shell`, `fish`, `waybar`, `opencode`, etc.
+
+Examples:
+```
+feat(hyprland): add battery-friendly config module
+refactor(neovim): reorganize LSP configuration
+fix(waybar): correct memory calculation script
+docs(changelog): add changelog
+```
 
 ## Error Handling
 
@@ -134,26 +131,33 @@ end
 - **Lua**: Use `pcall`/`xpcall` for risky operations; validate preconditions
 - **Scripts**: Print errors to stderr; exit non-zero on failure
 
+## Hardware-Specific Configuration
+
+**CRITICAL:** Machine-specific settings go in `.dotter/local.toml` (gitignored).
+
+In Hyprland, these are typically hardware-specific (do NOT commit):
+- `monitorv2 { }` blocks with specific outputs (eDP-1, HDMI-A-2)
+- `device { }` blocks for specific input devices
+- GPU-specific environment variables (LIBVA_DRIVER_NAME)
+- `cursor { default_monitor }` settings
+
+When committing, ensure working directory changes for hardware configs remain unstaged.
+
 ## Comments
 
 - Shell: `#` prefix (Spanish or English OK)
 - Lua: `--` single line, `--[[ ]]` blocks
-- Include doc URLs for non-obvious settings
+- Include doc URLs for non-obvious settings (wiki.hyprland.org, etc.)
 - Use vim modelines at file end when needed
-
-## Hardware-Specific Configuration
-
-- Machine-specific settings go in `.dotter/local.toml` (gitignored)
-- In Hyprland: isolate monitor/device/GPU configs; don't commit host-specific values
-- The `[all]` package deploys everything (use with caution)
 
 ## Environment
 
-- Compositor: Hyprland (Wayland) / Sway / i3 (X11)
-- Terminal: foot (Wayland), alacritty (X11)
-- Editor: Neovim
-- Shell: Fish (interactive), Bash (scripts)
-- Package manager: pacman/AUR (Arch Linux)
+- **OS**: Arch Linux
+- **Compositor**: Hyprland (Wayland) / Sway / i3 (X11)
+- **Terminal**: foot (Wayland), alacritty (X11)
+- **Editor**: Neovim
+- **Shell**: Fish (interactive), Bash (scripts)
+- **Package manager**: pacman/AUR
 
 ## Subdirectory Documentation
 

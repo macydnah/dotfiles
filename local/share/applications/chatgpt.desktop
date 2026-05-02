@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=ChatGPT
+Exec=firefox --class IAG -P IAG --new-window https://chatgpt.com/
+Icon=chatgpt
+Type=Application
+Keywords=gpt;chatgpt;chat

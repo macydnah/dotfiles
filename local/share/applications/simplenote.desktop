@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Simplenote
+Exec=firefox --class WebApps -P webapps --new-window https://app.simplenote.com/
+Icon=simplenote
+Type=Application
+Keywords=simplenote;notas;note;simple;

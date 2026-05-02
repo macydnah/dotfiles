@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=/usr/lib/firefox/firefox about:downloads
+Terminal=false
+X-MultipleArgs=false
+Icon=firefox
+StartupWMClass=firefox
+DBusActivatable=false
+Categories=GNOME;GTK;Network;WebBrowser;
+StartupNotify=true
+Name=Downloads
+Name[es]=Descargas
+Comment=Fast and private browser
+Keywords=Descargas;Downloads;Internet;WWW;Browser;Web;Explorer;
+X-GNOME-FullName=Mozilla Firefox Downloads

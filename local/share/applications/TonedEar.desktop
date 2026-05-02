@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=TonedEar
+Exec=firefox --class WebApps -P webapps --new-window /home/macydnah/Documents/tonedear.com/index.html
+Icon=/home/macydnah/Documents/tonedear.com/images/favicon.gif
+Type=Application
+Keywords=solfeo;tone;
+NoDisplay=false

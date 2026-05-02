@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Youtube
+Exec=firefox --class WebApps -P webapps --new-window https://youtube.com/
+Icon=youtube
+Type=Application
+Keywords=youtube

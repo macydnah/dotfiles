@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=GMail
+Exec=firefox --class WebApps -P webapps --new-window https://gmail.com/
+Icon=gmail
+Type=Application
+Keywords=gmail;correo;mail;

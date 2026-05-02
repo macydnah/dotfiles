@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Traductor
+Exec=firefox --class WebApps -P webapps --new-window https://translate.google.com/
+Icon=traductor
+Type=Application
+Keywords=traductor;google-traductor;translate;

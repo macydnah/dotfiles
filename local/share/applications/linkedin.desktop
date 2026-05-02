@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=LinkedIn
+Exec=firefox --class WebApps -P linkedin --new-window https://linkedin.com/
+Icon=linkedin
+Type=Application
+Keywords=linkedin

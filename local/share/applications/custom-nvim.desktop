@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Text Editor
+Exec=footclient nvim %F
+Terminal=false
+Icon=gvim
+Categories=Utility;TextEditor
+Hidden=true

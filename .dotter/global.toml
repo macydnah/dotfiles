@@ -15,7 +15,6 @@ default_target_type = "symbolic"
 "config/foot" = {target = "~/.config/foot", type = "symbolic", recurse = false}
 
 [WUtils.files]
-"config/darkman" = {target = "~/.config/darkman", type = "symbolic", recurse = false}
 "config/networkmanager-dmenu" = {target = "~/.config/networkmanager-dmenu", type = "symbolic", recurse = false}
 "config/rofi" = {target = "~/.config/rofi", type = "symbolic", recurse = false}
 "config/swayimg" = {target = "~/.config/swayimg", type = "symbolic", recurse = false}
@@ -59,6 +58,8 @@ depends = ["X11"]
 depends = ["mpv", "yt-dlp"]
 [yt-dlp.files]
 "config/yt-dlp" = {target = "~/.config/yt-dlp", type = "symbolic", recurse = false}
+[pipewire.files]
+"config/pipewire" = {target = "~/.config/pipewire", type = "symbolic", recurse = true}
 
 
 ## Neovim ##
@@ -82,6 +83,18 @@ depends = ["mpv", "yt-dlp"]
 "config/sway" = {target = "~/.config/sway", type = "symbolic", recurse = false}
 #[wqtile.files]
 #"config/qtile" = {target = "~/.config/qtile", type = "symbolic", recurse = false}
+
+
+## XDG Desktop Portal ##
+[xdg-desktop]
+depends = ["xdg-desktop-portal"]
+[xdg-desktop.files]
+"local/share/applications" = {target = "~/.local/share/applications", type = "symbolic", recurse = true}
+"config/mimeapps.list" = {target = "~/.config/mimeapps.list", type = "symbolic", recurse = false}
+"local/share/darkman" = {target = "~/.local/share/darkman", type = "template"}
+"config/darkman" = {target = "~/.config/darkman", type = "symbolic", recurse = false}
+[xdg-desktop-portal.files]
+"config/xdg-desktop-portal" = {target = "~/.config/xdg-desktop-portal", type = "symbolic", recurse = false}
 
 
 ## X Window Managers ##

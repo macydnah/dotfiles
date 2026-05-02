@@ -39,6 +39,31 @@ if status is-interactive
         -DartifactId=__CURSOR__
         '
 
+    abbr --add win10 --set-cursor=__CURSOR__ 'qemu-system-x86_64 \
+    -name "Windows 10 VM" \
+    -display "gtk,full-screen=off,gl=off,grab-on-hover=off,show-tabs=off,show-cursor=on,window-close=off,show-menubar=on,zoom-to-fit=on" \
+    -accel "kvm" \
+    -machine "type=q35" \
+    -rtc "base=localtime" \
+    -boot "order=dc,menu=off" \
+    # -drive "index=0,media=disk,file=/dev/nvme0n1p3,format=raw,if=virtio" \
+    -drive "index=0,media=disk,file=$HOME/VM/WIN10/WIN10.qcow2,format=qcow2,if=virtio" \
+    # -drive "index=1,media=cdrom,file=$HOME/Downloads/virtio-win-0.1.285.iso" \
+    # -drive "index=2,media=cdrom,file=$HOME/Downloads/Win10_22H2_English_x64v1.iso" \
+    -cpu "host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time" \
+    -vga qxl \
+    -nic "user,model=virtio-net-pci" \
+    -device "qemu-xhci,id=xhci" \
+            -device "usb-tablet,bus=xhci.0" \
+            # -device "usb-host,bus=xhci.0,vendorid=0x0781,productid=0x5581" \
+    -object "memory-backend-memfd,id=mem,size=6G,share=on" \
+            -numa "node,memdev=mem" \
+            -chardev "socket,id=char0,path=$XDG_RUNTIME_DIR/virtiofs.sock" \
+            -device "vhost-user-fs-pci,queue-size=1024,chardev=char0,tag=Hypervisor" \
+    -m "6G,slots=4,maxmem=8G" \
+    -smp "sockets=1,cores=2__CURSOR__,threads=2"
+    '
+
     abbr --add mpa --function _mpa_abbr --regex "mpa"
     function _mpa_abbr --description 'Abbreviation for mpa... to mpv ...'
 	set cmd "mpv --no-resume-playback --ytdl-format='bestaudio' --video=no"

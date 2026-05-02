@@ -80,6 +80,10 @@ return {
     },
     offsetEncoding = { 'utf-8', 'utf-16' },
   },
+  init_options = {},
+  on_init = function(client)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
   on_attach = function()
     vim.api.nvim_buf_create_user_command(0, 'LspClangdSwitchSourceHeader', function()
       switch_source_header(0)

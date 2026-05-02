@@ -2,8 +2,13 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
   "default_agent": "plan",
-  "model": "github-copilot/gpt-5-mini",
-  "small_model": "github-copilot/gpt-4.1",
+  // "model": "github-copilot/gpt-5-mini",
+  // "model": "opencode/minimax-m2.5-free",
+  // "model": "github-copilot/gpt-5.3-codex",
+  // "small_model": "github-copilot/claude-haiku-4.5",
+  // "small_model": "opencode-go/deepseek-flash",
+  "model": "opencode-go/kimi-k2.5",
+  "small_model": "opencode-go/minimax-m2.7",
   "share": "manual",
   "permission": {
     "bash": {
@@ -14,7 +19,27 @@
   },
   "compaction": {
     "auto": false,
-    "prune": true
+    "prune": false
+  },
+  "agent": {
+    "general": {
+      "mode": "all"
+    }
+  },
+  "provider": {
+    "github-copilot": {
+      // Keep blacklist (not whitelist) so newly exposed models remain visible by default.
+      // Source of truth for Student availability:
+      // https://docs.github.com/en/copilot/reference/ai-models/supported-models#supported-ai-models-per-copilot-plan
+      "blacklist": [
+        "claude-opus-4.5",
+        "claude-opus-4.6",
+        "claude-sonnet-4",
+        "claude-sonnet-4.5",
+        "claude-sonnet-4.6",
+        "gpt-5.4"
+      ]
+    }
   },
   "lsp": {
     "basedpyright": {

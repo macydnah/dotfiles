@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
+  // "skip_splash": true, // Not in schema yet (additionalProperties: false) - wait for update
   "theme": "opencode",
   "diff_style": "stacked",
   "scroll_speed": 2,

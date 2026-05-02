@@ -31,7 +31,8 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
-local CTRL_F10 = '<F34>'
+-- local CTRL_F10 = '<F34>'
+local CTRL_F10 = '<C-F10>'
 vim.keymap.set({'n'}, CTRL_F10, function()
   if vim.opt_local.list:get() then
     vim.opt_local.list = false

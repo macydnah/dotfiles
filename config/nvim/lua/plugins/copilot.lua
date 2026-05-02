@@ -26,7 +26,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     if client.name == 'GitHub Copilot' then
 
-      local SHIFT_F1 = '<F13>'
+      -- local SHIFT_F1 = '<F13>'
+      local SHIFT_F1 = '<S-F1>'
       vim.keymap.set({'i', 'n'}, SHIFT_F1, function() ToggleCopilot() end,
         { buffer = true, desc = "Copilot: Toggle On/Off" })
 

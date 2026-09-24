@@ -196,7 +196,7 @@ _fzf_comprun() {
 
 	case "$command" in
 		cd)
-			fzf --ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}' "$@"
+			fzf --ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name {}' "$@"
 			;;
 		export|unset)
 			fzf --ghost='Search for variable...' --preview="eval 'echo \$'{}" "$@"

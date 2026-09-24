@@ -32,7 +32,7 @@ export FZF_CTRL_T_COMMAND='fd --hidden --follow --type file --type dir --type sy
 export FZF_CTRL_T_OPTS="--preview=''"
 export FZF_CTRL_R_OPTS="--ghost='Search for previous command...' --preview=''"
 export FZF_ALT_C_COMMAND='fd --hidden --no-follow --type dir --type symlink --exclude .git .'
-export FZF_ALT_C_OPTS="--ghost='Search for directory...' --preview='tree -C --dirsfirst --sort name --hyperlink {}'"
+export FZF_ALT_C_OPTS="--ghost='Search for directory...' --preview='tree -L1 --noreport --dirsfirst --sort name -C {}'"
 # https://github.com/junegunn/fzf#customizing-fzf-options-for-completion
 export FZF_COMPLETION_TRIGGER='**'
 # export FZF_COMPLETION_OPTS="--preview='bat --plain --color=always {}'"

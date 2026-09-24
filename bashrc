@@ -78,7 +78,7 @@ firefoxd() {
 		firefox --new-window about:blank &
 		foot  --title 'firefoxd' --app-id 'firefoxd' &
 	fi
-	hyprctl dispatch togglespecialworkspace firefoxd
+	hyprctl dispatch 'hl.dsp.workspace.toggle_special("firefoxd")'
 }
 
 i3mpv() { i3-swallow mpv "${@}"; }

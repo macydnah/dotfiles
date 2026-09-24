@@ -41,10 +41,10 @@ vim.diagnostic.config({
 })
 
 ---[[ LSP features
-local _g_lsp_features = vim.api.nvim_create_augroup('LspFeatures', { clear = true })
+local _group_lsp_features = vim.api.nvim_create_augroup('LspFeatures', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = "Enable LSP features according to client capabilities",
-  group = _g_lsp_features,
+  group = _group_lsp_features,
   callback = function(event)
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -59,10 +59,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- if client:supports_method('textDocument/documentHighlight') then
     --   vim.opt_local.updatetime = 100
-    --   local _g_doc_hl = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = true })
+    --   local _group_doc_hl = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = true })
     --   vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     --     desc = "Highlight symbol under cursor",
-    --     group = _g_doc_hl,
+    --     group = _group_doc_hl,
     --     buffer = event.buf,
     --     callback = function()
     --       vim.lsp.buf.document_highlight()
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --   })
     --   vim.api.nvim_create_autocmd('CursorMoved', {
     --     desc = "Clear symbol highlight",
-    --     group = _g_doc_hl,
+    --     group = _group_doc_hl,
     --     buffer = event.buf,
     --     callback = function()
     --       vim.lsp.buf.clear_references()
@@ -81,10 +81,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 }) --]]
 
 ---[[ LSP key mappings
-local _g_lsp_keymaps = vim.api.nvim_create_augroup('LspKeymaps', { clear = true })
+local _group_lsp_keymaps = vim.api.nvim_create_augroup('LspKeymaps', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = "Set LSP key mappings",
-  group = _g_lsp_keymaps,
+  group = _group_lsp_keymaps,
   callback = function(event)
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)

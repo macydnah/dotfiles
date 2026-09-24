@@ -19,9 +19,9 @@ local function __spacing_by(shiftwidth)
   return string.rep(' ', shiftwidth - 1)
 end
 
-local __group = vim.api.nvim_create_augroup('FormattingMarks', { clear = true })
+local _group = vim.api.nvim_create_augroup('FormattingMarks', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
-  group = __group,
+  group = _group,
   pattern = '*',
   callback = function()
     if vim.opt_local.expandtab:get() then

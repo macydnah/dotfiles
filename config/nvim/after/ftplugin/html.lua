@@ -46,9 +46,9 @@ if ft == 'html' or ft == 'xhtml' then
 
   vim.opt_local.spell = true
 
-  local __group_fix_html_ts_none = vim.api.nvim_create_augroup('FIX_HTML_TS_NONE', { clear = false })
+  local _group_fix_html_ts_none = vim.api.nvim_create_augroup('FIX_HTML_TS_NONE', { clear = false })
   vim.api.nvim_create_autocmd({ 'BufEnter', 'ColorScheme' }, {
-    group = __group_fix_html_ts_none,
+    group = _group_fix_html_ts_none,
     buffer = bufnr,
     callback = function()
       local ns = vim.api.nvim_get_namespaces()['nvim.treesitter.highlighter']

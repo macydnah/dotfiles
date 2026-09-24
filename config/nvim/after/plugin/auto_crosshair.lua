@@ -4,7 +4,7 @@
 
 ---Filetypes where cursorcolumn should be disabled
 ---@type string[]
-local no_cursorcolumn_filetypes = {
+local no_cursorcolumn_ft = {
   'gitcommit',
   'help',
   'html',
@@ -23,7 +23,7 @@ local function __need_cursorcolumn()
     return false
   end
 
-  for _, blacklisted in ipairs(no_cursorcolumn_filetypes) do
+  for _, blacklisted in ipairs(no_cursorcolumn_ft) do
     if vim.opt_local.filetype:get() == blacklisted then
       return false
     end
@@ -59,10 +59,10 @@ local function auto_crosshair(enable)
   end
 end
 
-local __group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
+local _group = vim.api.nvim_create_augroup('AutoCrossHair', { clear = true })
 vim.api.nvim_create_autocmd({'BufWinEnter', 'FocusGained', 'InsertLeave', 'WinEnter'}, {
   desc = "Enable cursorline and cursorcolumn in the current buffer/window",
-  group = __group,
+  group = _group,
   pattern = '*',
   callback = function()
     auto_crosshair()
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd({'BufWinEnter', 'FocusGained', 'InsertLeave', 'WinEn
 })
 vim.api.nvim_create_autocmd({'FocusLost', 'WinLeave'}, {
   desc = "Disable cursorline and cursorcolumn when leaving the current window",
-  group = __group,
+  group = _group,
   pattern = '*',
   callback = function()
     auto_crosshair(false)
@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd({'FocusLost', 'WinLeave'}, {
 })
 -- vim.api.nvim_create_autocmd('InsertEnter', {
 --   desc = "Disable cursorcolumn when entering insert mode",
---   group = __group,
+--   group = _group,
 --   pattern = '*',
 --   callback = function()
 --     vim.opt_local.cursorcolumn = false

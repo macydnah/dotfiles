@@ -4,7 +4,8 @@ vim.g.copilot_enabled = false
 
 local function ToggleCopilot()
   -- https://github.com/neovim/neovim/issues/26983
-  -- 0 and 1 are both truthy in Lua, can't check `if vim.cmd('Copilot status') ...`
+  -- 0 and 1 are both truthy in Lua, can't test `if vim.cmd('Copilot status') ...`
+  -- falling the test back to traditional vim function API
   if vim.fn['copilot#Enabled']() == 1 then
     vim.cmd('Copilot disable')
   else
@@ -13,11 +14,10 @@ local function ToggleCopilot()
   vim.cmd('Copilot status')
 end
 
-local group = vim.api.nvim_create_augroup('CopilotKeymaps', { clear = true })
-
+local _group = vim.api.nvim_create_augroup('CopilotKeymaps', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = "Copilot key mappings",
-  group = group,
+  group = _group,
   callback = function(ev)
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -25,8 +25,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return
     end
     if client.name == 'GitHub Copilot' then
-
-      -- local SHIFT_F1 = '<F13>'
       local SHIFT_F1 = '<S-F1>'
       vim.keymap.set({'i', 'n'}, SHIFT_F1, function() ToggleCopilot() end,
         { buffer = true, desc = "Copilot: Toggle On/Off" })

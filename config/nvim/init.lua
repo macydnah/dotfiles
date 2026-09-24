@@ -71,35 +71,35 @@ if vim.opt.diff:get() then
 end
 
 --[[ General Autocommands ]]
-local __group_hl_yank = augroup('HighlightYank', { clear = true })
+local _group_hl_yank = augroup('HighlightYank', { clear = true })
 autocmd('TextYankPost', {
   desc = "Briefly highlight yanked text",
-  group = __group_hl_yank,
+  group = _group_hl_yank,
   callback = function() vim.hl.on_yank() end
 })
 
 --[[ User Commands ]]
 vim.api.nvim_create_user_command('Realpath', function()
-    local __filepath = vim.api.nvim_buf_get_name(0)
-    if __filepath == '' then
+    local _filepath = vim.api.nvim_buf_get_name(0)
+    if _filepath == '' then
       print("No file is currently being edited.")
       return
     end
-    vim.fn.setreg('+', __filepath)
-    print("Copied to clipboard: " .. __filepath)
+    vim.fn.setreg('+', _filepath)
+    print("Copied to clipboard: " .. _filepath)
   end,
   { desc = "Copy current file's realpath to the '+' register" }
 )
 vim.api.nvim_create_user_command('RealpathURI', function()
-    local __uri = vim.uri_from_bufnr(0)
-    if __uri == '' then
+    local _uri = vim.uri_from_bufnr(0)
+    if _uri == '' then
       print("Could not convert file path to URI.")
       return
     end
 
-    vim.fn.system("wl-copy -t text/uri-list", __uri .. "\n")
+    vim.fn.system("wl-copy -t text/uri-list", _uri .. "\n")
 
-    print("Copied to clipboard: " .. __uri)
+    print("Copied to clipboard: " .. _uri)
   end,
   { desc = "Copy current file's URI to the '+' register" }
 )

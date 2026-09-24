@@ -33,3 +33,14 @@ Status:children_add(function(self)
     return ""
   end
 end, 3300, Status.LEFT)
+
+-- [Show current cwd as title](https://github.com/sxyazi/yazi/pull/3684)
+ps.sub("ind-app-title", function(args)
+  -- starting Yazi with --chooser-file means it's running as a file picker
+  if rt.args.chooser_file then
+    args.value = "File picker: " .. tostring(cx.active.current.cwd)
+  else
+    args.value = tostring(cx.active.current.cwd) .. " — File Manager"
+  end
+  return args
+end)

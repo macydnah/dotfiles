@@ -2,7 +2,7 @@
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-'$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
+# '$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
 
 # https://yazi-rs.github.io/docs/configuration/yazi#manager
 [mgr]
@@ -17,7 +17,7 @@ show_hidden    = false
 show_symlink   = true
 scrolloff      = 255
 mouse_events   = [ 'click', 'scroll' ]
-title_format   = "{cwd} — File Manager"
+# title_format   = "{cwd} — File Manager"
 
 # https://yazi-rs.github.io/docs/configuration/yazi#preview
 [preview]
@@ -26,6 +26,7 @@ tab_size        = 2
 max_width       = 600
 max_height      = 900
 cache_dir       = ''
+# cache_dir       = '$HOME/.cache/yazi'
 # image_delay     = 100
 image_delay     = 0
 image_filter    = 'triangle'
@@ -108,8 +109,6 @@ rules = [
 
 # https://yazi-rs.github.io/docs/configuration/yazi#tasks
 [tasks]
-micro_workers    = 10
-macro_workers    = 25
 bizarre_retry    = 5
 suppress_preload = false
 image_alloc      = 536870912  # 512MB
@@ -119,8 +118,8 @@ image_bound      = [ 0, 0 ]
 [plugin]
 fetchers = [
     # Mimetype
-    { id = 'mime', url = '*',  run = 'mime.local', prio = 'high' },
-    { id = 'mime', url = '*/', run = 'mime.dir',   prio = 'high' },
+    { group = 'mime', url = '*',  run = 'mime.local', prio = 'high' },
+    { group = 'mime', url = '*/', run = 'mime.dir',   prio = 'high' },
 ]
 preloaders = [
     # Image

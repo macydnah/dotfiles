@@ -2,7 +2,7 @@
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-'$schema' = 'https://yazi-rs.github.io/schemas/keymap.json'
+# '$schema' = 'https://yazi-rs.github.io/schemas/keymap.json'
 
 # https://yazi-rs.github.io/docs/configuration/keymap
 
@@ -121,7 +121,9 @@ keymap = [
 	{ on = ["g","c"], run = "cd ~/.config",                   desc = "Go to ~/.config" },
 	{ on = ["g","d"], run = "cd ~/.dotfiles",                 desc = "Go to ~/.dotfiles" },
 	{ on = ["g","t"], run = "cd /tmp",                        desc = "Go to /tmp" },
-	{ on = ["g","`"], run = "cd ~/Documents/UnADM/2026-1-B1", desc = "Go to homework" },
+	# { on = ["g","`"], run = "cd ~/Documents/UnADM/2026-1-B2", desc = "Go to homework" },
+	# { on = ["g","`"], run = "cd ~/Documents/UnADM/2026-1-B2/DS-DDRS-2601-B2-001/DDRS_U3", desc = "Go to homework" },
+	{ on = ["g","`"], run = "cd ~/Documents/UnADM/2026-2-B1", desc = "Go to homework" },
 	{ on = ["g","u"], run = "cd ~/Documents/UnADM",           desc = "Go to UnADM" },
 	{ on = ["g","a"], run = "cd $AUR",                        desc = "Go to $AUR" },
 	{ on = ["c","d"], run = "cd --interactive",               desc = "Go to a directory interactively" },

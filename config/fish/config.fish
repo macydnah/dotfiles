@@ -1,6 +1,4 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-
     # Abreviaciones
     abbr --add aur                 -- auracle
     abbr --add bat                 -- 'bat -p'
@@ -22,6 +20,23 @@ if status is-interactive
     abbr --add watch               -- "watch -cn0.5"
     abbr --add whois               -- "whois -H"
     # abbr --add yt --set-cursor=!   -- "yt-dlp '!'"
+
+    abbr --add unicode -- 'python -c "\
+    import sys, unicodedata
+    c = sys.stdin.read(1)
+    if c:
+        print(f\"U+{ord(c):04X}  {c}  {unicodedata.name(c, chr(63)*3)}\")
+    "'
+
+    abbr --add grabarPantalla --set-cursor=__CURSOR__ 'wl-screenrec \
+    # --output "eDP-1" \
+    # --output "HDMI-A-1" \
+    # --output "HDMI-A-2" \
+    --audio \
+        --audio-device "default" \
+        --audio-codec "flac" \
+    --filename "__CURSOR__"
+    '
 
     abbr -a --set-cursor=__CURSOR__ --command mvn simple 'archetype:generate \
         -DinteractiveMode=true \
@@ -56,11 +71,11 @@ if status is-interactive
     -device "qemu-xhci,id=xhci" \
             -device "usb-tablet,bus=xhci.0" \
             # -device "usb-host,bus=xhci.0,vendorid=0x0781,productid=0x5581" \
-    -object "memory-backend-memfd,id=mem,size=6G,share=on" \
+    -object "memory-backend-memfd,id=mem,size=4G,share=on" \
             -numa "node,memdev=mem" \
             -chardev "socket,id=char0,path=$XDG_RUNTIME_DIR/virtiofs.sock" \
             -device "vhost-user-fs-pci,queue-size=1024,chardev=char0,tag=Hypervisor" \
-    -m "6G,slots=4,maxmem=8G" \
+    -m "4G,slots=4,maxmem=8G" \
     -smp "sockets=1,cores=2__CURSOR__,threads=2"
     '
 

@@ -106,7 +106,7 @@ vim.api.nvim_create_user_command('RealpathURI', function()
 
 --[[ Requirables ]]
 require('plugins.nvim-lastplace')
--- require('plugins.nvim-treesitter')
+require('plugins.nvim-treesitter')
 require('lsp')
 require('plugins.indent-blankline')
 require('plugins.copilot')

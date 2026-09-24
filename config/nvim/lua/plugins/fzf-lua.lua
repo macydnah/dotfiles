@@ -144,6 +144,7 @@ require('fzf-lua').setup {
     toggle_follow_flag = '-L',
     hidden = true,
     follow = false,
+    no_ignore = false,
 
     winopts = {
       title = "",

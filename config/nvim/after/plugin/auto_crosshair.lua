@@ -17,6 +17,12 @@ local no_cursorcolumn_ft = {
   'xml',
 }
 
+---Filetypes where both cursorline and cursorcolumn should be disabled
+---@type string[]
+local no_crosshair_ft = {
+  'fzf',
+}
+
 ---@return boolean true In case cursorcolumn is needed in the current buffer; false otherwise
 local function __need_cursorcolumn()
   if vim.opt_local.list:get() then
@@ -34,6 +40,14 @@ end
 
 ---Enable cursorline (and cursorcolumn if needed) in the current buffer
 local function __crosshair_on()
+  for _, blacklisted in ipairs(no_crosshair_ft) do
+    if vim.opt_local.filetype:get() == blacklisted then
+      vim.opt_local.cursorline = false
+      vim.opt_local.cursorcolumn = false
+      return
+    end
+  end
+
   vim.opt_local.cursorline = true
 
   if __need_cursorcolumn() then

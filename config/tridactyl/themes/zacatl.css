@@ -1,0 +1,368 @@
+/*
+ * Copyright (c) 2026 Juan Hernández Zavala
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+:root {
+    --tritheme-green-rgb: 151, 208, 26;
+    --tritheme-gray-rgb: 43, 48, 59;
+
+    --tritheme-shadow-color: rgba(0, 0, 0, 0.73);
+    /* --tritheme-shadow-color: Shadow; */
+    /* --tritheme-shadow-color: red; */
+
+    /* Animation beziers */
+    --tritheme-bezier-ease-in-out-exponential: cubic-bezier(1,0,0,1);
+    --tritheme-bezier-ease-in-out-circular: cubic-bezier(.79,.14,.15,.86);
+    --tritheme-bezier-ease-in-out-backward: cubic-bezier(.68,-0.55,.27,1.55);
+
+    /* Generic */
+    --tridactyl-font-family: sans-serif;
+    --tridactyl-font-size: 1rem;
+    --tridactyl-small-font-size: calc(var(--tridactyl-font-size) * 3/4);
+    /* --tridactyl-bg: Canvas; */
+    /* --tridactyl-fg: CanvasText; */
+
+    /* Section header */
+    --tridactyl-header-font-size: 1.25rem;
+
+    /* Mode indicator */
+    --tridactyl-status-font-family: var(--tridactyl-font-family);
+    --tridactyl-status-font-size: var(--tridactyl-small-font-size);
+    --tridactyl-status-bg: var(--tridactyl-bg);
+    --tridactyl-status-fg: var(--tridactyl-fg);
+    /* --tridactyl-status-border: 1px solid var(--tridactyl-fg); */
+    --tridactyl-status-border: none;
+    --tridactyl-status-border-radius: 4px;
+
+    /* URL style */
+    --tridactyl-url-bg: none;
+    --tridactyl-url-fg: rgb(var(--tritheme-green-rgb));
+    --tridactyl-url-cursor: pointer;
+    --tridactyl-url-text-decoration: none;
+
+    /* Option focused */
+    --tridactyl-of-bg: var(--tridactyl-bg);
+    --tridactyl-of-fg: var(--tridactyl-fg);
+
+    /* Hint character tags */
+    --tridactyl-hintspan-font-family: var(--tridactyl-font-family);
+    --tridactyl-hintspan-font-size: var(--tridactyl-small-font-size);
+    --tridactyl-hintspan-font-weight: bold;
+    /* --tridactyl-hintspan-bg: #204e8a; */
+    --tridactyl-hintspan-bg: rgb(var(--tritheme-green-rgb));
+    /* --tridactyl-hintspan-fg: var(--tridactyl-bg); */
+    --tridactyl-hintspan-fg: var(--tridactyl-bg);
+    --tridactyl-hintspan-pressed-fg: var(--tridactyl-hintspan-fg);
+    --tridactyl-hintspan-border-color: ButtonShadow;
+    --tridactyl-hintspan-border-width: 1px;
+    --tridactyl-hintspan-border-style: solid;
+    /* --tridactyl-hintspan-js-background: var(--tritheme-darkblue4); */
+    /* --tridactyl-hintspan-border-width: 1px; */
+    /* --tridactyl-hintspan-border-color: var(--tritheme-moon-magenta); */
+    /* --tritheme-hintspan-padding: 0.5px; */
+    /* --tridactyl-hintspan-active-fg: var(--tridactyl-hintspan-bg); */
+    /* --tridactyl-hintspan-active-bg: var(--tritheme-moon-yellow); */
+    /* --tridactyl-hintspan-pressed-fg: grey; */
+
+    /* Element highlights */
+    --tridactyl-hint-bg: rgba(13, 31, 54, 0.25);
+    --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
+    /* --tritactyl-hint-fg: rgb(211, 235, 249); */
+    /* --tridactyl-hint-bg: rgba(0, 4, 66, 0.35); */
+    /* --tridactyl-hint-outline: 1px solid var(--tritheme-purple); */
+    --tridactyl-hint-active-bg: #006e51;
+    --tridactyl-hint-active-fg: #333;
+    --tridactyl-hint-active-outline: 1px solid #000;
+    /* --tridactyl-hint-highlight-opacity: 0.25; */
+    /* --tridactyl-hint-highlight-fg: var(--tritheme-cyan); */
+    /* --tridactyl-hint-highlight-bg: var(--tritheme-moon-blue2); */
+    /* --tridactyl-hint-highlight-active-fg: var(--tritheme-moon-yellow); */
+    /* --tridactyl-hint-highlight-active-bg: var(--tritheme-orange); */
+
+    /* :viewsource */
+    --tridactyl-vs-bg: var(--tridactyl-bg);
+    --tridactyl-vs-fg: var(--tridactyl-fg);
+    --tridactyl-vs-font-family: var(--tridactyl-font-family);
+
+    /* Commandline */
+    --tridactyl-cmdl-font-family: monospace;
+    --tridactyl-cmdl-font-size: 1.5rem;
+    --tridactyl-cmdl-bg: var(--tridactyl-bg);
+    --tridactyl-cmdl-fg: var(--tridactyl-fg);
+
+    --tridactyl-cmplt-font-family: var(--tridactyl-font-family);
+    --tridactyl-cmplt-font-size: var(--tridactyl-small-font-size);
+    --tridactyl-cmplt-bg: var(--tridactyl-bg);
+    --tridactyl-cmplt-fg: var(--tridactyl-fg);
+    --tridactyl-cmplt-option-height: 1.9em;
+    /* --tridactyl-cmplt-border-top: 1px solid rgb(var(--tritheme-green-rgb)); */
+    --tridactyl-cmplt-border-top: none;
+
+    --tridactyl-border-radius: 12px;
+}
+
+:root.TridactylOwnNamespace {
+    scrollbar-color: var(--tridactyl-scrollbar-color);
+    scrollbar-width: thin;
+}
+:root.TridactylOwnNamespace a {
+    color: rgb(var(--tritheme-green-rgb)); /* prevenir --tridactyl-of-fg */
+    background: none;
+}
+:root.TridactylOwnNamespace a.tsd-kind-icon {
+    font-family: var(--tridactyl-cmdl-font-family);
+}
+:root.TridactylOwnNamespace code {
+    font-family: var(--tridactyl-cmdl-font-family);
+    /* background-color: #2a333c; */
+    padding: 3px 7px;
+}
+
+:root #command-line-holder { order: 1; }
+:root #completions         { order: 2; }
+
+:root #command-line-holder,
+:root #tridactyl-input,
+:root #completions {
+    border-radius: var(--tridactyl-border-radius);
+}
+
+:root #command-line-holder,
+:root #tridactyl-input {
+    padding: 0.5rem;
+}
+:root #tridactyl-colon::before {
+    font-size: var(--tridactyl-cmdl-font-size);
+    content: "";
+}
+:root #tridactyl-input {
+    /* width: calc(100% - 3rem); */
+    background: transparent;
+}
+
+:root #completions {
+    margin-top: 1rem;
+}
+:root #completions .sectionHeader {
+    background: transparent;
+    padding: 1rem 1rem 0.4rem !important;
+}
+:root #completions > div {
+    max-height: calc(20 * var(--tridactyl-cmplt-option-height));
+    min-height: calc(10 * var(--tridactyl-cmplt-option-height));
+}
+:root #completions > div > table {
+    font-weight: 200;
+    table-layout: fixed;
+    padding: 1rem;
+    padding-top: 0;
+}
+:root #completions .optionContainer tr.option td:not(.content:has(.url)) {
+    /* las elipsis en URLs se miran raras */
+    text-overflow: ellipsis;
+}
+@keyframes enfocar {
+    from {
+        color: var(--tridactyl-fg);
+        background-color: var(--tridactyl-bg);
+    }
+    to {
+        color: var(--tridactyl-of-fg);
+        background-color: var(--tridactyl-of-bg);
+        /* font-weight: 600; */
+        font-weight: bold;
+    }
+}
+:root #completions .optionContainer tr.option.focused {
+    animation: enfocar 50ms linear both;
+}
+@keyframes subrayar {
+    from { text-decoration-color: transparent; }
+    to   { text-decoration-color: var(--tridactyl-url-fg); }
+}
+:root #completions .optionContainer tr.option.focused .url {
+    text-decoration: underline;
+    animation: subrayar 50ms linear both;
+}
+
+/* Bindings completion */
+:root #completions .BindingsCompletionSource .optionContainer td {
+    padding-left: 0.333rem;
+}
+:root #completions .BindingsCompletionSource .optionContainer .name {
+    width: 15%;
+    padding-left: 0rem;
+    text-align: center;
+    vertical-align: top;
+}
+:root #completions .BindingsCompletionSource .optionContainer .content {
+    width: 100%;
+    font-family: var(--tridactyl-cmdl-font-family);
+    white-space: pre-line;
+    text-align: left;
+}
+:root #completions .BindingsCompletionSource .optionContainer .type {
+    width: 18%;
+    text-align: right;
+    vertical-align: top;
+}
+
+/* Bookmark completion */
+:root #completions .BmarkCompletionSource .optionContainer td {
+    padding-left: 0.333rem;
+}
+:root #completions .BmarkCompletionSource .optionContainer .prefix {
+    width: 0%;
+    padding-left: 0rem;
+}
+:root #completions .BmarkCompletionSource .optionContainer .title {
+    width: 40%;
+}
+:root #completions .BmarkCompletionSource .optionContainer .content {
+    width: 60%;
+    font-family: var(--tridactyl-cmdl-font-family);
+}
+
+/* Tabs completion */
+:root #completions .BufferCompletionSource .optionContainer td {
+    padding-left: 0.2rem;
+}
+:root #completions .BufferCompletionSource .optionContainer .prefix {
+    width: 2%;
+    text-align: center;
+    padding-left: 0rem;
+}
+:root #completions .BufferCompletionSource .optionContainer .container {
+    width: 2%;
+    text-align: center;
+}
+:root #completions .BufferCompletionSource .optionContainer .icon {
+    width: 4%;
+    text-align: right;
+}
+:root #completions .BufferCompletionSource .optionContainer .title {
+    width: 42%;
+    text-align: left;
+}
+:root #completions .BufferCompletionSource .optionContainer .content {
+    width: 50%;
+    font-family: var(--tridactyl-cmdl-font-family);
+}
+
+:root #completions .ExcmdCompletionSource   .optionContainer td,
+:root #completions .HelpCompletionSource    .optionContainer td,
+:root #completions .AproposCompletionSource .optionContainer td {
+    padding-left: 0.5rem;
+}
+:root #completions .ExcmdCompletionSource   .optionContainer .excmd,
+:root #completions .HelpCompletionSource    .optionContainer .name,
+:root #completions .AproposCompletionSource .optionContainer .name {
+    width: 25%;
+    font-family: var(--tridactyl-cmdl-font-family);
+    vertical-align: top;
+}
+:root #completions .ExcmdCompletionSource   .optionContainer .documentation,
+:root #completions .HelpCompletionSource    .optionContainer .doc,
+:root #completions .AproposCompletionSource .optionContainer .doc {
+    width: 100%;
+    font-style: italic;
+    /* white-space: pre-line; */
+}
+
+/* History and Bookmark completion */
+:root #completions .HistoryCompletionSource table {
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+:root #completions .HistoryCompletionSource .optionContainer td {
+    padding-left: 0.333rem;
+}
+:root #completions .HistoryCompletionSource .optionContainer .prefix {
+    width: 2%;
+    text-align: center;
+    padding-left: 0rem;
+}
+:root #completions .HistoryCompletionSource .optionContainer .title {
+    width: 50%;
+}
+:root #completions .HistoryCompletionSource .optionContainer .content {
+    width: 50%;
+    font-family: var(--tridactyl-cmdl-font-family);
+}
+
+/* Marco principal */
+@keyframes fade-in-scale {
+    from { opacity: 0; scale: 0%; }
+    to   { opacity: 1; scale: 100%; }
+}
+@keyframes fade-out-scale {
+    from { opacity: 1; scale: 100%; }
+    to   { opacity: 0; scale: 0%; }
+}
+:root #cmdline_iframe {
+    color-scheme: light dark;
+    position: fixed !important;
+    bottom: unset;
+    top: 25% !important;
+    left: 10% !important;
+    z-index: 2147483647 !important;
+    width: 80% !important;
+    filter: drop-shadow(0px 0px 8px var(--tritheme-shadow-color)) !important;
+    animation: fade-in-scale 300ms var(--tritheme-bezier-ease-in-out-exponential);
+}
+:root #cmdline_iframe.hidden {
+    animation: none !important;
+}
+:root::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483645;
+    pointer-events: none;
+    transition: background 200ms ease-in,
+                backdrop-filter 200ms ease-in;
+}
+:root:has(#cmdline_iframe:not(.hidden))::after {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.7px);
+}
+
+/* Indicador de modo (estatus) */
+:root .TridactylStatusIndicator {
+    position: fixed !important;
+    bottom: 0.5em !important;
+    right: 0.5em !important;
+    font-weight: 200 !important;
+    padding: 0.5em !important;
+    z-index: 2147483646 !important;
+    filter: drop-shadow(0px 0px 1px var(--tritheme-shadow-color)) !important;
+    /* animation: fade-in-scale 100ms var(--tritheme-bezier-ease-in-out-exponential) both !important; */
+    animation: fade-in-scale 300ms var(--tritheme-bezier-ease-in-out-backward) both !important;
+}
+/* Ocultar indicador cuando se abre la línea de comandos */
+:root:has(#cmdline_iframe:not(.hidden)) .TridactylStatusIndicator {
+    pointer-events: none !important;
+    animation: fade-out-scale 300ms var(--tritheme-bezier-ease-in-out-exponential) both !important;
+}
+:root .TridactylStatusIndicator.TridactylModenormal {
+    color: var(--tridactyl-status-fg) !important;
+}
+:root .TridactylStatusIndicator.TridactylModeinput,
+:root .TridactylStatusIndicator.TridactylModeinsert {
+    color: red !important;
+    border: 1px solid red !important;
+    font-weight: 400 !important;
+}

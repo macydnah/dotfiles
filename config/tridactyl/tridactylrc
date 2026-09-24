@@ -145,8 +145,12 @@ set update.nag false
 
 set smoothscroll true
 set scrollduration 150
-set theme test
-set newtab http://localhost:8888
+" set theme test
+set theme zacatl
+set completions.History.statusstylepretty true
+set completions.Tab.statusstylepretty true
+set newtab http://localhost:12894/index.html
+"set newtab http://localhost:8888
 "seturl http://localhost:8888 allowautofocus false
 
 " Searching
@@ -159,7 +163,8 @@ set searchurls.apk https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagge
 set searchurls.dem https://dem.colmex.mx/Ver/
 set searchurls.javadoc https://docs.oracle.com/en/java/javase/25/docs/api/search.html?q=
 set searchurls.mvn https://central.sonatype.com/search?q=%s
-set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
+" set searchurls.pkg https://gitlab.archlinux.org/archlinux/packaging/packages/%s
+set searchurls.pkg https://gitlab.archlinux.org/search?search=%s
 set searchurls.rae https://dle.rae.es/
 set searchurls.rscrate https://crates.io/search?q=
 set searchurls.rsdoc https://docs.rs/releases/search?query=
@@ -179,6 +184,7 @@ bind k scrollline -5
 bind l forward
 bind o fillcmdline open
 bind s fillcmdline open search
+bind t fillcmdline tab
 bind u undo
 bind ym clipboard yankmd
 bind yq text2qr --timeout 5
@@ -216,6 +222,9 @@ bindurl ^http(s?)://localhost f hint -Jc a[class="url_header"],a[class="link_on_
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 " bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
+
+" Ex-mode binds
+bind --mode=ex <C-h> text.delete_backward_char
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: filetype=tridactyl foldmethod=marker
